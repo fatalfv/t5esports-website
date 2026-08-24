@@ -3,23 +3,13 @@
 T5 ESPORTS PLAYER DATABASE
 ==================================================
 
-EDIT THIS ONE FILE TO MANAGE EVERY PLAYER.
+EDIT THIS ONE FILE.
 
 roster: true
-    = Shows in T5 Roster
-    = Also shows in All Players
+    = ONLY appears in T5 Roster
 
 roster: false
-    = Does NOT show in T5 Roster
-    = Shows only in All Players
-
-Examples:
-
-    roster: true
-        Official T5 roster member
-
-    roster: false
-        Content creator / community member / etc.
+    = ONLY appears in All Players
 
 ==================================================
 */
@@ -29,9 +19,10 @@ const players = [
 
     /*
     ==================================================
-    OFFICIAL T5 ROSTER
+    T5 ROSTER
     ==================================================
     */
+
 
     {
         name: "Fatal",
@@ -85,9 +76,10 @@ const players = [
 
     /*
     ==================================================
-    ALL PLAYERS ONLY
+    ALL PLAYERS
     ==================================================
     */
+
 
     {
         name: "PLAYER FOUR",
@@ -139,6 +131,7 @@ const players = [
 ];
 
 
+
 /*
 ==================================================
 CREATE PLAYER CARD
@@ -147,8 +140,7 @@ CREATE PLAYER CARD
 
 function createPlayerCard(player, index) {
 
-    const card =
-        document.createElement("article");
+    const card = document.createElement("article");
 
 
     card.className =
@@ -156,20 +148,23 @@ function createPlayerCard(player, index) {
 
 
     const number =
-        String(index + 1)
-            .padStart(2, "0");
+        String(index + 1).padStart(2, "0");
+
 
 
     /*
-    ==============================================
+    ==================================================
     PLAYER IMAGE
-    ==============================================
+    ==================================================
     */
 
     let imageHTML;
 
 
-    if (player.image) {
+    if (
+        player.image &&
+        player.image.trim() !== ""
+    ) {
 
         imageHTML = `
 
@@ -196,10 +191,11 @@ function createPlayerCard(player, index) {
     }
 
 
+
     /*
-    ==============================================
+    ==================================================
     PLAYER CARD
-    ==============================================
+    ==================================================
     */
 
     card.innerHTML = `
@@ -267,6 +263,7 @@ function createPlayerCard(player, index) {
 }
 
 
+
 /*
 ==================================================
 T5 ROSTER
@@ -279,13 +276,13 @@ const rosterContainer =
 
 if (rosterContainer) {
 
-    const roster =
+    const rosterPlayers =
         players.filter(
             player => player.roster === true
         );
 
 
-    roster.forEach(
+    rosterPlayers.forEach(
         (player, index) => {
 
             const card =
@@ -303,9 +300,14 @@ if (rosterContainer) {
 }
 
 
+
 /*
 ==================================================
 ALL PLAYERS
+==================================================
+
+ONLY roster: false players appear here.
+
 ==================================================
 */
 
@@ -314,15 +316,6 @@ const playersContainer =
 
 
 if (playersContainer) {
-
-    /*
-    IMPORTANT:
-
-    Roster players are NOT included here.
-
-    Only players with roster: false
-    will appear in All Players.
-    */
 
     const allPlayers =
         players.filter(
@@ -341,6 +334,76 @@ if (playersContainer) {
 
 
             playersContainer.appendChild(card);
+
+        }
+    );
+
+}
+
+
+
+/*
+==================================================
+SCROLL REVEAL ANIMATIONS
+==================================================
+*/
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+if (
+    "IntersectionObserver" in window
+) {
+
+    const revealObserver =
+        new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach(
+        element => {
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
+
+} else {
+
+    revealElements.forEach(
+        element => {
+
+            element.classList.add(
+                "visible"
+            );
 
         }
     );
