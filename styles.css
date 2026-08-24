@@ -48,6 +48,10 @@ a {
 }
 
 
+/* ==========================================
+   PAGE NOISE
+========================================== */
+
 .page-noise {
 
     position: fixed;
@@ -66,7 +70,9 @@ a {
 }
 
 
-/* NAV */
+/* ==========================================
+   NAVIGATION
+========================================== */
 
 .site-header {
 
@@ -200,7 +206,9 @@ a {
 }
 
 
-/* HERO */
+/* ==========================================
+   HERO
+========================================== */
 
 .hero {
 
@@ -508,7 +516,9 @@ a {
 }
 
 
-/* PLAYER CATEGORIES */
+/* ==========================================
+   PLAYER CATEGORIES
+========================================== */
 
 .players-section {
 
@@ -816,7 +826,9 @@ a {
 }
 
 
-/* ABOUT */
+/* ==========================================
+   ABOUT
+========================================== */
 
 .about-section {
 
@@ -953,7 +965,9 @@ a {
 }
 
 
-/* JOIN */
+/* ==========================================
+   JOIN DISCORD
+========================================== */
 
 .join-section {
 
@@ -1041,7 +1055,9 @@ a {
 }
 
 
-/* PLAYER PAGES */
+/* ==========================================
+   PLAYER PAGES
+========================================== */
 
 .players-page-hero {
 
@@ -1129,6 +1145,10 @@ a {
 }
 
 
+/* ==========================================
+   PLAYER CONTAINER
+========================================== */
+
 .players-container {
 
     padding: 120px 8vw 150px;
@@ -1179,6 +1199,8 @@ a {
 
     letter-spacing: 1px;
 
+    transition: .25s;
+
 }
 
 
@@ -1191,7 +1213,9 @@ a {
 }
 
 
-/* REAL PLAYER CARDS */
+/* ==========================================
+   REAL PLAYER CARDS
+========================================== */
 
 .player-grid {
 
@@ -1233,22 +1257,49 @@ a {
 }
 
 
+/* ==========================================
+   PLAYER IMAGE
+========================================== */
+
 .real-player-image {
 
     position: absolute;
 
     inset: 0;
 
-    background-size: cover;
+    overflow: hidden;
 
-    background-position: center;
+    background: #101014;
 
-    background-repeat: no-repeat;
+    z-index: 1;
 
 }
 
 
-.real-player-card::after {
+.player-photo {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center top;
+
+    z-index: 1;
+
+}
+
+
+/* IMAGE GRADIENT */
+
+.real-player-image::after {
 
     content: "";
 
@@ -1256,11 +1307,13 @@ a {
 
     inset: 0;
 
+    z-index: 2;
+
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.05) 20%,
-            rgba(0,0,0,.18) 40%,
+            rgba(0,0,0,.03) 15%,
+            rgba(0,0,0,.12) 40%,
             rgba(0,0,0,.97) 100%
         );
 
@@ -1268,6 +1321,8 @@ a {
 
 }
 
+
+/* EMPTY PLAYER */
 
 .empty-player-logo {
 
@@ -1289,8 +1344,14 @@ a {
 
     color: #18181e;
 
+    z-index: 1;
+
 }
 
+
+/* ==========================================
+   PLAYER NUMBER
+========================================== */
 
 .real-player-number {
 
@@ -1312,6 +1373,10 @@ a {
 
 }
 
+
+/* ==========================================
+   PLAYER REGION
+========================================== */
 
 .real-player-region {
 
@@ -1339,6 +1404,10 @@ a {
 
 }
 
+
+/* ==========================================
+   PLAYER INFO
+========================================== */
 
 .real-player-info {
 
@@ -1378,8 +1447,14 @@ a {
 
     letter-spacing: -2px;
 
+    text-transform: uppercase;
+
 }
 
+
+/* ==========================================
+   DISCORD BUTTON
+========================================== */
 
 .real-player-link {
 
@@ -1420,7 +1495,9 @@ a {
 }
 
 
-/* FOOTER */
+/* ==========================================
+   FOOTER
+========================================== */
 
 footer {
 
@@ -1478,6 +1555,8 @@ footer {
 
     letter-spacing: 1px;
 
+    transition: .2s;
+
 }
 
 
@@ -1501,176 +1580,264 @@ footer {
 }
 
 
-/* RESPONSIVE */
+/* ==========================================
+   RESPONSIVE — TABLET
+========================================== */
 
 @media(max-width: 900px) {
 
+
     .main-nav {
+
         display: none;
+
     }
 
 
     .header-discord {
+
         display: none;
+
     }
 
 
     .hero {
+
         padding-left: 7vw;
+
         padding-right: 7vw;
+
     }
 
 
     .hero-t5 {
+
         opacity: .45;
+
         right: -20vw;
+
     }
 
 
     .player-category-grid {
+
         grid-template-columns: 1fr;
+
     }
 
 
     .about-section {
+
         grid-template-columns: 1fr;
+
     }
 
 
     .player-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
     }
 
 }
 
 
+/* ==========================================
+   RESPONSIVE — MOBILE
+========================================== */
+
 @media(max-width: 600px) {
 
+
     .site-header {
+
         padding: 0 6vw;
+
     }
 
 
     .hero {
-        padding: 140px 6vw 70px;
+
+        padding:
+            140px
+            6vw
+            70px;
+
         min-height: 900px;
+
         align-items: flex-start;
+
     }
 
 
     .hero-content {
+
         margin-top: 40px;
+
     }
 
 
     .hero h1 {
+
         font-size: 65px;
+
         letter-spacing: -5px;
+
     }
 
 
     .hero-buttons {
+
         flex-direction: column;
+
     }
 
 
     .button {
+
         width: 100%;
+
     }
 
 
     .hero-stats {
+
         gap: 25px;
+
         margin-top: 50px;
+
     }
 
 
     .hero-t5 {
+
         font-size: 80vw;
+
         right: -35vw;
+
         top: 65%;
+
     }
 
 
     .players-section,
     .about-section,
     .players-container {
+
         padding-left: 6vw;
+
         padding-right: 6vw;
+
     }
 
 
     .section-heading {
+
         display: block;
+
     }
 
 
     .section-heading > p {
+
         margin-top: 20px;
+
     }
 
 
     .player-category {
+
         min-height: 460px;
+
     }
 
 
     .category-content h3 {
+
         font-size: 42px;
+
     }
 
 
     .players-page-hero {
-        padding: 150px 6vw 80px;
+
+        padding:
+            150px
+            6vw
+            80px;
+
     }
 
 
     .page-hero-content h1 {
+
         font-size: 65px;
+
         letter-spacing: -5px;
+
     }
 
 
     .page-hero-t5 {
+
         font-size: 75vw;
+
         right: -30vw;
+
         opacity: .45;
+
     }
 
 
     .players-page-heading {
+
         display: block;
+
     }
 
 
     .switch-page {
+
         display: inline-block;
+
         margin-top: 25px;
+
     }
 
 
     .player-grid {
+
         grid-template-columns: 1fr;
+
     }
 
 
     .real-player-card {
+
         min-height: 460px;
+
     }
 
 
     .footer-main {
+
         display: block;
+
     }
 
 
     .footer-tagline {
+
         margin: 25px 0;
+
     }
 
 
     .footer-socials {
+
         flex-wrap: wrap;
+
     }
 
 }
