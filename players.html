@@ -10,93 +10,197 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>T5 Players</title>
+    <title>T5 Players — T5 Esports</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="styles.css">
 
 </head>
 
+
 <body>
 
+<div class="page-noise"></div>
 
-<header class="navbar">
 
-    <a href="index.html" class="logo">
-        <span>T5</span>
-        <small>ESPORTS</small>
+<header class="site-header">
+
+    <a href="index.html" class="brand">
+
+        <div class="brand-t5">
+            T5
+        </div>
+
+        <div class="brand-name">
+            ESPORTS
+        </div>
+
     </a>
 
-    <nav>
+
+    <nav class="main-nav">
 
         <a href="index.html">
-            Home
+            HOME
         </a>
 
         <a href="roster.html">
-            Roster
+            ROSTER
         </a>
 
         <a href="players.html">
-            Players
+            PLAYERS
         </a>
 
         <a href="index.html#about">
-            About
+            ABOUT
         </a>
 
     </nav>
 
+
     <a
         href="https://discord.gg/t5esports"
         target="_blank"
-        class="discord-button"
+        rel="noopener"
+        class="header-discord"
     >
-        JOIN DISCORD ↗
+
+        JOIN DISCORD
+
+        <span>↗</span>
+
     </a>
 
 </header>
 
 
+
 <main>
 
-<section class="page-hero">
 
-    <div class="eyebrow">
-        T5 ESPORTS
+<section class="players-page-hero">
+
+    <div class="page-hero-content">
+
+        <div class="small-label">
+
+            <span></span>
+
+            T5 ESPORTS / PLAYERS
+
+        </div>
+
+
+        <h1>
+
+            T5
+
+            <br>
+
+            <strong>PLAYERS.</strong>
+
+        </h1>
+
+
+        <p>
+
+            Meet the players and creators
+            representing the T5 Esports brand.
+
+        </p>
+
     </div>
 
-    <h1>
+
+    <div class="page-hero-t5">
         T5
-        <span>PLAYERS.</span>
-    </h1>
-
-    <p>
-        Meet the players and creators representing
-        the T5 Esports brand.
-    </p>
+    </div>
 
 </section>
 
 
-<section class="player-list">
 
-    <div class="player-grid" id="players"></div>
+<section class="players-container">
+
+    <div class="players-page-heading">
+
+        <div>
+
+            <div class="small-label">
+
+                <span></span>
+
+                T5 ESPORTS
+
+            </div>
+
+            <h2>
+
+                T5
+
+                <strong>PLAYERS.</strong>
+
+            </h2>
+
+        </div>
+
+
+        <a
+            href="roster.html"
+            class="switch-page"
+        >
+            VIEW COMPETITIVE ROSTER ↗
+        </a>
+
+    </div>
+
+
+    <div
+        class="player-grid"
+        id="allPlayers"
+    ></div>
 
 </section>
+
 
 </main>
 
 
+
 <footer>
 
-    <div class="footer-top">
+    <div class="footer-main">
 
-        <a href="index.html" class="logo">
-            <span>T5</span>
-            <small>ESPORTS</small>
+        <a href="index.html" class="brand">
+
+            <div class="brand-t5">
+                T5
+            </div>
+
+            <div class="brand-name">
+                ESPORTS
+            </div>
+
         </a>
 
-        <div class="footer-links">
+
+        <div class="footer-socials">
 
             <a
                 href="https://discord.gg/t5esports"
@@ -110,19 +214,22 @@
             </a>
 
             <a href="#">
-                YOUTUBE
+                X
             </a>
 
             <a href="#">
-                X
+                YOUTUBE
             </a>
 
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
+
         © 2026 T5 ESPORTS. ALL RIGHTS RESERVED.
+
     </div>
 
 </footer>
@@ -131,4 +238,5 @@
 <script src="players.js"></script>
 
 </body>
+
 </html>
