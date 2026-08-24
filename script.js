@@ -1,124 +1,20 @@
+/*
+==================================================
+T5 ESPORTS
+MAIN JAVASCRIPT
+==================================================
+*/
+
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /*
-        ==================================================
-        PAGE TRANSITION
-        ==================================================
-        */
-
-        const pageTransition =
-            document.querySelector(
-                ".page-transition"
-            );
-
 
         /*
-        Page enters
-        */
-
-        requestAnimationFrame(() => {
-
-            setTimeout(() => {
-
-                document.body.classList.add(
-                    "page-loaded"
-                );
-
-            }, 50);
-
-        });
-
-
-        /*
-        ==================================================
-        PAGE LINK TRANSITIONS
-        ==================================================
-        */
-
-        document
-            .querySelectorAll(
-                "a.page-link"
-            )
-            .forEach(link => {
-
-                link.addEventListener(
-                    "click",
-                    event => {
-
-                        const href =
-                            link.getAttribute(
-                                "href"
-                            );
-
-
-                        if (!href) return;
-
-
-                        /*
-                        Don't animate external links.
-                        */
-
-                        if (
-                            href.startsWith(
-                                "http"
-                            )
-                        ) {
-                            return;
-                        }
-
-
-                        /*
-                        Don't animate same-page
-                        anchor links.
-                        */
-
-                        if (
-                            href.startsWith("#")
-                        ) {
-                            return;
-                        }
-
-
-                        event.preventDefault();
-
-
-                        document.body.classList.add(
-                            "page-exiting"
-                        );
-
-
-                        if (pageTransition) {
-
-                            pageTransition.classList.add(
-                                "active"
-                            );
-
-                        }
-
-
-                        setTimeout(
-                            () => {
-
-                                window.location.href =
-                                    href;
-
-                            },
-                            500
-                        );
-
-                    }
-                );
-
-            });
-
-
-
-        /*
-        ==================================================
-        HEADER
-        ==================================================
+        ==========================================
+        HEADER SCROLL
+        ==========================================
         */
 
         const header =
@@ -163,9 +59,9 @@ document.addEventListener(
 
 
         /*
-        ==================================================
+        ==========================================
         MOBILE MENU
-        ==================================================
+        ==========================================
         */
 
         const menuButton =
@@ -214,7 +110,6 @@ document.addEventListener(
                                 "active"
                             );
 
-
                             mobileMenu.classList.remove(
                                 "open"
                             );
@@ -229,25 +124,35 @@ document.addEventListener(
 
 
         /*
-        ==================================================
+        ==========================================
         SCROLL REVEAL
-        ==================================================
+        ==========================================
         */
 
-        const revealElements =
-            document.querySelectorAll(
-                ".reveal"
-            );
+        let revealObserver;
 
 
-        if (
-            "IntersectionObserver"
-            in window
-        ) {
+        function setupRevealAnimations() {
 
-            const observer =
+            const elements =
+                document.querySelectorAll(
+                    ".reveal, .real-player-card"
+                );
+
+
+            if (!elements.length) return;
+
+
+            if (revealObserver) {
+
+                revealObserver.disconnect();
+
+            }
+
+
+            revealObserver =
                 new IntersectionObserver(
-                    entries => {
+                    (entries) => {
 
                         entries.forEach(
                             entry => {
@@ -256,12 +161,31 @@ document.addEventListener(
                                     entry.isIntersecting
                                 ) {
 
-                                    entry.target.classList.add(
+                                    const element =
+                                        entry.target;
+
+
+                                    const delay =
+                                        element.style.getPropertyValue(
+                                            "--card-delay"
+                                        );
+
+
+                                    if (delay) {
+
+                                        element.style.transitionDelay =
+                                            delay;
+
+                                    }
+
+
+                                    element.classList.add(
                                         "visible"
                                     );
 
-                                    observer.unobserve(
-                                        entry.target
+
+                                    revealObserver.unobserve(
+                                        element
                                     );
 
                                 }
@@ -271,31 +195,18 @@ document.addEventListener(
 
                     },
                     {
-                        threshold: .12,
-
+                        threshold: 0.12,
                         rootMargin:
-                            "0px 0px -80px 0px"
+                            "0px 0px -70px 0px"
                     }
                 );
 
 
-            revealElements.forEach(
+            elements.forEach(
                 element => {
 
-                    observer.observe(
+                    revealObserver.observe(
                         element
-                    );
-
-                }
-            );
-
-        } else {
-
-            revealElements.forEach(
-                element => {
-
-                    element.classList.add(
-                        "visible"
                     );
 
                 }
@@ -304,11 +215,18 @@ document.addEventListener(
         }
 
 
+        window.refreshRevealAnimations =
+            setupRevealAnimations;
+
+
+        setupRevealAnimations();
+
+
 
         /*
-        ==================================================
-        HERO ANIMATION
-        ==================================================
+        ==========================================
+        HERO LOAD ANIMATION
+        ==========================================
         */
 
         const heroElements =
@@ -324,11 +242,11 @@ document.addEventListener(
                     () => {
 
                         element.classList.add(
-                            "visible"
+                            "hero-loaded"
                         );
 
                     },
-                    250 + index * 140
+                    180 + index * 140
                 );
 
             }
@@ -337,217 +255,174 @@ document.addEventListener(
 
 
         /*
-        ==================================================
-        PLAYER CARDS
-        ==================================================
+        ==========================================
+        PAGE LOAD ANIMATION
+        ==========================================
         */
 
-        function observePlayers() {
-
-            const cards =
-                document.querySelectorAll(
-                    ".real-player-card"
-                );
+        const pageAnimation =
+            document.querySelector(
+                ".page-load-animation"
+            );
 
 
-            if (!cards.length) return;
+        if (pageAnimation) {
 
+            setTimeout(
+                () => {
 
-            if (
-                "IntersectionObserver"
-                in window
-            ) {
-
-                const playerObserver =
-                    new IntersectionObserver(
-                        entries => {
-
-                            entries.forEach(
-                                entry => {
-
-                                    if (
-                                        entry.isIntersecting
-                                    ) {
-
-                                        const card =
-                                            entry.target;
-
-
-                                        const index =
-                                            Array
-                                                .from(
-                                                    card.parentElement.children
-                                                )
-                                                .indexOf(
-                                                    card
-                                                );
-
-
-                                        setTimeout(
-                                            () => {
-
-                                                card.classList.add(
-                                                    "visible"
-                                                );
-
-                                            },
-                                            index * 130
-                                        );
-
-
-                                        playerObserver.unobserve(
-                                            card
-                                        );
-
-                                    }
-
-                                }
-                            );
-
-                        },
-                        {
-                            threshold: .08,
-
-                            rootMargin:
-                                "0px 0px -80px 0px"
-                        }
+                    pageAnimation.classList.add(
+                        "page-loaded"
                     );
 
-
-                cards.forEach(
-                    card => {
-
-                        playerObserver.observe(
-                            card
-                        );
-
-                    }
-                );
-
-            } else {
-
-                cards.forEach(
-                    card => {
-
-                        card.classList.add(
-                            "visible"
-                        );
-
-                    }
-                );
-
-            }
+                },
+                150
+            );
 
         }
 
 
-        setTimeout(
-            observePlayers,
-            100
-        );
-
 
         /*
-        Detect cards created by players.js.
+        ==========================================
+        SMOOTH INTERNAL LINKS
+        ==========================================
         */
 
-        const playerContainers =
-            document.querySelectorAll(
-                "#rosterPlayers, #allPlayers"
-            );
+        document
+            .querySelectorAll(
+                'a[href^="#"]'
+            )
+            .forEach(
+                link => {
+
+                    link.addEventListener(
+                        "click",
+                        event => {
+
+                            const targetId =
+                                link.getAttribute(
+                                    "href"
+                                );
 
 
-        if (
-            playerContainers.length
-        ) {
-
-            const mutationObserver =
-                new MutationObserver(
-                    () => {
-
-                        observePlayers();
-
-                        setupImages();
-
-                    }
-                );
+                            if (
+                                !targetId ||
+                                targetId === "#"
+                            ) return;
 
 
-            playerContainers.forEach(
-                container => {
+                            const target =
+                                document.querySelector(
+                                    targetId
+                                );
 
-                    mutationObserver.observe(
-                        container,
-                        {
-                            childList: true
+
+                            if (!target) return;
+
+
+                            event.preventDefault();
+
+
+                            target.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
                         }
                     );
 
                 }
             );
 
-        }
-
 
 
         /*
-        ==================================================
-        IMAGE LOAD
-        ==================================================
+        ==========================================
+        PAGE TRANSITIONS
+        ==========================================
         */
 
-        function setupImages() {
+        document
+            .querySelectorAll(
+                "a.page-link"
+            )
+            .forEach(
+                link => {
 
-            document
-                .querySelectorAll(
-                    ".player-photo"
-                )
-                .forEach(image => {
+                    link.addEventListener(
+                        "click",
+                        event => {
 
-                    if (
-                        image.complete
-                    ) {
-
-                        image.classList.add(
-                            "loaded"
-                        );
-
-                    } else {
-
-                        image.addEventListener(
-                            "load",
-                            () => {
-
-                                image.classList.add(
-                                    "loaded"
+                            const href =
+                                link.getAttribute(
+                                    "href"
                                 );
 
-                            },
-                            {
-                                once: true
+
+                            if (
+                                !href ||
+                                href.startsWith("#") ||
+                                link.target === "_blank"
+                            ) {
+
+                                return;
+
                             }
-                        );
-
-                    }
-
-                });
-
-        }
 
 
-        setupImages();
+                            /*
+                            Don't animate
+                            modifier clicks.
+                            */
+
+                            if (
+                                event.ctrlKey ||
+                                event.metaKey ||
+                                event.shiftKey ||
+                                event.altKey
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            event.preventDefault();
+
+
+                            document.body.classList.add(
+                                "page-exit"
+                            );
+
+
+                            setTimeout(
+                                () => {
+
+                                    window.location.href =
+                                        href;
+
+                                },
+                                400
+                            );
+
+                        }
+                    );
+
+                }
+            );
 
 
 
         /*
-        ==================================================
+        ==========================================
         CURSOR GLOW
-        ==================================================
+        ==========================================
         */
 
         const cursorGlow =
-            document.querySelector(
-                ".cursor-glow"
+            document.getElementById(
+                "cursorGlow"
             );
 
 
@@ -559,10 +434,12 @@ document.addEventListener(
         ) {
 
             let mouseX = 0;
+
             let mouseY = 0;
 
-            let currentX = 0;
-            let currentY = 0;
+            let glowX = 0;
+
+            let glowY = 0;
 
 
             document.addEventListener(
@@ -575,123 +452,111 @@ document.addEventListener(
                     mouseY =
                         event.clientY;
 
-                },
-                {
-                    passive: true
                 }
             );
 
 
-            function animateCursor() {
+            function animateGlow() {
 
-                currentX +=
-                    (mouseX - currentX)
-                    * .08;
+                glowX +=
+                    (mouseX - glowX) *
+                    0.08;
 
-                currentY +=
-                    (mouseY - currentY)
-                    * .08;
+                glowY +=
+                    (mouseY - glowY) *
+                    0.08;
 
 
                 cursorGlow.style.left =
-                    `${currentX}px`;
+                    `${glowX}px`;
 
                 cursorGlow.style.top =
-                    `${currentY}px`;
+                    `${glowY}px`;
 
 
                 requestAnimationFrame(
-                    animateCursor
+                    animateGlow
                 );
 
             }
 
 
-            animateCursor();
+            animateGlow();
 
         }
 
 
 
         /*
-        ==================================================
-        BUTTON RIPPLE
-        ==================================================
+        ==========================================
+        BUTTON PRESS EFFECT
+        ==========================================
         */
 
         document
             .querySelectorAll(
-                ".button, .nav-button, .pill-button, .real-player-link, .category-arrow"
+                ".button, .nav-button, .pill-button, .category-arrow, .real-player-link"
             )
-            .forEach(button => {
+            .forEach(
+                button => {
 
-                button.addEventListener(
-                    "click",
-                    event => {
+                    button.addEventListener(
+                        "pointerdown",
+                        () => {
 
-                        const rect =
-                            button.getBoundingClientRect();
-
-
-                        const ripple =
-                            document.createElement(
-                                "span"
+                            button.classList.add(
+                                "pressed"
                             );
 
-
-                        ripple.className =
-                            "button-ripple";
-
-
-                        ripple.style.left =
-                            `${
-                                event.clientX
-                                - rect.left
-                            }px`;
+                        }
+                    );
 
 
-                        ripple.style.top =
-                            `${
-                                event.clientY
-                                - rect.top
-                            }px`;
+                    button.addEventListener(
+                        "pointerup",
+                        () => {
+
+                            button.classList.remove(
+                                "pressed"
+                            );
+
+                        }
+                    );
 
 
-                        button.appendChild(
-                            ripple
-                        );
+                    button.addEventListener(
+                        "pointerleave",
+                        () => {
 
+                            button.classList.remove(
+                                "pressed"
+                            );
 
-                        setTimeout(
-                            () => {
+                        }
+                    );
 
-                                ripple.remove();
-
-                            },
-                            700
-                        );
-
-                    }
-                );
-
-            });
+                }
+            );
 
 
 
         /*
-        ==================================================
+        ==========================================
         PARALLAX
-        ==================================================
+        ==========================================
         */
 
-        const parallax =
+        const parallaxItems =
             document.querySelectorAll(
-                ".page-hero-background, .join-background"
+                ".hero-background-t5, .page-hero-background, .join-background"
             );
 
 
         if (
-            parallax.length
+            parallaxItems.length &&
+            window.matchMedia(
+                "(pointer: fine)"
+            ).matches
         ) {
 
             window.addEventListener(
@@ -702,13 +567,15 @@ document.addEventListener(
                         window.scrollY;
 
 
-                    parallax.forEach(
-                        element => {
+                    parallaxItems.forEach(
+                        item => {
 
-                            element.style.setProperty(
-                                "--scroll-y",
-                                `${scroll * .08}px`
-                            );
+                            const speed =
+                                0.12;
+
+
+                            item.style.transform =
+                                `translateY(calc(-50% + ${scroll * speed}px)) skew(-8deg)`;
 
                         }
                     );
@@ -724,59 +591,96 @@ document.addEventListener(
 
 
         /*
-        ==================================================
-        SMOOTH ANCHOR SCROLL
-        ==================================================
+        ==========================================
+        CARD TILT
+        ==========================================
         */
 
-        document
-            .querySelectorAll(
-                'a[href^="#"]'
-            )
-            .forEach(link => {
+        document.addEventListener(
+            "mousemove",
+            event => {
 
-                link.addEventListener(
-                    "click",
-                    event => {
-
-                        const id =
-                            link.getAttribute(
-                                "href"
-                            );
+                const card =
+                    event.target.closest(
+                        ".real-player-card"
+                    );
 
 
-                        if (
-                            !id ||
-                            id === "#"
-                        ) {
-                            return;
-                        }
+                if (!card) return;
 
 
-                        const target =
-                            document.querySelector(
-                                id
-                            );
+                if (
+                    !window.matchMedia(
+                        "(pointer: fine)"
+                    ).matches
+                ) return;
 
 
-                        if (!target) return;
+                const rect =
+                    card.getBoundingClientRect();
 
 
-                        event.preventDefault();
+                const x =
+                    event.clientX -
+                    rect.left;
 
 
-                        target.scrollIntoView({
-                            behavior:
-                                "smooth",
+                const y =
+                    event.clientY -
+                    rect.top;
 
-                            block:
-                                "start"
-                        });
 
-                    }
+                const rotateX =
+                    ((y / rect.height) - 0.5) *
+                    -5;
+
+
+                const rotateY =
+                    ((x / rect.width) - 0.5) *
+                    5;
+
+
+                card.style.setProperty(
+                    "--rotate-x",
+                    `${rotateX}deg`
                 );
 
-            });
+
+                card.style.setProperty(
+                    "--rotate-y",
+                    `${rotateY}deg`
+                );
+
+
+                card.classList.add(
+                    "tilting"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "mouseleave",
+            event => {
+
+                const card =
+                    event.target.closest(
+                        ".real-player-card"
+                    );
+
+
+                if (!card) return;
+
+
+                card.classList.remove(
+                    "tilting"
+                );
+
+            },
+            true
+        );
+
 
     }
 );
