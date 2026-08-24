@@ -1,28 +1,24 @@
 /*
 ==================================================
 T5 ESPORTS
-MAIN WEBSITE JAVASCRIPT
+MAIN WEBSITE ANIMATIONS
 ==================================================
 */
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
 
     /*
     ==================================================
-    HEADER SCROLL EFFECT
+    HEADER SCROLL
     ==================================================
     */
 
     const header =
         document.getElementById("siteHeader");
 
-
     function updateHeader() {
 
         if (!header) return;
-
 
         if (window.scrollY > 40) {
 
@@ -36,13 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
     window.addEventListener(
         "scroll",
         updateHeader,
         { passive: true }
     );
-
 
     updateHeader();
 
@@ -60,33 +54,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileMenu =
         document.getElementById("mobileMenu");
 
-
     if (menuButton && mobileMenu) {
 
-        menuButton.addEventListener("click", () => {
+        menuButton.addEventListener(
+            "click",
+            () => {
 
-            menuButton.classList.toggle("active");
+                const open =
+                    mobileMenu.classList.toggle("open");
 
-            mobileMenu.classList.toggle("open");
+                menuButton.classList.toggle(
+                    "active",
+                    open
+                );
 
-        });
+            }
+        );
 
 
-        const mobileLinks =
-            mobileMenu.querySelectorAll("a");
+        /*
+        Close menu after clicking a link
+        */
 
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(link => {
 
-        mobileLinks.forEach(link => {
+                link.addEventListener(
+                    "click",
+                    () => {
 
-            link.addEventListener("click", () => {
+                        mobileMenu.classList.remove(
+                            "open"
+                        );
 
-                menuButton.classList.remove("active");
+                        menuButton.classList.remove(
+                            "active"
+                        );
 
-                mobileMenu.classList.remove("open");
+                    }
+                );
 
             });
-
-        });
 
     }
 
@@ -99,17 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
     */
 
     const revealElements =
-        document.querySelectorAll(
-            ".reveal"
-        );
+        document.querySelectorAll(".reveal");
 
 
-    if (revealElements.length) {
+    /*
+    If the browser supports IntersectionObserver,
+    use it for proper scroll animations.
+    */
 
+    if ("IntersectionObserver" in window) {
 
         const revealObserver =
             new IntersectionObserver(
-
                 (entries, observer) => {
 
                     entries.forEach(entry => {
@@ -122,6 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                 "visible"
                             );
 
+                            /*
+                            Stop watching once revealed.
+                            */
+
                             observer.unobserve(
                                 entry.target
                             );
@@ -131,14 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
 
                 },
-
                 {
                     threshold: 0.12,
 
                     rootMargin:
-                        "0px 0px -70px 0px"
+                        "0px 0px -80px 0px"
                 }
-
             );
 
 
@@ -148,72 +160,187 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+    } else {
+
+        /*
+        Fallback for older browsers.
+        */
+
+        revealElements.forEach(element => {
+
+            element.classList.add(
+                "visible"
+            );
+
+        });
+
     }
 
 
 
     /*
     ==================================================
-    PLAYER CARD SCROLL ANIMATION
+    PLAYER CARD REVEAL
     ==================================================
     */
 
-    const playerCards =
-        document.querySelectorAll(
-            ".real-player-card"
-        );
+    function observePlayerCards() {
 
-
-    if (playerCards.length) {
-
-
-        const playerObserver =
-            new IntersectionObserver(
-
-                (entries, observer) => {
-
-                    entries.forEach(entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.classList.add(
-                                "visible"
-                            );
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-
-                {
-                    threshold: 0.10,
-
-                    rootMargin:
-                        "0px 0px -80px 0px"
-                }
-
+        const cards =
+            document.querySelectorAll(
+                ".real-player-card"
             );
 
 
-        playerCards.forEach((card, index) => {
-
-            /*
-            Add a slightly different delay
-            to each card.
-            */
-
-            card.style.transitionDelay =
-                `${index * 0.08}s`;
+        if (!cards.length) return;
 
 
-            playerObserver.observe(card);
+        /*
+        Remove any accidental inline
+        animation state.
+        */
+
+        cards.forEach(card => {
+
+            card.classList.remove(
+                "visible"
+            );
+
+        });
+
+
+        if ("IntersectionObserver" in window) {
+
+            const cardObserver =
+                new IntersectionObserver(
+                    (entries, observer) => {
+
+                        entries.forEach(entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                const card =
+                                    entry.target;
+
+
+                                /*
+                                Get the card's
+                                position in its grid.
+                                */
+
+                                const cardsInGrid =
+                                    Array.from(
+                                        card.parentElement.children
+                                    );
+
+                                const index =
+                                    cardsInGrid.indexOf(
+                                        card
+                                    );
+
+
+                                /*
+                                Stagger cards manually.
+                                */
+
+                                setTimeout(
+                                    () => {
+
+                                        card.classList.add(
+                                            "visible"
+                                        );
+
+                                    },
+                                    index * 130
+                                );
+
+
+                                observer.unobserve(
+                                    card
+                                );
+
+                            }
+
+                        });
+
+                    },
+                    {
+                        threshold: 0.08,
+
+                        rootMargin:
+                            "0px 0px -100px 0px"
+                    }
+                );
+
+
+            cards.forEach(card => {
+
+                cardObserver.observe(card);
+
+            });
+
+        } else {
+
+            cards.forEach(card => {
+
+                card.classList.add(
+                    "visible"
+                );
+
+            });
+
+        }
+
+    }
+
+
+    /*
+    Players.js creates the cards after
+    this script normally loads, so wait
+    briefly before observing them.
+    */
+
+    setTimeout(
+        observePlayerCards,
+        100
+    );
+
+
+    /*
+    ==================================================
+    MUTATION OBSERVER
+    ==================================================
+    
+    This detects cards created dynamically
+    by players.js.
+    */
+
+    const playerContainers =
+        document.querySelectorAll(
+            "#rosterPlayers, #allPlayers"
+        );
+
+
+    if (playerContainers.length) {
+
+        const mutationObserver =
+            new MutationObserver(() => {
+
+                observePlayerCards();
+
+            });
+
+
+        playerContainers.forEach(container => {
+
+            mutationObserver.observe(
+                container,
+                {
+                    childList: true
+                }
+            );
 
         });
 
@@ -227,92 +354,73 @@ document.addEventListener("DOMContentLoaded", () => {
     ==================================================
     */
 
-    const playerImages =
-        document.querySelectorAll(
-            ".player-photo"
-        );
+    function setupImages() {
 
-
-    playerImages.forEach(image => {
-
-
-        if (image.complete) {
-
-            image.classList.add("loaded");
-
-        } else {
-
-            image.addEventListener(
-                "load",
-                () => {
-
-                    image.classList.add("loaded");
-
-                },
-                { once: true }
+        const images =
+            document.querySelectorAll(
+                ".player-photo"
             );
 
-        }
 
-    });
+        images.forEach(image => {
 
+            if (image.complete) {
+
+                image.classList.add(
+                    "loaded"
+                );
+
+            } else {
+
+                image.addEventListener(
+                    "load",
+                    () => {
+
+                        image.classList.add(
+                            "loaded"
+                        );
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+            }
+
+        });
+
+    }
+
+
+    setupImages();
 
 
     /*
     ==================================================
-    SMOOTH INTERNAL LINKS
+    WATCH FOR NEW PLAYER IMAGES
     ==================================================
     */
 
+    const imageObserver =
+        new MutationObserver(() => {
+
+            setupImages();
+
+        });
+
+
     document
         .querySelectorAll(
-            'a[href^="#"]'
+            "#rosterPlayers, #allPlayers"
         )
-        .forEach(link => {
+        .forEach(container => {
 
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        link.getAttribute("href");
-
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) {
-
-                        return;
-
-                    }
-
-
-                    event.preventDefault();
-
-
-                    target.scrollIntoView({
-
-                        behavior: "smooth",
-
-                        block: "start"
-
-                    });
-
+            imageObserver.observe(
+                container,
+                {
+                    childList: true,
+                    subtree: true
                 }
             );
 
@@ -322,109 +430,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==================================================
-    PARALLAX EFFECT
-    ==================================================
-    */
-
-    const parallaxElements =
-        document.querySelectorAll(
-            ".page-hero-background, .hero-background-t5, .category-background, .join-background"
-        );
-
-
-    if (
-        parallaxElements.length &&
-        !window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
-
-
-        let ticking = false;
-
-
-        function updateParallax() {
-
-            const scrollY =
-                window.scrollY;
-
-
-            parallaxElements.forEach(element => {
-
-                const rect =
-                    element.getBoundingClientRect();
-
-
-                const speed =
-                    element.classList.contains(
-                        "join-background"
-                    )
-                        ? 0.08
-                        : 0.12;
-
-
-                const movement =
-                    (window.innerHeight / 2 -
-                        rect.top -
-                        rect.height / 2) *
-                    speed;
-
-
-                element.style.transform =
-                    `translate3d(0, ${movement}px, 0) skew(-8deg)`;
-
-            });
-
-
-            ticking = false;
-
-        }
-
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (!ticking) {
-
-                    window.requestAnimationFrame(
-                        updateParallax
-                    );
-
-                    ticking = true;
-
-                }
-
-            },
-            { passive: true }
-        );
-
-
-        updateParallax();
-
-    }
-
-
-
-    /*
-    ==================================================
     CURSOR GLOW
     ==================================================
     */
 
-    const glow =
+    const cursorGlow =
         document.querySelector(
             ".cursor-glow"
         );
 
 
     if (
-        glow &&
+        cursorGlow &&
         window.matchMedia(
             "(pointer: fine)"
         ).matches
     ) {
-
 
         let mouseX = 0;
         let mouseY = 0;
@@ -443,6 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 mouseY =
                     event.clientY;
 
+            },
+            {
+                passive: true
             }
         );
 
@@ -450,18 +474,16 @@ document.addEventListener("DOMContentLoaded", () => {
         function animateGlow() {
 
             glowX +=
-                (mouseX - glowX) *
-                0.08;
+                (mouseX - glowX) * 0.08;
 
             glowY +=
-                (mouseY - glowY) *
-                0.08;
+                (mouseY - glowY) * 0.08;
 
 
-            glow.style.left =
+            cursorGlow.style.left =
                 `${glowX}px`;
 
-            glow.style.top =
+            cursorGlow.style.top =
                 `${glowY}px`;
 
 
@@ -480,7 +502,155 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==================================================
-    BUTTON RIPPLE
+    PARALLAX BACKGROUND
+    ==================================================
+    */
+
+    const backgrounds =
+        document.querySelectorAll(
+            ".page-hero-background, .join-background"
+        );
+
+
+    if (
+        backgrounds.length &&
+        window.matchMedia(
+            "(pointer: fine)"
+        ).matches
+    ) {
+
+        let ticking = false;
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (ticking) return;
+
+                ticking = true;
+
+
+                requestAnimationFrame(() => {
+
+                    const scroll =
+                        window.scrollY;
+
+
+                    backgrounds.forEach(
+                        background => {
+
+                            const speed =
+                                0.12;
+
+
+                            background.style.transform =
+                                `translate3d(0, ${scroll * speed}px, 0) skew(-8deg)`;
+
+                        }
+                    );
+
+
+                    ticking = false;
+
+                });
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+
+
+
+    /*
+    ==================================================
+    SMOOTH ANCHOR LINKS
+    ==================================================
+    */
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) return;
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) return;
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        });
+
+
+
+    /*
+    ==================================================
+    HERO LOAD ANIMATION
+    ==================================================
+    */
+
+    const hero =
+        document.querySelector(
+            ".page-hero-content"
+        );
+
+
+    if (hero) {
+
+        /*
+        Make the hero appear immediately
+        instead of waiting for scrolling.
+        */
+
+        setTimeout(() => {
+
+            hero.classList.add(
+                "visible"
+            );
+
+        }, 150);
+
+    }
+
+
+
+    /*
+    ==================================================
+    BUTTON RIPPLE EFFECT
     ==================================================
     */
 
@@ -492,20 +662,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buttons.forEach(button => {
 
-
         button.addEventListener(
-            "mouseenter",
-            () => {
+            "click",
+            event => {
 
-                button.style.setProperty(
-                    "--mouse-x",
-                    "50%"
+                const rect =
+                    button.getBoundingClientRect();
+
+
+                const ripple =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                ripple.className =
+                    "button-ripple";
+
+
+                ripple.style.left =
+                    `${event.clientX - rect.left}px`;
+
+
+                ripple.style.top =
+                    `${event.clientY - rect.top}px`;
+
+
+                button.appendChild(
+                    ripple
                 );
 
-                button.style.setProperty(
-                    "--mouse-y",
-                    "50%"
-                );
+
+                setTimeout(() => {
+
+                    ripple.remove();
+
+                }, 700);
 
             }
         );
@@ -516,13 +708,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==================================================
-    INITIAL PAGE LOAD
+    DONE
     ==================================================
     */
 
-    document.body.classList.add(
-        "page-loaded"
+    console.log(
+        "T5 Esports animations loaded."
     );
-
 
 });
