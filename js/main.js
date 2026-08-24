@@ -4,23 +4,32 @@ const mobileMenu =
 const nav =
     document.getElementById("nav");
 
+
 if (mobileMenu && nav) {
 
-    mobileMenu.addEventListener("click", () => {
+    mobileMenu.addEventListener(
+        "click",
+        () => {
 
-        nav.classList.toggle("open");
+            nav.classList.toggle("open");
 
-    });
+        }
+    );
 
 }
 
 
-document.querySelectorAll("nav a").forEach(link => {
+document
+    .querySelectorAll("nav a")
+    .forEach(link => {
 
-    link.addEventListener("click", () => {
+        link.addEventListener(
+            "click",
+            () => {
 
-        nav?.classList.remove("open");
+                nav?.classList.remove("open");
+
+            }
+        );
 
     });
-
-});
