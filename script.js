@@ -1,18 +1,14 @@
 /* ==========================================
-   T5 ESPORTS
-   MAIN JAVASCRIPT
+T5 ESPORTS - MAIN SCRIPT
 ========================================== */
 
 
 /* ==========================================
-   MOBILE MENU
+MOBILE MENU
 ========================================== */
 
-const menu =
-    document.getElementById("menu");
-
-const nav =
-    document.getElementById("nav");
+const menu = document.getElementById("menu");
+const nav = document.getElementById("nav");
 
 
 if (menu && nav) {
@@ -21,61 +17,48 @@ if (menu && nav) {
 
         nav.classList.toggle("open");
 
-        menu.classList.toggle("active");
+        menu.textContent =
+            nav.classList.contains("open")
+                ? "×"
+                : "☰";
 
     });
 
 
-    document
-        .querySelectorAll("#nav a")
-        .forEach(link => {
+    nav.querySelectorAll("a").forEach(link => {
 
-            link.addEventListener(
-                "click",
-                () => {
+        link.addEventListener("click", () => {
 
-                    nav.classList.remove(
-                        "open"
-                    );
+            nav.classList.remove("open");
 
-                    menu.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
+            menu.textContent = "☰";
 
         });
+
+    });
 
 }
 
 
 /* ==========================================
-   HEADER SCROLL
+HEADER SCROLL EFFECT
 ========================================== */
 
 const header =
-    document.querySelector(
-        ".site-header"
-    );
+    document.getElementById("siteHeader");
 
 
 function updateHeader() {
 
     if (!header) return;
 
+    if (window.scrollY > 30) {
 
-    if (window.scrollY > 35) {
-
-        header.classList.add(
-            "scrolled"
-        );
+        header.classList.add("scrolled");
 
     } else {
 
-        header.classList.remove(
-            "scrolled"
-        );
+        header.classList.remove("scrolled");
 
     }
 
@@ -85,281 +68,353 @@ function updateHeader() {
 window.addEventListener(
     "scroll",
     updateHeader,
-    {
-        passive: true
-    }
+    { passive: true }
 );
-
 
 updateHeader();
 
 
 /* ==========================================
-   SCROLL REVEAL
+SCROLL REVEAL ANIMATIONS
 ========================================== */
 
 const revealElements =
-    document.querySelectorAll(
-        ".scroll-reveal"
-    );
+    document.querySelectorAll(".reveal");
 
 
 if ("IntersectionObserver" in window) {
 
     const observer =
         new IntersectionObserver(
-            entries => {
+            (entries, observer) => {
 
                 entries.forEach(entry => {
 
-                    if (
-                        !entry.isIntersecting
-                    ) {
+                    if (entry.isIntersecting) {
 
-                        return;
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
 
                     }
-
-
-                    entry.target.classList.add(
-                        "visible"
-                    );
-
-
-                    observer.unobserve(
-                        entry.target
-                    );
 
                 });
 
             },
             {
                 threshold: 0.12,
-
-                rootMargin:
-                    "0px 0px -50px 0px"
+                rootMargin: "0px 0px -60px 0px"
             }
         );
 
 
-    revealElements.forEach(
-        element => {
+    revealElements.forEach(element => {
 
-            observer.observe(
-                element
-            );
+        observer.observe(element);
 
-        }
-    );
+    });
 
 } else {
 
-    revealElements.forEach(
-        element => {
+    revealElements.forEach(element => {
 
-            element.classList.add(
-                "visible"
-            );
+        element.classList.add("visible");
 
-        }
-    );
+    });
 
 }
 
 
 /* ==========================================
-   STAGGER PLAYER CARDS
+PLAYER DATA
 ========================================== */
 
-document
-    .querySelectorAll(
-        ".player-grid"
-    )
-    .forEach(grid => {
 
-        grid
-            .querySelectorAll(
-                ".real-player-card"
-            )
-            .forEach(
-                (card, index) => {
+/*
+    IMPORTANT:
 
-                    card.style.setProperty(
-                        "--delay",
-                        `${index * 100}ms`
-                    );
+    GitHub image:
 
-                }
-            );
+    https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true
 
-    });
+    Local image:
+
+    images/fatal.jpeg
+*/
+
+
+const rosterPlayers = [
+
+    {
+        name: "Fatal",
+        role: "OWNER",
+        region: "EU",
+
+        image:
+            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER TWO",
+        role: "COMPETITIVE PLAYER",
+        region: "EU",
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER THREE",
+        role: "COMPETITIVE PLAYER",
+        region: "EU",
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    }
+
+];
+
+
+const players = [
+
+    {
+        name: "Fatal",
+        role: "OWNER",
+        region: "EU",
+
+        image:
+            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER TWO",
+        role: "T5 PLAYER",
+        region: "EU",
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER THREE",
+        role: "CONTENT CREATOR",
+        region: "EU",
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER FOUR",
+        role: "T5 PLAYER",
+        region: "EU",
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    }
+
+];
 
 
 /* ==========================================
-   STAGGER CATEGORY CARDS
+CREATE PLAYER CARD
 ========================================== */
 
-document
-    .querySelectorAll(
-        ".category-grid"
-    )
-    .forEach(grid => {
+function createPlayerCard(player, index) {
 
-        grid
-            .querySelectorAll(
-                ".category-card"
-            )
-            .forEach(
-                (card, index) => {
+    const card =
+        document.createElement("article");
 
-                    card.style.setProperty(
-                        "--delay",
-                        `${index * 120}ms`
+
+    card.className =
+        "real-player-card reveal";
+
+
+    const number =
+        String(index + 1).padStart(2, "0");
+
+
+    const imageHTML =
+        player.image
+
+            ? `
+                <img
+                    src="${player.image}"
+                    alt="${player.name}"
+                    class="player-photo"
+                    loading="lazy"
+                >
+            `
+
+            : `
+                <div class="empty-player-logo">
+                    T5
+                </div>
+            `;
+
+
+    card.innerHTML = `
+
+        <div class="real-player-image">
+
+            ${imageHTML}
+
+        </div>
+
+
+        <div class="real-player-number">
+
+            ${number}
+
+        </div>
+
+
+        <div class="real-player-region">
+
+            ${player.region}
+
+        </div>
+
+
+        <div class="real-player-info">
+
+            <div class="real-player-role">
+
+                ${player.role}
+
+            </div>
+
+
+            <h3>
+
+                ${player.name}
+
+            </h3>
+
+
+            <a
+                href="${player.discord}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="real-player-link"
+            >
+
+                DISCORD
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    /* IMAGE ERROR FALLBACK */
+
+    const image =
+        card.querySelector(".player-photo");
+
+
+    if (image) {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                image.style.display =
+                    "none";
+
+                const imageContainer =
+                    card.querySelector(
+                        ".real-player-image"
+                    );
+
+
+                if (
+                    imageContainer &&
+                    !imageContainer.querySelector(
+                        ".empty-player-logo"
+                    )
+                ) {
+
+                    const fallback =
+                        document.createElement("div");
+
+
+                    fallback.className =
+                        "empty-player-logo";
+
+
+                    fallback.textContent =
+                        "T5";
+
+
+                    imageContainer.appendChild(
+                        fallback
                     );
 
                 }
-            );
-
-    });
-
-
-/* ==========================================
-   BUTTON RIPPLE
-========================================== */
-
-const interactiveButtons =
-    document.querySelectorAll(
-        ".button, .nav-button, .pill-button, .real-player-link, .category-arrow"
-    );
-
-
-interactiveButtons.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                const ripple =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                ripple.className =
-                    "button-ripple";
-
-
-                const rect =
-                    button.getBoundingClientRect();
-
-
-                ripple.style.left =
-                    `${event.clientX - rect.left}px`;
-
-
-                ripple.style.top =
-                    `${event.clientY - rect.top}px`;
-
-
-                button.appendChild(
-                    ripple
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        ripple.remove();
-
-                    },
-                    700
-                );
 
             }
         );
 
     }
-);
+
+
+    return card;
+
+}
 
 
 /* ==========================================
-   HERO PARALLAX
+ROSTER
 ========================================== */
 
-const hero =
-    document.querySelector(
-        ".hero"
+const rosterContainer =
+    document.getElementById(
+        "rosterPlayers"
     );
 
 
-const heroBackground =
-    document.querySelector(
-        ".hero-background-t5"
-    );
+if (rosterContainer) {
+
+    rosterPlayers.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
 
 
-if (
-    hero &&
-    heroBackground &&
-    window.matchMedia(
-        "(pointer: fine)"
-    ).matches
-) {
-
-    hero.addEventListener(
-        "mousemove",
-        event => {
-
-            const rect =
-                hero.getBoundingClientRect();
-
-
-            const x =
-                (
-                    event.clientX -
-                    rect.left
-                )
-                /
-                rect.width
-                -
-                0.5;
-
-
-            const y =
-                (
-                    event.clientY -
-                    rect.top
-                )
-                /
-                rect.height
-                -
-                0.5;
-
-
-            heroBackground.style.transform =
-                `
-                translate(
-                    ${x * -15}px,
-                    ${y * -15}px
-                )
-                translateY(-50%)
-                skew(-8deg)
-                `;
-
-        }
-    );
-
-
-    hero.addEventListener(
-        "mouseleave",
-        () => {
-
-            heroBackground.style.transform =
-                `
-                translateY(-50%)
-                skew(-8deg)
-                `;
+            rosterContainer.appendChild(card);
 
         }
     );
@@ -368,113 +423,136 @@ if (
 
 
 /* ==========================================
-   PLAYER IMAGE PARALLAX
+ALL PLAYERS
 ========================================== */
 
-document
-    .querySelectorAll(
-        ".real-player-card"
-    )
-    .forEach(card => {
-
-        const image =
-            card.querySelector(
-                ".player-photo"
-            );
+const allPlayersContainer =
+    document.getElementById(
+        "allPlayers"
+    );
 
 
-        if (!image) return;
+if (allPlayersContainer) {
+
+    players.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
 
 
-        card.addEventListener(
-            "mousemove",
-            event => {
+            allPlayersContainer.appendChild(card);
 
-                const rect =
-                    card.getBoundingClientRect();
+        }
+    );
 
-
-                const x =
-                    (
-                        event.clientX -
-                        rect.left
-                    )
-                    /
-                    rect.width
-                    -
-                    0.5;
-
-
-                const y =
-                    (
-                        event.clientY -
-                        rect.top
-                    )
-                    /
-                    rect.height
-                    -
-                    0.5;
-
-
-                image.style.transform =
-                    `
-                    scale(1.07)
-                    translate(
-                        ${x * -7}px,
-                        ${y * -7}px
-                    )
-                    `;
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                image.style.transform =
-                    "scale(1)";
-
-            }
-        );
-
-    });
+}
 
 
 /* ==========================================
-   SMOOTH ANCHOR LINKS
+OBSERVE DYNAMIC PLAYER CARDS
+========================================== */
+
+function observeDynamicCards() {
+
+    const dynamicCards =
+        document.querySelectorAll(
+            ".real-player-card.reveal"
+        );
+
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        dynamicCards.forEach(card => {
+
+            card.classList.add("visible");
+
+        });
+
+        return;
+
+    }
+
+
+    const cardObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        cardObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.1
+            }
+        );
+
+
+    dynamicCards.forEach(card => {
+
+        cardObserver.observe(card);
+
+    });
+
+}
+
+
+observeDynamicCards();
+
+
+/* ==========================================
+SMOOTH INTERNAL LINKS
 ========================================== */
 
 document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
+    .querySelectorAll('a[href^="#"]')
     .forEach(link => {
 
         link.addEventListener(
             "click",
             event => {
 
-                const id =
-                    link.getAttribute(
-                        "href"
-                    );
+                const targetId =
+                    link.getAttribute("href");
 
 
                 if (
-                    !id ||
-                    id === "#"
-                ) return;
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
 
 
                 const target =
                     document.querySelector(
-                        id
+                        targetId
                     );
 
 
-                if (!target) return;
+                if (!target) {
+                    return;
+                }
 
 
                 event.preventDefault();
@@ -492,16 +570,38 @@ document
 
 
 /* ==========================================
-   PAGE LOAD
+BUTTON RIPPLE
 ========================================== */
 
-window.addEventListener(
-    "load",
-    () => {
+document
+    .querySelectorAll(
+        ".button, .nav-button, .pill-button, .real-player-link"
+    )
+    .forEach(button => {
 
-        document.body.classList.add(
-            "page-loaded"
+        button.addEventListener(
+            "click",
+            () => {
+
+                button.animate(
+                    [
+                        {
+                            transform:
+                                "translateY(-2px) scale(.98)"
+                        },
+
+                        {
+                            transform:
+                                "translateY(-2px) scale(1)"
+                        }
+                    ],
+                    {
+                        duration: 180,
+                        easing: "ease-out"
+                    }
+                );
+
+            }
         );
 
-    }
-);
+    });
