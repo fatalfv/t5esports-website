@@ -1,21 +1,20 @@
 const players = [
 
     /*
-    ==========================================
+    ==================================================
     ADD T5 PLAYERS HERE
-    ==========================================
+    ==================================================
 
     GitHub image:
 
-    image: "https://github.com/fatalfv/t5esports-website/blob/main/images/player.jpeg?raw=true"
+    image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true"
 
-    Local image:
+    Local GitHub file:
 
-    image: "images/player.jpeg"
+    image: "images/fatal.jpeg"
 
-    ==========================================
+    ==================================================
     */
-
 
     {
         name: "PLAYER ONE",
@@ -25,7 +24,6 @@ const players = [
         discord: "https://discord.gg/t5esports"
     },
 
-
     {
         name: "PLAYER TWO",
         role: "T5 PLAYER",
@@ -34,7 +32,6 @@ const players = [
         discord: "https://discord.gg/t5esports"
     },
 
-
     {
         name: "PLAYER THREE",
         role: "CONTENT CREATOR",
@@ -42,7 +39,6 @@ const players = [
         image: "",
         discord: "https://discord.gg/t5esports"
     },
-
 
     {
         name: "PLAYER FOUR",
@@ -55,28 +51,20 @@ const players = [
 ];
 
 
-const container =
-    document.getElementById("allPlayers");
+const container = document.getElementById("allPlayers");
 
 
 if (!container) {
 
-    console.error(
-        "T5: allPlayers container not found."
-    );
+    console.error("Could not find #allPlayers");
 
 } else {
 
-
     players.forEach((player, index) => {
 
+        const card = document.createElement("article");
 
-        const card =
-            document.createElement("article");
-
-
-        card.className =
-            "real-player-card";
+        card.className = "real-player-card";
 
 
         const number =
@@ -91,6 +79,7 @@ if (!container) {
                     alt="${player.name}"
                     class="player-photo"
                     loading="lazy"
+                    onerror="this.style.display='none';"
                 >
             `
 
@@ -111,34 +100,24 @@ if (!container) {
 
 
             <div class="real-player-number">
-
                 ${number}
-
             </div>
 
 
             <div class="real-player-region">
-
                 ${player.region}
-
             </div>
 
 
             <div class="real-player-info">
 
                 <div class="real-player-role">
-
                     ${player.role}
-
                 </div>
 
-
                 <h3>
-
                     ${player.name}
-
                 </h3>
-
 
                 <a
                     href="${player.discord}"
@@ -146,11 +125,8 @@ if (!container) {
                     rel="noopener noreferrer"
                     class="real-player-link"
                 >
-
                     DISCORD
-
                     <span>↗</span>
-
                 </a>
 
             </div>
@@ -159,7 +135,6 @@ if (!container) {
 
 
         container.appendChild(card);
-
 
     });
 
