@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="T5 Esports — Competitive Fortnite Esports Team."
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>T5 Esports — Competitive Esports</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta
+        name="description"
+        content="T5 Esports — competitive Fortnite esports team."
+    >
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
@@ -27,641 +20,492 @@
     >
 
     <link rel="stylesheet" href="styles.css">
-
 </head>
-
 
 <body>
 
-    <div class="page-noise"></div>
+<div class="page-noise"></div>
+
+<header class="site-header" id="siteHeader">
+
+    <a href="index.html" class="brand">
+
+        <span class="brand-mark">T5</span>
+
+        <span class="brand-text">
+            ESPORTS
+        </span>
+
+    </a>
 
 
-    <!-- ==============================
-         NAVBAR
-    =============================== -->
+    <nav class="main-nav" id="desktopNav">
 
-    <header class="site-header">
-
-        <a
-            href="index.html"
-            class="brand"
-        >
-
-            <div class="brand-mark">
-                T5
-            </div>
-
-            <div class="brand-text">
-                ESPORTS
-            </div>
-
-        </a>
-
-
-        <nav
-            class="main-nav"
-            id="desktopNav"
-        >
-
-            <a
-                href="index.html"
-                class="active"
-            >
-                HOME
-            </a>
-
-            <a href="#about">
-                ABOUT
-            </a>
-
-            <a href="#teams">
-                TEAMS
-            </a>
-
-            <a href="players.html">
-                PLAYERS
-            </a>
-
-        </nav>
-
-
-        <a
-            href="https://discord.gg/t5esports"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav-button"
-        >
-
-            JOIN DISCORD
-
-            <span>↗</span>
-
-        </a>
-
-
-        <button
-            class="mobile-menu-button"
-            id="menu"
-            aria-label="Open menu"
-        >
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </button>
-
-    </header>
-
-
-    <!-- ==============================
-         MOBILE MENU
-    =============================== -->
-
-    <div
-        class="mobile-menu"
-        id="nav"
-    >
-
-        <a href="index.html">
+        <a href="index.html" class="active">
             HOME
-        </a>
-
-        <a href="#about">
-            ABOUT
-        </a>
-
-        <a href="#teams">
-            TEAMS
         </a>
 
         <a href="players.html">
             PLAYERS
         </a>
 
-        <a
-            href="https://discord.gg/t5esports"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mobile-discord"
-        >
-            JOIN DISCORD
+        <a href="#about">
+            ABOUT
         </a>
+
+        <a href="#join">
+            JOIN
+        </a>
+
+    </nav>
+
+
+    <a
+        href="https://discord.gg/t5esports"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-button"
+    >
+        DISCORD
+        <span>↗</span>
+    </a>
+
+
+    <button
+        class="mobile-menu-button"
+        id="menu"
+        aria-label="Open menu"
+        type="button"
+    >
+        ☰
+    </button>
+
+</header>
+
+
+<div class="mobile-menu" id="nav">
+
+    <a href="index.html">
+        HOME
+    </a>
+
+    <a href="players.html">
+        PLAYERS
+    </a>
+
+    <a href="#about">
+        ABOUT
+    </a>
+
+    <a href="#join">
+        JOIN
+    </a>
+
+    <a
+        href="https://discord.gg/t5esports"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-discord"
+    >
+        JOIN DISCORD
+    </a>
+
+</div>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-glow"></div>
+
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+            <span></span>
+            T5 ESPORTS
+        </div>
+
+
+        <h1>
+            BUILT<br>
+            <span>TO WIN.</span>
+        </h1>
+
+
+        <p class="hero-description">
+            T5 Esports is a competitive Fortnite organisation
+            built around talented players, creators and a
+            community that wants to compete at the highest level.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="players.html"
+                class="button button-primary"
+            >
+                VIEW PLAYERS
+                <span>→</span>
+            </a>
+
+
+            <a
+                href="https://discord.gg/t5esports"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-secondary"
+            >
+                JOIN DISCORD
+                <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>01</strong>
+                <span>ORGANISATION</span>
+            </div>
+
+            <div>
+                <strong>EU</strong>
+                <span>REGION</span>
+            </div>
+
+            <div>
+                <strong>24/7</strong>
+                <span>GRIND</span>
+            </div>
+
+        </div>
 
     </div>
 
 
-    <!-- ==============================
-         HERO
-    =============================== -->
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-grid"></div>
-
-            <div class="hero-glow"></div>
+    <div class="hero-background-t5">
+        T5
+    </div>
 
 
-            <div class="hero-background-t5">
+    <div class="hero-scroll">
+        SCROLL
+        <span></span>
+    </div>
+
+</section>
+
+
+<section class="categories-section">
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <div class="eyebrow">
+                <span></span>
+                THE ORGANISATION
+            </div>
+
+            <h2>
+                T5<br>
+                <span>ROSTER.</span>
+            </h2>
+
+        </div>
+
+
+        <p>
+            Meet the players and creators representing T5.
+            Our roster is built around competition,
+            consistency and ambition.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <article class="category-card purple-card reveal">
+
+            <div class="category-number">
+                01 / ROSTER
+            </div>
+
+            <div class="category-background">
                 T5
             </div>
 
+            <div class="category-glow"></div>
 
-            <div class="hero-content">
 
-                <div class="eyebrow">
-                    <span></span>
-                    EST. 2026 — COMPETITIVE ESPORTS
+            <div class="category-content">
+
+                <div class="category-label">
+                    COMPETITIVE
                 </div>
 
-
-                <h1>
-                    T5
-                    <span>ESPORTS</span>
-                </h1>
-
-
-                <p class="hero-description">
-
-                    Built for competition.
-                    Driven by ambition.
-                    T5 Esports is a competitive Fortnite
-                    organisation focused on building
-                    a team that competes at the highest level.
-
-                </p>
-
-
-                <div class="hero-buttons">
-
-                    <a
-                        href="players.html"
-                        class="button button-primary"
-                    >
-
-                        VIEW PLAYERS
-
-                        <span>↗</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://discord.gg/t5esports"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="button button-secondary"
-                    >
-
-                        JOIN T5
-
-                        <span>→</span>
-
-                    </a>
-
-                </div>
-
-
-                <div class="hero-stats">
-
-                    <div>
-
-                        <strong>
-                            01
-                        </strong>
-
-                        <span>
-                            ORGANISATION
-                        </span>
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            EU
-                        </strong>
-
-                        <span>
-                            REGION
-                        </span>
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            2026
-                        </strong>
-
-                        <span>
-                            ESTABLISHED
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="hero-scroll">
-
-                SCROLL TO EXPLORE
-
-                <span></span>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             TEAMS
-        =============================== -->
-
-        <section
-            class="categories-section"
-            id="teams"
-        >
-
-            <div class="section-heading scroll-reveal">
-
-                <div>
-
-                    <div class="eyebrow">
-                        <span></span>
-                        T5 ORGANISATION
-                    </div>
-
-                    <h2>
-                        OUR
-                        <span>TEAMS</span>
-                    </h2>
-
-                </div>
-
+                <h3>
+                    T5<br>
+                    <span>ROSTER</span>
+                </h3>
 
                 <p>
-
-                    Explore the competitive side of T5 Esports
-                    and discover the players representing the
-                    organisation.
-
+                    Our current competitive lineup,
+                    built to compete and represent T5
+                    at the highest level.
                 </p>
-
-            </div>
-
-
-            <div class="category-grid">
-
-
-                <article class="category-card purple-card scroll-reveal">
-
-                    <div class="category-number">
-                        01 / COMPETITIVE
-                    </div>
-
-
-                    <div class="category-background">
-                        T5
-                    </div>
-
-
-                    <div class="category-glow"></div>
-
-
-                    <div class="category-content">
-
-                        <div class="category-label">
-                            COMPETITIVE DIVISION
-                        </div>
-
-
-                        <h3>
-                            T5
-                            <span>ROSTER</span>
-                        </h3>
-
-
-                        <p>
-
-                            Our competitive Fortnite roster.
-                            Players competing, improving and
-                            representing T5.
-
-                        </p>
-
-
-                        <a
-                            href="players.html"
-                            class="category-arrow"
-                        >
-
-                            VIEW ROSTER
-
-                            <span>
-                                →
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-                <article class="category-card white-card scroll-reveal">
-
-                    <div class="category-number">
-                        02 / COMMUNITY
-                    </div>
-
-
-                    <div class="category-background">
-                        05
-                    </div>
-
-
-                    <div class="category-glow"></div>
-
-
-                    <div class="category-content">
-
-                        <div class="category-label">
-                            T5 COMMUNITY
-                        </div>
-
-
-                        <h3>
-                            JOIN
-                            <span>T5</span>
-                        </h3>
-
-
-                        <p>
-
-                            Join the T5 Discord community,
-                            connect with players and stay up
-                            to date with everything happening
-                            within the organisation.
-
-                        </p>
-
-
-                        <a
-                            href="https://discord.gg/t5esports"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="category-arrow"
-                        >
-
-                            DISCORD
-
-                            <span>
-                                ↗
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             ABOUT
-        =============================== -->
-
-        <section
-            class="about-section"
-            id="about"
-        >
-
-            <div class="about-visual scroll-reveal">
-
-                <div class="about-t5">
-                    T5
-                </div>
-
-                <div class="about-ring ring-one"></div>
-
-                <div class="about-ring ring-two"></div>
-
-            </div>
-
-
-            <div class="about-content scroll-reveal">
-
-                <div class="eyebrow">
-                    <span></span>
-                    WHO WE ARE
-                </div>
-
-
-                <h2>
-                    BUILT
-                    <span>TO WIN.</span>
-                </h2>
-
-
-                <p>
-
-                    T5 Esports is an ambitious competitive
-                    esports organisation. Our goal is to create
-                    a strong community while developing players
-                    who are capable of competing at the highest
-                    level.
-
-                </p>
-
-
-                <div class="about-list">
-
-                    <div>
-                        <span>01</span>
-                        COMPETITIVE MINDSET
-                    </div>
-
-                    <div>
-                        <span>02</span>
-                        STRONG COMMUNITY
-                    </div>
-
-                    <div>
-                        <span>03</span>
-                        PLAYER DEVELOPMENT
-                    </div>
-
-                    <div>
-                        <span>04</span>
-                        LONG TERM VISION
-                    </div>
-
-                </div>
 
 
                 <a
                     href="players.html"
-                    class="pill-button"
+                    class="category-arrow"
                 >
-                    MEET THE PLAYERS →
+                    VIEW ROSTER
+
+                    <span>
+                        →
+                    </span>
                 </a>
 
             </div>
 
-        </section>
+        </article>
 
 
-        <!-- ==============================
-             JOIN
-        =============================== -->
+        <article class="category-card white-card reveal">
 
-        <section class="join-section">
-
-            <div class="join-background">
-                T5
+            <div class="category-number">
+                02 / PLAYERS
             </div>
 
+            <div class="category-background">
+                05
+            </div>
 
-            <div class="join-content scroll-reveal">
+            <div class="category-glow"></div>
 
-                <div class="eyebrow centered-eyebrow">
 
-                    <span></span>
+            <div class="category-content">
 
-                    BECOME PART OF T5
-
-                    <span></span>
-
+                <div class="category-label">
+                    T5 ESPORTS
                 </div>
 
-
-                <h2>
-                    READY
-                    <span>TO JOIN?</span>
-                </h2>
-
+                <h3>
+                    ALL<br>
+                    <span>PLAYERS</span>
+                </h3>
 
                 <p>
-                    Join the T5 community and stay connected.
+                    Explore everyone currently representing
+                    T5 across our competitive and creator
+                    divisions.
                 </p>
 
 
                 <a
-                    href="https://discord.gg/t5esports"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="button button-primary big-button"
+                    href="players.html"
+                    class="category-arrow"
                 >
+                    VIEW PLAYERS
 
-                    JOIN T5 DISCORD
-
-                    <span>↗</span>
-
+                    <span>
+                        →
+                    </span>
                 </a>
 
             </div>
 
-        </section>
+        </article>
 
-    </main>
+    </div>
+
+</section>
 
 
-    <!-- ==============================
-         FOOTER
-    =============================== -->
+<section class="about-section" id="about">
 
-    <footer>
 
-        <div class="footer-main">
+    <div class="about-visual reveal">
+
+        <div class="about-ring ring-one"></div>
+
+        <div class="about-ring ring-two"></div>
+
+        <div class="about-t5">
+            T5
+        </div>
+
+    </div>
+
+
+    <div class="about-content reveal">
+
+        <div class="eyebrow">
+            <span></span>
+            WHO WE ARE
+        </div>
+
+
+        <h2>
+            MORE<br>
+            <span>THAN A TEAM.</span>
+        </h2>
+
+
+        <p>
+            T5 Esports is focused on building a competitive
+            organisation with a strong identity, talented
+            players and a community that comes first.
+        </p>
+
+
+        <div class="about-list">
 
             <div>
-
-                <div class="brand">
-
-                    <div class="brand-mark">
-                        T5
-                    </div>
-
-                    <div class="brand-text">
-                        ESPORTS
-                    </div>
-
-                </div>
-
-
-                <div class="footer-tagline">
-                    BUILT FOR COMPETITION.
-                </div>
-
+                <span>01</span>
+                COMPETITIVE MINDSET
             </div>
 
+            <div>
+                <span>02</span>
+                COMMUNITY FIRST
+            </div>
 
-            <div class="footer-links">
+            <div>
+                <span>03</span>
+                BUILT TO LAST
+            </div>
 
-                <a
-                    href="https://discord.gg/t5esports"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    DISCORD
-                </a>
-
-                <a
-                    href="https://www.tiktok.com/@t5ggs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    TIKTOK
-                </a>
-
-                <a
-                    href="https://x.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    X
-                </a>
-
-                <a
-                    href="https://www.youtube.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    YOUTUBE
-                </a>
-
+            <div>
+                <span>04</span>
+                ALWAYS IMPROVING
             </div>
 
         </div>
 
 
-        <div class="footer-bottom">
+        <a
+            href="players.html"
+            class="button button-secondary"
+        >
+            MEET THE TEAM
+            <span>→</span>
+        </a>
 
-            <span>
-                © 2026 T5 ESPORTS
+    </div>
+
+</section>
+
+
+<section class="join-section" id="join">
+
+    <div class="join-background">
+        T5
+    </div>
+
+
+    <div class="join-content reveal">
+
+        <div class="eyebrow centered-eyebrow">
+            <span></span>
+            READY?
+            <span></span>
+        </div>
+
+
+        <h2>
+            JOIN<br>
+            <span>T5.</span>
+        </h2>
+
+
+        <p>
+            Connect with the T5 community.
+        </p>
+
+
+        <a
+            href="https://discord.gg/t5esports"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button button-primary big-button"
+        >
+            JOIN DISCORD
+            <span>↗</span>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-main">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">
+                T5
             </span>
 
-            <span>
-                ALL RIGHTS RESERVED
+            <span class="brand-text">
+                ESPORTS
             </span>
+
+        </a>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="players.html">
+                PLAYERS
+            </a>
+
+            <a
+                href="https://discord.gg/t5esports"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                DISCORD
+            </a>
 
         </div>
 
-    </footer>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 T5 ESPORTS
+        </span>
+
+        <span>
+            COMPETE. CREATE. CONQUER.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
