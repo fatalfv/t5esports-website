@@ -27,31 +27,43 @@ const rosterPlayers = [
 ];
 
 
-const container = document.getElementById("rosterPlayers");
+const container =
+    document.getElementById("rosterPlayers");
 
 
 if (!container) {
-    console.error("rosterPlayers container not found");
+
+    console.error(
+        "Could not find #rosterPlayers."
+    );
+
 } else {
 
     rosterPlayers.forEach((player, index) => {
 
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
 
-        card.className = "real-player-card";
+
+        card.className =
+            "real-player-card";
 
 
-        const number = String(index + 1).padStart(2, "0");
+        const number =
+            String(index + 1).padStart(2, "0");
 
 
         const imageHTML = player.image
+
             ? `
                 <img
                     src="${player.image}"
                     alt="${player.name}"
                     class="player-photo"
+                    loading="lazy"
                 >
             `
+
             : `
                 <div class="empty-player-logo">
                     T5
@@ -69,24 +81,32 @@ if (!container) {
 
 
             <div class="real-player-number">
+
                 ${number}
+
             </div>
 
 
             <div class="real-player-region">
+
                 ${player.region}
+
             </div>
 
 
             <div class="real-player-info">
 
                 <div class="real-player-role">
+
                     ${player.role}
+
                 </div>
 
 
                 <h3>
+
                     ${player.name}
+
                 </h3>
 
 
