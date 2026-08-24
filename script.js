@@ -5,76 +5,6 @@
 
 
 /* ==========================================
-   PLAYER DATA
-========================================== */
-
-const rosterPlayers = [
-
-    {
-        name: "Fatal",
-        role: "OWNER",
-        region: "EU",
-        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-        discord: "https://discord.gg/t5esports"
-    },
-
-    {
-        name: "PLAYER TWO",
-        role: "COMPETITIVE PLAYER",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    },
-
-    {
-        name: "PLAYER THREE",
-        role: "COMPETITIVE PLAYER",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    }
-
-];
-
-
-const players = [
-
-    {
-        name: "Fatal",
-        role: "OWNER",
-        region: "EU",
-        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-        discord: "https://discord.gg/t5esports"
-    },
-
-    {
-        name: "PLAYER TWO",
-        role: "T5 PLAYER",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    },
-
-    {
-        name: "PLAYER THREE",
-        role: "CONTENT CREATOR",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    },
-
-    {
-        name: "PLAYER FOUR",
-        role: "T5 PLAYER",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    }
-
-];
-
-
-/* ==========================================
    MOBILE MENU
 ========================================== */
 
@@ -89,38 +19,33 @@ if (menu && nav) {
 
     menu.addEventListener("click", () => {
 
-        const isOpen =
-            nav.classList.toggle("open");
+        nav.classList.toggle("open");
 
-        menu.classList.toggle(
-            "active",
-            isOpen
-        );
-
-        menu.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
+        menu.classList.toggle("active");
 
     });
 
 
-    nav.querySelectorAll("a").forEach(link => {
+    document
+        .querySelectorAll("#nav a")
+        .forEach(link => {
 
-        link.addEventListener("click", () => {
+            link.addEventListener(
+                "click",
+                () => {
 
-            nav.classList.remove("open");
+                    nav.classList.remove(
+                        "open"
+                    );
 
-            menu.classList.remove("active");
+                    menu.classList.remove(
+                        "active"
+                    );
 
-            menu.setAttribute(
-                "aria-expanded",
-                "false"
+                }
             );
 
         });
-
-    });
 
 }
 
@@ -130,20 +55,27 @@ if (menu && nav) {
 ========================================== */
 
 const header =
-    document.getElementById("siteHeader");
+    document.querySelector(
+        ".site-header"
+    );
 
 
 function updateHeader() {
 
     if (!header) return;
 
-    if (window.scrollY > 30) {
 
-        header.classList.add("scrolled");
+    if (window.scrollY > 35) {
+
+        header.classList.add(
+            "scrolled"
+        );
 
     } else {
 
-        header.classList.remove("scrolled");
+        header.classList.remove(
+            "scrolled"
+        );
 
     }
 
@@ -163,288 +95,20 @@ updateHeader();
 
 
 /* ==========================================
-   GITHUB IMAGE URL
-========================================== */
-
-function getImageUrl(url) {
-
-    if (!url) {
-
-        return "";
-
-    }
-
-
-    /*
-        Your GitHub URL works with ?raw=true.
-
-        We leave it alone instead of trying
-        to modify it.
-    */
-
-    return url;
-
-}
-
-
-/* ==========================================
-   PLAYER CARD
-========================================== */
-
-function createPlayerCard(
-    player,
-    index
-) {
-
-    const card =
-        document.createElement("article");
-
-
-    card.className =
-        "real-player-card reveal";
-
-
-    const number =
-        String(index + 1).padStart(
-            2,
-            "0"
-        );
-
-
-    const image =
-        getImageUrl(player.image);
-
-
-    card.innerHTML = `
-
-        <div class="real-player-image">
-
-            ${
-                image
-                    ? `
-                        <img
-                            src="${image}"
-                            alt="${player.name}"
-                            class="player-photo"
-                        >
-                    `
-                    : `
-                        <div class="empty-player-logo">
-                            T5
-                        </div>
-                    `
-            }
-
-        </div>
-
-
-        <div class="player-card-overlay"></div>
-
-
-        <div class="real-player-number">
-
-            ${number}
-
-        </div>
-
-
-        <div class="real-player-region">
-
-            ${player.region}
-
-        </div>
-
-
-        <div class="real-player-info">
-
-            <div class="real-player-role">
-
-                ${player.role}
-
-            </div>
-
-
-            <h3>
-
-                ${player.name}
-
-            </h3>
-
-
-            <a
-                href="${player.discord}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="real-player-link"
-            >
-
-                DISCORD
-
-                <span>↗</span>
-
-            </a>
-
-        </div>
-
-    `;
-
-
-    /*
-        Image loading
-    */
-
-    const photo =
-        card.querySelector(
-            ".player-photo"
-        );
-
-
-    if (photo) {
-
-        photo.addEventListener(
-            "load",
-            () => {
-
-                photo.classList.add(
-                    "loaded"
-                );
-
-            }
-        );
-
-
-        photo.addEventListener(
-            "error",
-            () => {
-
-                const imageContainer =
-                    photo.parentElement;
-
-
-                imageContainer.innerHTML = `
-
-                    <div class="empty-player-logo">
-                        T5
-                    </div>
-
-                `;
-
-                console.error(
-                    "T5 image failed to load:",
-                    image
-                );
-
-            }
-        );
-
-
-        /*
-            In case the browser has already
-            cached the image.
-        */
-
-        if (photo.complete) {
-
-            if (photo.naturalWidth > 0) {
-
-                photo.classList.add(
-                    "loaded"
-                );
-
-            }
-
-        }
-
-    }
-
-
-    return card;
-
-}
-
-
-/* ==========================================
-   RENDER ROSTER
-========================================== */
-
-const rosterContainer =
-    document.getElementById(
-        "rosterPlayers"
-    );
-
-
-if (rosterContainer) {
-
-    rosterPlayers.forEach(
-        (player, index) => {
-
-            const card =
-                createPlayerCard(
-                    player,
-                    index
-                );
-
-
-            rosterContainer.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   RENDER ALL PLAYERS
-========================================== */
-
-const allPlayersContainer =
-    document.getElementById(
-        "allPlayers"
-    );
-
-
-if (allPlayersContainer) {
-
-    players.forEach(
-        (player, index) => {
-
-            const card =
-                createPlayerCard(
-                    player,
-                    index
-                );
-
-
-            allPlayersContainer.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* ==========================================
    SCROLL REVEAL
 ========================================== */
 
 const revealElements =
     document.querySelectorAll(
-        ".reveal"
+        ".scroll-reveal"
     );
 
 
-if (
-    "IntersectionObserver"
-    in window
-) {
+if ("IntersectionObserver" in window) {
 
-    const revealObserver =
+    const observer =
         new IntersectionObserver(
-            (entries, observer) => {
+            entries => {
 
                 entries.forEach(entry => {
 
@@ -470,36 +134,316 @@ if (
 
             },
             {
-                threshold: 0.1,
+                threshold: 0.12,
+
                 rootMargin:
                     "0px 0px -50px 0px"
             }
         );
 
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+        element => {
 
-        revealObserver.observe(
-            element
-        );
+            observer.observe(
+                element
+            );
 
-    });
+        }
+    );
 
 } else {
 
-    revealElements.forEach(element => {
+    revealElements.forEach(
+        element => {
 
-        element.classList.add(
-            "visible"
-        );
+            element.classList.add(
+                "visible"
+            );
 
-    });
+        }
+    );
 
 }
 
 
 /* ==========================================
-   SMOOTH LINKS
+   STAGGER PLAYER CARDS
+========================================== */
+
+document
+    .querySelectorAll(
+        ".player-grid"
+    )
+    .forEach(grid => {
+
+        grid
+            .querySelectorAll(
+                ".real-player-card"
+            )
+            .forEach(
+                (card, index) => {
+
+                    card.style.setProperty(
+                        "--delay",
+                        `${index * 100}ms`
+                    );
+
+                }
+            );
+
+    });
+
+
+/* ==========================================
+   STAGGER CATEGORY CARDS
+========================================== */
+
+document
+    .querySelectorAll(
+        ".category-grid"
+    )
+    .forEach(grid => {
+
+        grid
+            .querySelectorAll(
+                ".category-card"
+            )
+            .forEach(
+                (card, index) => {
+
+                    card.style.setProperty(
+                        "--delay",
+                        `${index * 120}ms`
+                    );
+
+                }
+            );
+
+    });
+
+
+/* ==========================================
+   BUTTON RIPPLE
+========================================== */
+
+const interactiveButtons =
+    document.querySelectorAll(
+        ".button, .nav-button, .pill-button, .real-player-link, .category-arrow"
+    );
+
+
+interactiveButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                const ripple =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                ripple.className =
+                    "button-ripple";
+
+
+                const rect =
+                    button.getBoundingClientRect();
+
+
+                ripple.style.left =
+                    `${event.clientX - rect.left}px`;
+
+
+                ripple.style.top =
+                    `${event.clientY - rect.top}px`;
+
+
+                button.appendChild(
+                    ripple
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        ripple.remove();
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ==========================================
+   HERO PARALLAX
+========================================== */
+
+const hero =
+    document.querySelector(
+        ".hero"
+    );
+
+
+const heroBackground =
+    document.querySelector(
+        ".hero-background-t5"
+    );
+
+
+if (
+    hero &&
+    heroBackground &&
+    window.matchMedia(
+        "(pointer: fine)"
+    ).matches
+) {
+
+    hero.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                hero.getBoundingClientRect();
+
+
+            const x =
+                (
+                    event.clientX -
+                    rect.left
+                )
+                /
+                rect.width
+                -
+                0.5;
+
+
+            const y =
+                (
+                    event.clientY -
+                    rect.top
+                )
+                /
+                rect.height
+                -
+                0.5;
+
+
+            heroBackground.style.transform =
+                `
+                translate(
+                    ${x * -15}px,
+                    ${y * -15}px
+                )
+                translateY(-50%)
+                skew(-8deg)
+                `;
+
+        }
+    );
+
+
+    hero.addEventListener(
+        "mouseleave",
+        () => {
+
+            heroBackground.style.transform =
+                `
+                translateY(-50%)
+                skew(-8deg)
+                `;
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PLAYER IMAGE PARALLAX
+========================================== */
+
+document
+    .querySelectorAll(
+        ".real-player-card"
+    )
+    .forEach(card => {
+
+        const image =
+            card.querySelector(
+                ".player-photo"
+            );
+
+
+        if (!image) return;
+
+
+        card.addEventListener(
+            "mousemove",
+            event => {
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const x =
+                    (
+                        event.clientX -
+                        rect.left
+                    )
+                    /
+                    rect.width
+                    -
+                    0.5;
+
+
+                const y =
+                    (
+                        event.clientY -
+                        rect.top
+                    )
+                    /
+                    rect.height
+                    -
+                    0.5;
+
+
+                image.style.transform =
+                    `
+                    scale(1.07)
+                    translate(
+                        ${x * -7}px,
+                        ${y * -7}px
+                    )
+                    `;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                image.style.transform =
+                    "scale(1)";
+
+            }
+        );
+
+    });
+
+
+/* ==========================================
+   SMOOTH ANCHOR LINKS
 ========================================== */
 
 document
@@ -521,11 +465,7 @@ document
                 if (
                     !id ||
                     id === "#"
-                ) {
-
-                    return;
-
-                }
+                ) return;
 
 
                 const target =
@@ -534,11 +474,7 @@ document
                     );
 
 
-                if (!target) {
-
-                    return;
-
-                }
+                if (!target) return;
 
 
                 event.preventDefault();
@@ -556,181 +492,16 @@ document
 
 
 /* ==========================================
-   ACTIVE NAV
+   PAGE LOAD
 ========================================== */
 
-const pageSections =
-    document.querySelectorAll(
-        "section[id]"
-    );
+window.addEventListener(
+    "load",
+    () => {
 
-
-const desktopLinks =
-    document.querySelectorAll(
-        ".main-nav a"
-    );
-
-
-if (
-    pageSections.length &&
-    desktopLinks.length &&
-    "IntersectionObserver"
-    in window
-) {
-
-    const sectionObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        !entry.isIntersecting
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    const currentId =
-                        entry.target.id;
-
-
-                    desktopLinks.forEach(link => {
-
-                        link.classList.remove(
-                            "active"
-                        );
-
-
-                        const href =
-                            link.getAttribute(
-                                "href"
-                            );
-
-
-                        if (
-                            href ===
-                            `#${currentId}`
-                        ) {
-
-                            link.classList.add(
-                                "active"
-                            );
-
-                        }
-
-                    });
-
-                });
-
-            },
-            {
-                threshold: 0.35
-            }
+        document.body.classList.add(
+            "page-loaded"
         );
-
-
-    pageSections.forEach(section => {
-
-        sectionObserver.observe(
-            section
-        );
-
-    });
-
-}
-
-
-/* ==========================================
-   HERO PARALLAX
-========================================== */
-
-const heroT5 =
-    document.querySelector(
-        ".hero-background-t5"
-    );
-
-
-if (heroT5) {
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            if (
-                window.scrollY <
-                window.innerHeight
-            ) {
-
-                const movement =
-                    window.scrollY * 0.08;
-
-
-                heroT5.style.transform =
-                    `translateY(calc(-50% + ${movement}px)) skew(-8deg)`;
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
-
-}
-
-
-/* ==========================================
-   CLOSE MOBILE MENU ON ESC
-========================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            if (nav) {
-
-                nav.classList.remove(
-                    "open"
-                );
-
-            }
-
-
-            if (menu) {
-
-                menu.classList.remove(
-                    "active"
-                );
-
-                menu.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        }
 
     }
-);
-
-
-/* ==========================================
-   CONSOLE
-========================================== */
-
-console.log(
-    "%cT5 ESPORTS",
-    "font-size:28px;font-weight:900;"
-);
-
-console.log(
-    "T5 website loaded successfully."
 );
