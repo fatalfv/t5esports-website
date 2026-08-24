@@ -34,12 +34,14 @@
 
 <body>
 
+<div class="page-transition"></div>
+
 <div class="page-noise"></div>
 
+<div class="cursor-glow"></div>
 
-<!-- ==========================================
-HEADER
-========================================== -->
+
+<!-- HEADER -->
 
 <header
     class="site-header"
@@ -48,7 +50,7 @@ HEADER
 
     <a
         href="index.html"
-        class="brand"
+        class="brand page-link"
     >
 
         <span class="brand-mark">
@@ -64,22 +66,31 @@ HEADER
 
     <nav class="main-nav">
 
-        <a href="index.html">
+        <a
+            href="index.html"
+            class="page-link"
+        >
             HOME
         </a>
 
         <a
             href="players.html"
-            class="active"
+            class="active page-link"
         >
             PLAYERS
         </a>
 
-        <a href="index.html#about">
+        <a
+            href="index.html#about"
+            class="page-link"
+        >
             ABOUT
         </a>
 
-        <a href="index.html#join">
+        <a
+            href="index.html#join"
+            class="page-link"
+        >
             JOIN
         </a>
 
@@ -104,7 +115,6 @@ HEADER
         class="mobile-menu-button"
         id="menuButton"
         type="button"
-        aria-label="Open menu"
     >
 
         <span></span>
@@ -116,29 +126,38 @@ HEADER
 </header>
 
 
-
-<!-- ==========================================
-MOBILE MENU
-========================================== -->
+<!-- MOBILE -->
 
 <div
     class="mobile-menu"
     id="mobileMenu"
 >
 
-    <a href="index.html">
+    <a
+        href="index.html"
+        class="page-link"
+    >
         HOME
     </a>
 
-    <a href="players.html">
+    <a
+        href="players.html"
+        class="page-link"
+    >
         PLAYERS
     </a>
 
-    <a href="index.html#about">
+    <a
+        href="index.html#about"
+        class="page-link"
+    >
         ABOUT
     </a>
 
-    <a href="index.html#join">
+    <a
+        href="index.html#join"
+        class="page-link"
+    >
         JOIN
     </a>
 
@@ -154,13 +173,10 @@ MOBILE MENU
 </div>
 
 
-
 <main>
 
 
-<!-- ==========================================
-PAGE HERO
-========================================== -->
+<!-- PAGE HERO -->
 
 <section class="page-hero">
 
@@ -203,12 +219,9 @@ PAGE HERO
 </section>
 
 
+<!-- ROSTER -->
 
-<!-- ==========================================
-T5 ROSTER
-========================================== -->
-
-<section class="players-container players-top">
+<section class="players-container">
 
     <div class="players-heading reveal">
 
@@ -243,11 +256,9 @@ T5 ROSTER
 
         <a
             href="index.html"
-            class="pill-button"
+            class="pill-button page-link"
         >
-
             BACK HOME
-
         </a>
 
     </div>
@@ -270,14 +281,9 @@ T5 ROSTER
 </section>
 
 
+<!-- ALL PLAYERS -->
 
-<!-- ==========================================
-ALL PLAYERS
-========================================== -->
-
-<section
-    class="players-container players-container-alt"
->
+<section class="players-container players-container-alt">
 
     <div class="players-heading reveal">
 
@@ -329,17 +335,13 @@ ALL PLAYERS
 </section>
 
 
+<!-- JOIN -->
 
-<!-- ==========================================
-JOIN
-========================================== -->
-
-<section class="join-section small-join">
+<section class="join-section">
 
     <div class="join-background">
         T5
     </div>
-
 
     <div class="join-orb"></div>
 
@@ -393,10 +395,7 @@ JOIN
 </main>
 
 
-
-<!-- ==========================================
-FOOTER
-========================================== -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -404,7 +403,7 @@ FOOTER
 
         <a
             href="index.html"
-            class="brand"
+            class="brand page-link"
         >
 
             <span class="brand-mark">
@@ -420,15 +419,24 @@ FOOTER
 
         <div class="footer-links">
 
-            <a href="index.html">
+            <a
+                href="index.html"
+                class="page-link"
+            >
                 HOME
             </a>
 
-            <a href="players.html">
+            <a
+                href="players.html"
+                class="page-link"
+            >
                 PLAYERS
             </a>
 
-            <a href="index.html#about">
+            <a
+                href="index.html#about"
+                class="page-link"
+            >
                 ABOUT
             </a>
 
@@ -468,15 +476,9 @@ FOOTER
 </footer>
 
 
-
-<!-- ==========================================
-SCRIPTS
-========================================== -->
-
 <script src="script.js"></script>
 
 <script src="players.js"></script>
-
 
 </body>
 
