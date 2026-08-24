@@ -33,12 +33,12 @@ const rosterPlayers = [
 
 
     {
-        name: "PLAYER TWO",
-        role: "COMPETITIVE PLAYER",
+        name: "Onyx",
+        role: "OWNER",
         region: "EU",
 
         image:
-            "",
+            "https://cdn.discordapp.com/attachments/1520906820753821776/1541488494545735750/image.png?ex=6a8dc688&is=6a8c7508&hm=cd89d772ef77e7b1a24f78be2887992bb834a4f6a7c4650a068a055bf0ad5cc4&",
 
         discord:
             "https://discord.gg/t5esports"
