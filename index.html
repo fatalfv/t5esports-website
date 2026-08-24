@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -28,22 +27,18 @@
         rel="stylesheet"
         href="styles.css"
     >
-
 </head>
-
 
 <body>
 
-<div class="page-transition"></div>
-
 <div class="page-noise"></div>
 
-<div class="cursor-glow"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
 
-<!-- ==================================================
+<!-- ==============================
 HEADER
-================================================== -->
+============================== -->
 
 <header
     class="site-header"
@@ -54,15 +49,8 @@ HEADER
         href="index.html"
         class="brand page-link"
     >
-
-        <span class="brand-mark">
-            T5
-        </span>
-
-        <span class="brand-text">
-            ESPORTS
-        </span>
-
+        <span class="brand-mark">T5</span>
+        <span class="brand-text">ESPORTS</span>
     </a>
 
 
@@ -99,11 +87,8 @@ HEADER
         rel="noopener noreferrer"
         class="nav-button"
     >
-
         DISCORD
-
         <span>↗</span>
-
     </a>
 
 
@@ -113,19 +98,17 @@ HEADER
         type="button"
         aria-label="Open menu"
     >
-
         <span></span>
         <span></span>
         <span></span>
-
     </button>
 
 </header>
 
 
-<!-- ==================================================
+<!-- ==============================
 MOBILE MENU
-================================================== -->
+============================== -->
 
 <div
     class="mobile-menu"
@@ -169,9 +152,9 @@ MOBILE MENU
 <main>
 
 
-<!-- ==================================================
+<!-- ==============================
 HERO
-================================================== -->
+============================== -->
 
 <section class="hero">
 
@@ -188,22 +171,21 @@ HERO
 
     <div class="hero-content">
 
-        <div class="eyebrow hero-reveal">
-
+        <div
+            class="eyebrow hero-reveal"
+        >
             <span></span>
-
             T5 ESPORTS
-
         </div>
 
 
-        <h1 class="hero-reveal">
+        <h1 class="hero-title hero-reveal">
 
-            BUILT
+            COMPETE.
 
             <br>
 
-            <span>TO WIN.</span>
+            <span>CREATE.</span>
 
         </h1>
 
@@ -211,8 +193,8 @@ HERO
         <p class="hero-description hero-reveal">
 
             T5 Esports is a competitive Fortnite organisation
-            focused on building players, creators and a
-            community that wants to compete at the highest level.
+            built around players, creators and a community
+            that wants to compete at the highest level.
 
         </p>
 
@@ -223,25 +205,17 @@ HERO
                 href="players.html"
                 class="button button-primary page-link"
             >
-
-                MEET THE TEAM
-
+                VIEW PLAYERS
                 <span>↗</span>
-
             </a>
 
 
             <a
-                href="https://discord.gg/t5esports"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#about"
                 class="button button-secondary"
             >
-
-                JOIN DISCORD
-
-                <span>↗</span>
-
+                LEARN MORE
+                <span>↓</span>
             </a>
 
         </div>
@@ -250,35 +224,18 @@ HERO
         <div class="hero-stats hero-reveal">
 
             <div>
-
                 <strong>01</strong>
-
-                <span>
-                    ESPORTS ORGANISATION
-                </span>
-
+                <span>ORGANISATION</span>
             </div>
 
-
             <div>
-
-                <strong>EU</strong>
-
-                <span>
-                    PRIMARY REGION
-                </span>
-
-            </div>
-
-
-            <div>
-
                 <strong>24/7</strong>
+                <span>COMMUNITY</span>
+            </div>
 
-                <span>
-                    COMMUNITY
-                </span>
-
+            <div>
+                <strong>∞</strong>
+                <span>AMBITION</span>
             </div>
 
         </div>
@@ -287,19 +244,17 @@ HERO
 
 
     <div class="hero-scroll">
-
-        SCROLL
-
         <span></span>
-
+        SCROLL TO EXPLORE
     </div>
 
 </section>
 
 
-<!-- ==================================================
+
+<!-- ==============================
 TEAM
-================================================== -->
+============================== -->
 
 <section class="categories-section">
 
@@ -308,101 +263,83 @@ TEAM
         <div>
 
             <div class="eyebrow">
-
                 <span></span>
-
                 OUR TEAM
-
             </div>
 
-
             <h2>
-
                 THE
-
                 <br>
-
                 <span>TEAM.</span>
-
             </h2>
 
         </div>
 
 
         <p>
-
             Meet the people representing T5 Esports
-            across competitive Fortnite and the wider
-            gaming community.
-
+            across the competitive Fortnite scene.
         </p>
 
     </div>
 
 
-    <div class="category-card reveal">
+    <div class="team-single">
 
-        <div class="category-number">
-            01 / T5 ESPORTS
-        </div>
+        <a
+            href="players.html"
+            class="category-card purple-card reveal"
+        >
 
-
-        <div class="category-background">
-            T5
-        </div>
-
-
-        <div class="category-glow"></div>
-
-
-        <div class="category-content">
-
-            <div class="category-label">
-                OFFICIAL TEAM
+            <div class="category-number">
+                01 / T5 ESPORTS
             </div>
 
 
-            <h3>
-
+            <div class="category-background">
                 T5
-
-                <br>
-
-                <span>ROSTER.</span>
-
-            </h3>
+            </div>
 
 
-            <p>
-
-                Meet the official T5 Esports roster,
-                including our competitive players and
-                creators representing the organisation.
-
-            </p>
+            <div class="category-glow"></div>
 
 
-            <a
-                href="players.html"
-                class="category-arrow page-link"
-            >
+            <div class="category-content">
 
-                VIEW ROSTER
+                <div class="category-label">
+                    OFFICIAL TEAM
+                </div>
 
-                <span>→</span>
+                <h3>
+                    T5
+                    <span>ROSTER.</span>
+                </h3>
 
-            </a>
+                <p>
+                    Meet the official T5 Esports roster,
+                    including our competitive players and
+                    creators representing the organisation.
+                </p>
 
-        </div>
+
+                <span class="category-arrow">
+                    VIEW ROSTER
+                    <span>→</span>
+                </span>
+
+            </div>
+
+        </a>
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
+
+<!-- ==============================
 ABOUT
-================================================== -->
+============================== -->
 
 <section
     class="about-section"
@@ -427,82 +364,67 @@ ABOUT
     <div class="about-content reveal">
 
         <div class="eyebrow">
-
             <span></span>
-
-            ABOUT T5
-
+            WHO WE ARE
         </div>
 
 
         <h2>
-
-            MORE
-
+            BUILT
             <br>
-
-            <span>THAN TEAM.</span>
-
+            <span>TO WIN.</span>
         </h2>
 
 
         <p>
-
-            T5 Esports is built around competition,
-            creativity and community. We want to give
-            talented players and creators a platform
-            to develop and represent something bigger.
-
+            T5 Esports brings together competitive
+            Fortnite players, creators and a growing
+            community with one goal — to push further.
         </p>
 
 
         <div class="about-list">
 
             <div>
-
                 <span>01</span>
-
                 COMPETITIVE FORTNITE
-
             </div>
 
-
             <div>
-
                 <span>02</span>
-
                 CONTENT & CREATORS
-
             </div>
 
-
             <div>
-
                 <span>03</span>
-
                 COMMUNITY
-
             </div>
 
-
             <div>
-
                 <span>04</span>
-
-                DEVELOPMENT
-
+                CONSTANT PROGRESSION
             </div>
 
         </div>
+
+
+        <a
+            href="players.html"
+            class="button button-secondary page-link"
+        >
+            MEET THE TEAM
+            <span>↗</span>
+        </a>
 
     </div>
 
 </section>
 
 
-<!-- ==================================================
+
+<!-- ==============================
 JOIN
-================================================== -->
+============================== -->
 
 <section
     class="join-section"
@@ -513,38 +435,27 @@ JOIN
         T5
     </div>
 
-
     <div class="join-orb"></div>
 
 
     <div class="join-content reveal">
 
         <div class="eyebrow centered-eyebrow">
-
             <span></span>
-
             T5 COMMUNITY
-
             <span></span>
-
         </div>
 
 
         <h2>
-
             JOIN
-
             <br>
-
             <span>US.</span>
-
         </h2>
 
 
         <p>
-
-            Become part of the T5 Esports community.
-
+            Become part of the T5 community.
         </p>
 
 
@@ -554,11 +465,8 @@ JOIN
             rel="noopener noreferrer"
             class="button button-primary big-button"
         >
-
             JOIN DISCORD
-
             <span>↗</span>
-
         </a>
 
     </div>
@@ -568,9 +476,10 @@ JOIN
 </main>
 
 
-<!-- ==================================================
+
+<!-- ==============================
 FOOTER
-================================================== -->
+============================== -->
 
 <footer>
 
@@ -580,15 +489,8 @@ FOOTER
             href="index.html"
             class="brand page-link"
         >
-
-            <span class="brand-mark">
-                T5
-            </span>
-
-            <span class="brand-text">
-                ESPORTS
-            </span>
-
+            <span class="brand-mark">T5</span>
+            <span class="brand-text">ESPORTS</span>
         </a>
 
 
