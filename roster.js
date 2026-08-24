@@ -1,25 +1,15 @@
+/*
+==========================================
+T5 ROSTER
+==========================================
+
+ONLY PLAYERS IN THIS LIST WILL APPEAR
+IN THE "T5 ROSTER" SECTION.
+
+==========================================
+*/
+
 const rosterPlayers = [
-
-    /*
-    ==========================================
-    T5 ROSTER PLAYERS
-    ==========================================
-
-    ADD COMPETITIVE T5 PLAYERS HERE
-
-    Example:
-
-    {
-        name: "Player Name",
-        role: "COMPETITIVE PLAYER",
-        region: "EU",
-        image: "images/player.jpeg",
-        discord: "https://discord.gg/t5esports"
-    }
-
-    ==========================================
-    */
-
 
     {
         name: "Fatal",
@@ -67,7 +57,6 @@ const rosterPlayers = [
 ];
 
 
-
 /*
 ==========================================
 ROSTER CONTAINER
@@ -78,7 +67,6 @@ const rosterContainer =
     document.getElementById("rosterPlayers");
 
 
-
 if (!rosterContainer) {
 
     console.error(
@@ -86,7 +74,6 @@ if (!rosterContainer) {
     );
 
 } else {
-
 
     rosterPlayers.forEach(
         (player, index) => {
@@ -103,7 +90,6 @@ if (!rosterContainer) {
     );
 
 }
-
 
 
 /*
@@ -132,7 +118,7 @@ function createRosterPlayerCard(
 
     /*
     ==========================================
-    IMAGE
+    PLAYER IMAGE
     ==========================================
     */
 
