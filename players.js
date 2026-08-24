@@ -5,11 +5,15 @@ const players = [
     ADD T5 PLAYERS BELOW
     ==========================================
 
-    image = direct image URL
+    You can use a GitHub image link:
 
-    Example:
+    image: "https://github.com/fatalfv/t5esports-website/blob/main/images/player.jpeg?raw=true"
 
-    image: "https://example.com/player.png"
+    Or a local image:
+
+    image: "images/player.jpeg"
+
+    Leave image as "" if you don't have an image yet.
 
     ==========================================
     */
@@ -59,90 +63,136 @@ const container =
 
 
 
-players.forEach((player, index) => {
+if (!container) {
+
+    console.error(
+        "Could not find the #allPlayers container."
+    );
+
+} else {
 
 
-    const card =
-        document.createElement("article");
+    players.forEach((player, index) => {
 
 
-    card.className =
-        "real-player-card";
+        const card =
+            document.createElement("article");
 
 
-    const number =
-        String(index + 1).padStart(2, "0");
+        card.className =
+            "real-player-card";
 
 
-    const imageStyle =
-        player.image
-            ? `background-image:
-                linear-gradient(
-                    180deg,
-                    transparent 30%,
-                    rgba(0,0,0,.95) 100%
-                ),
-                url("${player.image}");`
-            : "";
+        const number =
+            String(index + 1).padStart(2, "0");
+
+
+        /*
+        ==========================================
+        PLAYER IMAGE
+        ==========================================
+        */
+
+
+        const imageHTML = player.image
+
+            ? `
+
+                <img
+                    src="${player.image}"
+                    alt="${player.name}"
+                    class="player-photo"
+                    loading="lazy"
+                    onerror="this.style.display='none';"
+                >
+
+            `
+
+            : `
+
+                <div class="empty-player-logo">
+                    T5
+                </div>
+
+            `;
 
 
 
-    card.innerHTML = `
-
-        <div
-            class="real-player-image"
-            style="${imageStyle}"
-        >
-
-            ${
-                !player.image
-                    ? `<div class="empty-player-logo">T5</div>`
-                    : ""
-            }
-
-        </div>
+        /*
+        ==========================================
+        CARD
+        ==========================================
+        */
 
 
-        <div class="real-player-number">
-            ${number}
-        </div>
+        card.innerHTML = `
 
+            <div class="real-player-image">
 
-        <div class="real-player-region">
-            ${player.region}
-        </div>
+                ${imageHTML}
 
-
-        <div class="real-player-info">
-
-            <div class="real-player-role">
-                ${player.role}
             </div>
 
 
-            <h3>
-                ${player.name}
-            </h3>
+
+            <div class="real-player-number">
+
+                ${number}
+
+            </div>
 
 
-            <a
-                href="${player.discord}"
-                target="_blank"
-                rel="noopener"
-                class="real-player-link"
-            >
 
-                DISCORD
+            <div class="real-player-region">
 
-                <span>↗</span>
+                ${player.region}
 
-            </a>
-
-        </div>
-
-    `;
+            </div>
 
 
-    container.appendChild(card);
 
-});
+            <div class="real-player-info">
+
+
+                <div class="real-player-role">
+
+                    ${player.role}
+
+                </div>
+
+
+
+                <h3>
+
+                    ${player.name}
+
+                </h3>
+
+
+
+                <a
+                    href="${player.discord}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="real-player-link"
+                >
+
+                    DISCORD
+
+                    <span>↗</span>
+
+                </a>
+
+
+            </div>
+
+        `;
+
+
+
+        container.appendChild(card);
+
+
+    });
+
+}
