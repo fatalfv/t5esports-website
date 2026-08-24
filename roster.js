@@ -1,41 +1,33 @@
 const rosterPlayers = [
 
     /*
-    ==========================================
-    ADD T5 ROSTER PLAYERS HERE
-    ==========================================
+    ==================================================
+    T5 COMPETITIVE ROSTER
+    ==================================================
 
-    Example:
+    GitHub image example:
 
-    {
-        name: "Fatal",
-        role: "Owner",
-        region: "EU",
-        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-        discord: "https://discord.gg/t5esports"
-    }
+    image:
+    "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true"
 
-    ==========================================
+    ==================================================
     */
 
-
     {
         name: "Fatal",
-        role: "Owner",
+        role: "OWNER",
         region: "EU",
         image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
         discord: "https://discord.gg/t5esports"
     },
 
-
     {
-        name: "PLAYER TWO",
-        role: "COMPETITIVE PLAYER",
+        name: "Onyx",
+        role: "OWNER",
         region: "EU",
-        image: "",
+        image: "https://cdn.discordapp.com/attachments/1520906820753821776/1541486221878894672/image.png?ex=6a8dc46a&is=6a8c72ea&hm=cd251a02c57e78c770e61119fa67de2625bd7511008174f632adbc5d037a6ba6&",
         discord: "https://discord.gg/t5esports"
     },
-
 
     {
         name: "PLAYER THREE",
@@ -54,15 +46,11 @@ const container =
 
 if (!container) {
 
-    console.error(
-        "T5: rosterPlayers container not found."
-    );
+    console.error("Could not find #rosterPlayers");
 
 } else {
 
-
     rosterPlayers.forEach((player, index) => {
-
 
         const card =
             document.createElement("article");
@@ -84,6 +72,7 @@ if (!container) {
                     alt="${player.name}"
                     class="player-photo"
                     loading="lazy"
+                    onerror="this.style.display='none';"
                 >
             `
 
@@ -152,7 +141,6 @@ if (!container) {
 
 
         container.appendChild(card);
-
 
     });
 
