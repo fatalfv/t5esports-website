@@ -1,0 +1,3 @@
+const menu=document.getElementById('menu');const nav=document.getElementById('nav');menu.addEventListener('click',()=>{nav.classList.toggle('open')});document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const rosterTabs=document.querySelectorAll('.roster-tab');const playerCards=document.querySelectorAll('#playerCards article');rosterTabs.forEach(tab=>tab.addEventListener('click',()=>{rosterTabs.forEach(x=>x.classList.remove('active'));tab.classList.add('active');const group=tab.dataset.roster;playerCards.forEach(card=>card.classList.toggle('hidden',!card.dataset.group.split(' ').includes(group)));}));
