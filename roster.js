@@ -5,7 +5,9 @@ const rosterPlayers = [
     T5 ROSTER PLAYERS
     ==========================================
 
-    TO ADD A PLAYER:
+    ADD COMPETITIVE T5 PLAYERS HERE
+
+    Example:
 
     {
         name: "Player Name",
@@ -13,7 +15,7 @@ const rosterPlayers = [
         region: "EU",
         image: "images/player.jpeg",
         discord: "https://discord.gg/t5esports"
-    },
+    }
 
     ==========================================
     */
@@ -21,7 +23,9 @@ const rosterPlayers = [
 
     {
         name: "Fatal",
+
         role: "OWNER",
+
         region: "EU",
 
         image:
@@ -34,7 +38,9 @@ const rosterPlayers = [
 
     {
         name: "Onyx",
+
         role: "OWNER",
+
         region: "EU",
 
         image:
@@ -47,11 +53,12 @@ const rosterPlayers = [
 
     {
         name: "PLAYER THREE",
+
         role: "COMPETITIVE PLAYER",
+
         region: "EU",
 
-        image:
-            "",
+        image: "",
 
         discord:
             "https://discord.gg/t5esports"
@@ -61,17 +68,21 @@ const rosterPlayers = [
 
 
 
-const container =
-    document.getElementById(
-        "rosterPlayers"
-    );
+/*
+==========================================
+ROSTER CONTAINER
+==========================================
+*/
+
+const rosterContainer =
+    document.getElementById("rosterPlayers");
 
 
 
-if (!container) {
+if (!rosterContainer) {
 
     console.error(
-        "rosterPlayers container not found."
+        "T5 Roster: #rosterPlayers was not found."
     );
 
 } else {
@@ -80,15 +91,13 @@ if (!container) {
     rosterPlayers.forEach(
         (player, index) => {
 
-
             const card =
-                createPlayerCard(
+                createRosterPlayerCard(
                     player,
                     index
                 );
 
-
-            container.appendChild(card);
+            rosterContainer.appendChild(card);
 
         }
     );
@@ -99,19 +108,17 @@ if (!container) {
 
 /*
 ==========================================
-CREATE PLAYER CARD
+CREATE ROSTER PLAYER CARD
 ==========================================
 */
 
-function createPlayerCard(
+function createRosterPlayerCard(
     player,
     index
 ) {
 
     const card =
-        document.createElement(
-            "article"
-        );
+        document.createElement("article");
 
 
     card.className =
@@ -122,6 +129,12 @@ function createPlayerCard(
         String(index + 1)
             .padStart(2, "0");
 
+
+    /*
+    ==========================================
+    IMAGE
+    ==========================================
+    */
 
     let imageHTML;
 
@@ -135,7 +148,7 @@ function createPlayerCard(
                 alt="${player.name}"
                 class="player-photo"
                 loading="lazy"
-                onerror="this.classList.add('image-error')"
+                onerror="this.style.display='none';"
             >
 
         `;
@@ -152,6 +165,12 @@ function createPlayerCard(
 
     }
 
+
+    /*
+    ==========================================
+    CARD
+    ==========================================
+    */
 
     card.innerHTML = `
 
