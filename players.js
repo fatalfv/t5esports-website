@@ -1,13 +1,23 @@
 /*
 ==================================================
-T5 ESPORTS PLAYER DATABASE
+T5 ESPORTS
+PLAYER DATABASE
 ==================================================
 
+EDIT THIS FILE ONLY.
+
 roster: true
-    = ONLY T5 ROSTER
+    -> Shows in T5 Roster ONLY
 
 roster: false
-    = ONLY ALL PLAYERS
+    -> Shows in All Players ONLY
+
+IMPORTANT:
+
+TRUE  = ROSTER
+FALSE = ALL PLAYERS
+
+A roster player will NOT appear in All Players.
 
 ==================================================
 */
@@ -20,7 +30,6 @@ const players = [
     T5 ROSTER
     ==================================================
     */
-
 
     {
         name: "Fatal",
@@ -129,6 +138,7 @@ const players = [
 ];
 
 
+
 /*
 ==================================================
 CREATE PLAYER CARD
@@ -146,16 +156,20 @@ function createPlayerCard(player, index) {
 
 
     const number =
-        String(index + 1).padStart(2, "0");
+        String(index + 1)
+            .padStart(2, "0");
 
+
+    /*
+    ==============================================
+    IMAGE
+    ==============================================
+    */
 
     let imageHTML;
 
 
-    if (
-        player.image &&
-        player.image.trim() !== ""
-    ) {
+    if (player.image) {
 
         imageHTML = `
 
@@ -164,6 +178,7 @@ function createPlayerCard(player, index) {
                 alt="${player.name}"
                 class="player-photo"
                 loading="lazy"
+                onerror="this.style.display='none';"
             >
 
         `;
@@ -180,6 +195,12 @@ function createPlayerCard(player, index) {
 
     }
 
+
+    /*
+    ==============================================
+    CARD
+    ==============================================
+    */
 
     card.innerHTML = `
 
@@ -246,9 +267,10 @@ function createPlayerCard(player, index) {
 }
 
 
+
 /*
 ==================================================
-ROSTER
+T5 ROSTER
 ==================================================
 */
 
@@ -260,21 +282,25 @@ const rosterContainer =
 
 if (rosterContainer) {
 
-    const roster =
+    const rosterPlayers =
         players.filter(
             player =>
                 player.roster === true
         );
 
 
-    roster.forEach(
+    rosterPlayers.forEach(
         (player, index) => {
 
-            rosterContainer.appendChild(
+            const card =
                 createPlayerCard(
                     player,
                     index
-                )
+                );
+
+
+            rosterContainer.appendChild(
+                card
             );
 
         }
@@ -283,19 +309,26 @@ if (rosterContainer) {
 }
 
 
+
 /*
 ==================================================
 ALL PLAYERS
 ==================================================
+
+ONLY roster:false PLAYERS.
+
+roster:true players are NEVER
+added to this section.
+==================================================
 */
 
-const playersContainer =
+const allPlayersContainer =
     document.getElementById(
         "allPlayers"
     );
 
 
-if (playersContainer) {
+if (allPlayersContainer) {
 
     const allPlayers =
         players.filter(
@@ -307,82 +340,15 @@ if (playersContainer) {
     allPlayers.forEach(
         (player, index) => {
 
-            playersContainer.appendChild(
+            const card =
                 createPlayerCard(
                     player,
                     index
-                )
-            );
-
-        }
-    );
-
-}
+                );
 
 
-/*
-==================================================
-SCROLL REVEAL
-==================================================
-*/
-
-const playerRevealElements =
-    document.querySelectorAll(
-        ".player-grid .reveal"
-    );
-
-
-if (
-    "IntersectionObserver" in window
-) {
-
-    const observer =
-        new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.1
-            }
-        );
-
-
-    playerRevealElements.forEach(
-        element => {
-
-            observer.observe(
-                element
-            );
-
-        }
-    );
-
-} else {
-
-    playerRevealElements.forEach(
-        element => {
-
-            element.classList.add(
-                "visible"
+            allPlayersContainer.appendChild(
+                card
             );
 
         }
