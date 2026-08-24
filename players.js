@@ -1,141 +1,257 @@
 const players = [
 
     /*
-    ==================================================
-    ADD T5 PLAYERS HERE
-    ==================================================
+    ==========================================
+    ALL T5 PLAYERS
+    ==========================================
 
-    GitHub image:
+    This section can contain:
 
-    image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true"
+    - Competitive players
+    - Content creators
+    - Community members
+    - Former players
+    - Other T5 members
 
-    Local GitHub file:
+    Example:
 
-    image: "images/fatal.jpeg"
+    {
+        name: "Player Name",
+        role: "CONTENT CREATOR",
+        region: "EU",
+        image: "images/player.jpeg",
+        discord: "https://discord.gg/t5esports"
+    }
 
-    ==================================================
+    ==========================================
     */
 
-    {
-        name: "PLAYER ONE",
-        role: "T5 PLAYER",
-        region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
-    },
 
     {
-        name: "PLAYER TWO",
-        role: "T5 PLAYER",
+        name: "Fatal",
+
+        role: "OWNER",
+
         region: "EU",
-        image: "",
-        discord: "https://discord.gg/t5esports"
+
+        image:
+            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+
+        discord:
+            "https://discord.gg/t5esports"
     },
+
+
+    {
+        name: "Onyx",
+
+        role: "OWNER",
+
+        region: "EU",
+
+        image:
+            "https://cdn.discordapp.com/attachments/1520906820753821776/1541488494545735750/image.png?ex=6a8dc688&is=6a8c7508&hm=cd89d772ef77e7b1a24f78be2887992bb834a4f6a7c4650a068a055bf0ad5cc4&",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
 
     {
         name: "PLAYER THREE",
-        role: "CONTENT CREATOR",
+
+        role: "COMPETITIVE PLAYER",
+
         region: "EU",
+
         image: "",
-        discord: "https://discord.gg/t5esports"
+
+        discord:
+            "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER FOUR",
-        role: "T5 PLAYER",
+
+        role: "CONTENT CREATOR",
+
         region: "EU",
+
         image: "",
-        discord: "https://discord.gg/t5esports"
+
+        discord:
+            "https://discord.gg/t5esports"
     }
 
 ];
 
 
-const container = document.getElementById("allPlayers");
+
+/*
+==========================================
+ALL PLAYERS CONTAINER
+==========================================
+*/
+
+const playersContainer =
+    document.getElementById("allPlayers");
 
 
-if (!container) {
 
-    console.error("Could not find #allPlayers");
+if (!playersContainer) {
+
+    console.error(
+        "All Players: #allPlayers was not found."
+    );
 
 } else {
 
-    players.forEach((player, index) => {
 
-        const card = document.createElement("article");
+    players.forEach(
+        (player, index) => {
 
-        card.className = "real-player-card";
+            const card =
+                createAllPlayerCard(
+                    player,
+                    index
+                );
 
+            playersContainer.appendChild(card);
 
-        const number =
-            String(index + 1).padStart(2, "0");
+        }
+    );
 
-
-        const imageHTML = player.image
-
-            ? `
-                <img
-                    src="${player.image}"
-                    alt="${player.name}"
-                    class="player-photo"
-                    loading="lazy"
-                    onerror="this.style.display='none';"
-                >
-            `
-
-            : `
-                <div class="empty-player-logo">
-                    T5
-                </div>
-            `;
+}
 
 
-        card.innerHTML = `
 
-            <div class="real-player-image">
+/*
+==========================================
+CREATE ALL PLAYER CARD
+==========================================
+*/
 
-                ${imageHTML}
+function createAllPlayerCard(
+    player,
+    index
+) {
 
-            </div>
-
-
-            <div class="real-player-number">
-                ${number}
-            </div>
-
-
-            <div class="real-player-region">
-                ${player.region}
-            </div>
+    const card =
+        document.createElement("article");
 
 
-            <div class="real-player-info">
+    card.className =
+        "real-player-card reveal";
 
-                <div class="real-player-role">
-                    ${player.role}
-                </div>
 
-                <h3>
-                    ${player.name}
-                </h3>
+    const number =
+        String(index + 1)
+            .padStart(2, "0");
 
-                <a
-                    href="${player.discord}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="real-player-link"
-                >
-                    DISCORD
-                    <span>↗</span>
-                </a>
 
+    /*
+    ==========================================
+    IMAGE
+    ==========================================
+    */
+
+    let imageHTML;
+
+
+    if (player.image) {
+
+        imageHTML = `
+
+            <img
+                src="${player.image}"
+                alt="${player.name}"
+                class="player-photo"
+                loading="lazy"
+                onerror="this.style.display='none';"
+            >
+
+        `;
+
+    } else {
+
+        imageHTML = `
+
+            <div class="empty-player-logo">
+                T5
             </div>
 
         `;
 
+    }
 
-        container.appendChild(card);
 
-    });
+    /*
+    ==========================================
+    CARD
+    ==========================================
+    */
+
+    card.innerHTML = `
+
+        <div class="real-player-image">
+
+            ${imageHTML}
+
+        </div>
+
+
+        <div class="player-card-overlay"></div>
+
+
+        <div class="real-player-number">
+
+            ${number}
+
+        </div>
+
+
+        <div class="real-player-region">
+
+            ${player.region}
+
+        </div>
+
+
+        <div class="real-player-info">
+
+            <div class="real-player-role">
+
+                ${player.role}
+
+            </div>
+
+
+            <h3>
+
+                ${player.name}
+
+            </h3>
+
+
+            <a
+                href="${player.discord}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="real-player-link"
+            >
+
+                DISCORD
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    return card;
 
 }
