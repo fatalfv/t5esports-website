@@ -1,0 +1,98 @@
+const players = [
+
+    {
+        name: "PLAYER ONE",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER TWO",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER THREE",
+        role: "CONTENT CREATOR",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER FOUR",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    }
+
+];
+
+
+const container = document.getElementById("players");
+
+
+players.forEach(player => {
+
+    const card = document.createElement("article");
+
+    card.className = "player-card";
+
+
+    card.innerHTML = `
+
+        <div
+            class="player-image"
+            style="
+                ${player.image
+                    ? `background-image:url('${player.image}')`
+                    : ""
+                }
+            "
+        >
+
+            ${
+                !player.image
+                ? `<span>T5</span>`
+                : ""
+            }
+
+        </div>
+
+
+        <div class="player-card-content">
+
+            <div class="player-region">
+                ${player.region}
+            </div>
+
+            <h2>
+                ${player.name}
+            </h2>
+
+            <p>
+                ${player.role}
+            </p>
+
+            <a
+                href="${player.discord}"
+                target="_blank"
+                class="player-button"
+            >
+                DISCORD ↗
+            </a>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+});
