@@ -1,5 +1,24 @@
 const rosterPlayers = [
 
+    /*
+    ==========================================
+    ADD T5 ROSTER PLAYERS HERE
+    ==========================================
+
+    Example:
+
+    {
+        name: "Fatal",
+        role: "Owner",
+        region: "EU",
+        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+        discord: "https://discord.gg/t5esports"
+    }
+
+    ==========================================
+    */
+
+
     {
         name: "Fatal",
         role: "Owner",
@@ -8,6 +27,7 @@ const rosterPlayers = [
         discord: "https://discord.gg/t5esports"
     },
 
+
     {
         name: "PLAYER TWO",
         role: "COMPETITIVE PLAYER",
@@ -15,6 +35,7 @@ const rosterPlayers = [
         image: "",
         discord: "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER THREE",
@@ -34,12 +55,14 @@ const container =
 if (!container) {
 
     console.error(
-        "Could not find #rosterPlayers."
+        "T5: rosterPlayers container not found."
     );
 
 } else {
 
+
     rosterPlayers.forEach((player, index) => {
+
 
         const card =
             document.createElement("article");
@@ -129,6 +152,7 @@ if (!container) {
 
 
         container.appendChild(card);
+
 
     });
 
