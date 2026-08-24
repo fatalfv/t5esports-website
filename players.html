@@ -1,267 +1,230 @@
-<!DOCTYPE html>
-<html lang="en">
+const players = [
 
-<head>
+    /*
+    ==========================================
+    T5 PLAYERS
+    ==========================================
 
-    <meta charset="UTF-8">
+    TO ADD A PLAYER:
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    {
+        name: "Player Name",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "images/player.jpeg",
+        discord: "https://discord.gg/t5esports"
+    },
 
-    <title>T5 Players — T5 Esports</title>
+    ==========================================
+    */
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    {
+        name: "PLAYER ONE",
+        role: "T5 PLAYER",
+        region: "EU",
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+        image:
+            "",
 
-    <link rel="stylesheet" href="styles.css">
+        discord:
+            "https://discord.gg/t5esports"
+    },
 
-</head>
 
+    {
+        name: "PLAYER TWO",
+        role: "T5 PLAYER",
+        region: "EU",
 
-<body>
+        image:
+            "",
 
-<div class="page-noise"></div>
+        discord:
+            "https://discord.gg/t5esports"
+    },
 
 
-<header class="site-header">
+    {
+        name: "PLAYER THREE",
+        role: "CONTENT CREATOR",
+        region: "EU",
 
-    <a href="index.html" class="brand">
+        image:
+            "",
 
-        <div class="brand-mark">
-            T5
-        </div>
+        discord:
+            "https://discord.gg/t5esports"
+    },
 
-        <div class="brand-text">
-            ESPORTS
-        </div>
 
-    </a>
+    {
+        name: "PLAYER FOUR",
+        role: "T5 PLAYER",
+        region: "EU",
 
+        image:
+            "",
 
-    <nav class="main-nav">
+        discord:
+            "https://discord.gg/t5esports"
+    }
 
-        <a href="index.html">
-            HOME
-        </a>
+];
 
-        <a href="roster.html">
-            ROSTER
-        </a>
 
-        <a href="players.html" class="active">
-            PLAYERS
-        </a>
 
-        <a href="index.html#about">
-            ABOUT
-        </a>
+const container =
+    document.getElementById(
+        "allPlayers"
+    );
 
-    </nav>
 
 
-    <a
-        href="https://discord.gg/t5esports"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-button"
-    >
-        JOIN DISCORD
-        <span>↗</span>
-    </a>
+if (!container) {
 
+    console.error(
+        "allPlayers container not found."
+    );
 
-    <button
-        class="mobile-menu-button"
-        id="mobileMenuButton"
-    >
-        ☰
-    </button>
+} else {
 
-</header>
 
+    players.forEach(
+        (player, index) => {
 
-<div class="mobile-menu" id="mobileMenu">
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
 
-    <a href="index.html">HOME</a>
 
-    <a href="roster.html">ROSTER</a>
+            container.appendChild(card);
 
-    <a href="players.html">PLAYERS</a>
+        }
+    );
 
-    <a href="index.html#about">ABOUT</a>
+}
 
-    <a
-        href="https://discord.gg/t5esports"
-        target="_blank"
-        class="mobile-discord"
-    >
-        JOIN DISCORD ↗
-    </a>
 
-</div>
 
+/*
+==========================================
+PLAYER CARD
+==========================================
+*/
 
-<main>
+function createPlayerCard(
+    player,
+    index
+) {
 
-<section class="page-hero">
+    const card =
+        document.createElement(
+            "article"
+        );
 
-    <div class="page-hero-content reveal">
 
-        <div class="eyebrow">
+    card.className =
+        "real-player-card reveal";
 
-            <span></span>
 
-            T5 ESPORTS / COMMUNITY
+    const number =
+        String(index + 1)
+            .padStart(2, "0");
 
-        </div>
 
+    let imageHTML;
 
-        <h1>
 
-            T5
+    if (player.image) {
 
-            <br>
+        imageHTML = `
 
-            <span>PLAYERS.</span>
+            <img
+                src="${player.image}"
+                alt="${player.name}"
+                class="player-photo"
+                loading="lazy"
+                onerror="this.classList.add('image-error')"
+            >
 
-        </h1>
+        `;
 
+    } else {
 
-        <p>
+        imageHTML = `
 
-            Meet the players and creators
-            representing the T5 Esports brand.
-
-        </p>
-
-    </div>
-
-
-    <div class="page-hero-background">
-        T5
-    </div>
-
-</section>
-
-
-<section class="players-container">
-
-    <div class="players-heading reveal">
-
-        <div>
-
-            <div class="eyebrow">
-
-                <span></span>
-
-                T5 ESPORTS
-
-            </div>
-
-
-            <h2>
-
-                T5
-
-                <span>PLAYERS.</span>
-
-            </h2>
-
-        </div>
-
-
-        <a
-            href="roster.html"
-            class="pill-button"
-        >
-            VIEW ROSTER →
-        </a>
-
-    </div>
-
-
-    <div
-        class="player-grid"
-        id="allPlayers"
-    ></div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-    <div class="footer-main">
-
-        <a href="index.html" class="brand">
-
-            <div class="brand-mark">
+            <div class="empty-player-logo">
                 T5
             </div>
 
-            <div class="brand-text">
-                ESPORTS
+        `;
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="real-player-image">
+
+            ${imageHTML}
+
+        </div>
+
+
+        <div class="player-card-overlay"></div>
+
+
+        <div class="real-player-number">
+
+            ${number}
+
+        </div>
+
+
+        <div class="real-player-region">
+
+            ${player.region}
+
+        </div>
+
+
+        <div class="real-player-info">
+
+            <div class="real-player-role">
+
+                ${player.role}
+
             </div>
 
-        </a>
 
+            <h3>
 
-        <div class="footer-links">
+                ${player.name}
+
+            </h3>
+
 
             <a
-                href="https://discord.gg/t5esports"
+                href="${player.discord}"
                 target="_blank"
+                rel="noopener noreferrer"
+                class="real-player-link"
             >
+
                 DISCORD
-            </a>
 
-            <a href="#">
-                TIKTOK
-            </a>
+                <span>↗</span>
 
-            <a href="#">
-                X
-            </a>
-
-            <a href="#">
-                YOUTUBE
             </a>
 
         </div>
 
-    </div>
+    `;
 
 
-    <div class="footer-bottom">
+    return card;
 
-        <span>
-            © 2026 T5 ESPORTS
-        </span>
-
-        <span>
-            BUILT FOR COMPETITION.
-        </span>
-
-    </div>
-
-</footer>
-
-
-<script src="players.js"></script>
-
-</body>
-
-</html>
+}
