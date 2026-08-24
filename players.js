@@ -1,5 +1,22 @@
 const players = [
 
+    /*
+    ==========================================
+    ADD T5 PLAYERS HERE
+    ==========================================
+
+    GitHub image:
+
+    image: "https://github.com/fatalfv/t5esports-website/blob/main/images/player.jpeg?raw=true"
+
+    Local image:
+
+    image: "images/player.jpeg"
+
+    ==========================================
+    */
+
+
     {
         name: "PLAYER ONE",
         role: "T5 PLAYER",
@@ -7,6 +24,7 @@ const players = [
         image: "",
         discord: "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER TWO",
@@ -16,6 +34,7 @@ const players = [
         discord: "https://discord.gg/t5esports"
     },
 
+
     {
         name: "PLAYER THREE",
         role: "CONTENT CREATOR",
@@ -23,6 +42,7 @@ const players = [
         image: "",
         discord: "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER FOUR",
@@ -35,20 +55,28 @@ const players = [
 ];
 
 
-const container = document.getElementById("allPlayers");
+const container =
+    document.getElementById("allPlayers");
 
 
 if (!container) {
 
-    console.error("Could not find #allPlayers.");
+    console.error(
+        "T5: allPlayers container not found."
+    );
 
 } else {
 
+
     players.forEach((player, index) => {
 
-        const card = document.createElement("article");
 
-        card.className = "real-player-card";
+        const card =
+            document.createElement("article");
+
+
+        card.className =
+            "real-player-card";
 
 
         const number =
@@ -131,6 +159,7 @@ if (!container) {
 
 
         container.appendChild(card);
+
 
     });
 
