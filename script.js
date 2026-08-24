@@ -1,161 +1,736 @@
 /* ==========================================
-   PLAYER IMAGE LOADING
+   T5 ESPORTS
+   MAIN JAVASCRIPT
 ========================================== */
-
-.player-photo {
-    opacity: 0;
-    filter: blur(8px);
-    transition:
-        opacity .6s ease,
-        filter .6s ease,
-        transform .7s ease;
-}
-
-.player-photo.loaded {
-    opacity: 1;
-    filter: blur(0);
-}
 
 
 /* ==========================================
-   BUTTON CLICK EFFECT
+   PLAYER DATA
 ========================================== */
 
-.button-clicked {
-    animation: buttonClick .35s ease;
-}
+const rosterPlayers = [
 
-@keyframes buttonClick {
+    {
+        name: "Fatal",
+        role: "OWNER",
+        region: "EU",
+        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+        discord: "https://discord.gg/t5esports"
+    },
 
-    0% {
-        transform: scale(1);
+    {
+        name: "PLAYER TWO",
+        role: "COMPETITIVE PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER THREE",
+        role: "COMPETITIVE PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
     }
 
-    45% {
-        transform: scale(.96);
+];
+
+
+const players = [
+
+    {
+        name: "Fatal",
+        role: "OWNER",
+        region: "EU",
+        image: "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER TWO",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER THREE",
+        role: "CONTENT CREATOR",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+    {
+        name: "PLAYER FOUR",
+        role: "T5 PLAYER",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
     }
 
-    100% {
-        transform: scale(1);
-    }
-
-}
+];
 
 
 /* ==========================================
-   BETTER PLAYER IMAGE
+   MOBILE MENU
 ========================================== */
 
-.real-player-image {
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(118,80,255,.08),
-            transparent 65%
-        ),
-        #0a0a0d;
-}
+const menu =
+    document.getElementById("menu");
+
+const nav =
+    document.getElementById("nav");
 
 
-/* ==========================================
-   PLAYER CARD LIGHT
-========================================== */
+if (menu && nav) {
 
-.real-player-card::before {
+    menu.addEventListener("click", () => {
 
-    content: "";
+        const isOpen =
+            nav.classList.toggle("open");
 
-    position: absolute;
-
-    z-index: 4;
-
-    inset: 0;
-
-    border-radius: inherit;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 30%,
-            rgba(255,255,255,.08),
-            transparent 70%
+        menu.classList.toggle(
+            "active",
+            isOpen
         );
 
-    transform:
-        translateX(-100%);
+        menu.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
 
-    transition:
-        opacity .3s,
-        transform .7s;
-
-}
-
-.real-player-card:hover::before {
-
-    opacity: 1;
-
-    transform:
-        translateX(100%);
-
-}
+    });
 
 
-/* ==========================================
-   BETTER ROUND BUTTONS
-========================================== */
+    nav.querySelectorAll("a").forEach(link => {
 
-.button,
-.nav-button,
-.pill-button,
-.real-player-link {
+        link.addEventListener("click", () => {
 
-    border-radius: 999px;
+            nav.classList.remove("open");
+
+            menu.classList.remove("active");
+
+            menu.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
 
 }
 
 
 /* ==========================================
-   CARD HOVER GLOW
+   HEADER SCROLL
 ========================================== */
 
-.real-player-card:hover {
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.45),
-        0 0 40px rgba(118,80,255,.06);
-
-}
+const header =
+    document.getElementById("siteHeader");
 
 
-/* ==========================================
-   SMOOTH PAGE
-========================================== */
+function updateHeader() {
 
-html {
-    scroll-behavior: smooth;
-}
+    if (!header) return;
 
+    if (window.scrollY > 30) {
 
-/* ==========================================
-   MOBILE TOUCH
-========================================== */
+        header.classList.add("scrolled");
 
-@media (hover: none) {
+    } else {
 
-    .real-player-card:hover {
-
-        transform: none;
-
-    }
-
-    .button:hover {
-
-        transform: none;
+        header.classList.remove("scrolled");
 
     }
 
 }
+
+
+window.addEventListener(
+    "scroll",
+    updateHeader,
+    {
+        passive: true
+    }
+);
+
+
+updateHeader();
+
+
+/* ==========================================
+   GITHUB IMAGE URL
+========================================== */
+
+function getImageUrl(url) {
+
+    if (!url) {
+
+        return "";
+
+    }
+
+
+    /*
+        Your GitHub URL works with ?raw=true.
+
+        We leave it alone instead of trying
+        to modify it.
+    */
+
+    return url;
+
+}
+
+
+/* ==========================================
+   PLAYER CARD
+========================================== */
+
+function createPlayerCard(
+    player,
+    index
+) {
+
+    const card =
+        document.createElement("article");
+
+
+    card.className =
+        "real-player-card reveal";
+
+
+    const number =
+        String(index + 1).padStart(
+            2,
+            "0"
+        );
+
+
+    const image =
+        getImageUrl(player.image);
+
+
+    card.innerHTML = `
+
+        <div class="real-player-image">
+
+            ${
+                image
+                    ? `
+                        <img
+                            src="${image}"
+                            alt="${player.name}"
+                            class="player-photo"
+                        >
+                    `
+                    : `
+                        <div class="empty-player-logo">
+                            T5
+                        </div>
+                    `
+            }
+
+        </div>
+
+
+        <div class="player-card-overlay"></div>
+
+
+        <div class="real-player-number">
+
+            ${number}
+
+        </div>
+
+
+        <div class="real-player-region">
+
+            ${player.region}
+
+        </div>
+
+
+        <div class="real-player-info">
+
+            <div class="real-player-role">
+
+                ${player.role}
+
+            </div>
+
+
+            <h3>
+
+                ${player.name}
+
+            </h3>
+
+
+            <a
+                href="${player.discord}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="real-player-link"
+            >
+
+                DISCORD
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    /*
+        Image loading
+    */
+
+    const photo =
+        card.querySelector(
+            ".player-photo"
+        );
+
+
+    if (photo) {
+
+        photo.addEventListener(
+            "load",
+            () => {
+
+                photo.classList.add(
+                    "loaded"
+                );
+
+            }
+        );
+
+
+        photo.addEventListener(
+            "error",
+            () => {
+
+                const imageContainer =
+                    photo.parentElement;
+
+
+                imageContainer.innerHTML = `
+
+                    <div class="empty-player-logo">
+                        T5
+                    </div>
+
+                `;
+
+                console.error(
+                    "T5 image failed to load:",
+                    image
+                );
+
+            }
+        );
+
+
+        /*
+            In case the browser has already
+            cached the image.
+        */
+
+        if (photo.complete) {
+
+            if (photo.naturalWidth > 0) {
+
+                photo.classList.add(
+                    "loaded"
+                );
+
+            }
+
+        }
+
+    }
+
+
+    return card;
+
+}
+
+
+/* ==========================================
+   RENDER ROSTER
+========================================== */
+
+const rosterContainer =
+    document.getElementById(
+        "rosterPlayers"
+    );
+
+
+if (rosterContainer) {
+
+    rosterPlayers.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
+
+
+            rosterContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   RENDER ALL PLAYERS
+========================================== */
+
+const allPlayersContainer =
+    document.getElementById(
+        "allPlayers"
+    );
+
+
+if (allPlayersContainer) {
+
+    players.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
+
+
+            allPlayersContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+if (
+    "IntersectionObserver"
+    in window
+) {
+
+    const revealObserver =
+        new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        !entry.isIntersecting
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                });
+
+            },
+            {
+                threshold: 0.1,
+                rootMargin:
+                    "0px 0px -50px 0px"
+            }
+        );
+
+
+    revealElements.forEach(element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    });
+
+} else {
+
+    revealElements.forEach(element => {
+
+        element.classList.add(
+            "visible"
+        );
+
+    });
+
+}
+
+
+/* ==========================================
+   SMOOTH LINKS
+========================================== */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const id =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    !id ||
+                    id === "#"
+                ) {
+
+                    return;
+
+                }
+
+
+                const target =
+                    document.querySelector(
+                        id
+                    );
+
+
+                if (!target) {
+
+                    return;
+
+                }
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+
+/* ==========================================
+   ACTIVE NAV
+========================================== */
+
+const pageSections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+
+const desktopLinks =
+    document.querySelectorAll(
+        ".main-nav a"
+    );
+
+
+if (
+    pageSections.length &&
+    desktopLinks.length &&
+    "IntersectionObserver"
+    in window
+) {
+
+    const sectionObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        !entry.isIntersecting
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const currentId =
+                        entry.target.id;
+
+
+                    desktopLinks.forEach(link => {
+
+                        link.classList.remove(
+                            "active"
+                        );
+
+
+                        const href =
+                            link.getAttribute(
+                                "href"
+                            );
+
+
+                        if (
+                            href ===
+                            `#${currentId}`
+                        ) {
+
+                            link.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    });
+
+                });
+
+            },
+            {
+                threshold: 0.35
+            }
+        );
+
+
+    pageSections.forEach(section => {
+
+        sectionObserver.observe(
+            section
+        );
+
+    });
+
+}
+
+
+/* ==========================================
+   HERO PARALLAX
+========================================== */
+
+const heroT5 =
+    document.querySelector(
+        ".hero-background-t5"
+    );
+
+
+if (heroT5) {
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (
+                window.scrollY <
+                window.innerHeight
+            ) {
+
+                const movement =
+                    window.scrollY * 0.08;
+
+
+                heroT5.style.transform =
+                    `translateY(calc(-50% + ${movement}px)) skew(-8deg)`;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* ==========================================
+   CLOSE MOBILE MENU ON ESC
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            if (nav) {
+
+                nav.classList.remove(
+                    "open"
+                );
+
+            }
+
+
+            if (menu) {
+
+                menu.classList.remove(
+                    "active"
+                );
+
+                menu.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   CONSOLE
+========================================== */
+
+console.log(
+    "%cT5 ESPORTS",
+    "font-size:28px;font-weight:900;"
+);
+
+console.log(
+    "T5 website loaded successfully."
+);
