@@ -13,12 +13,10 @@
 
     <meta
         name="description"
-        content="Meet the T5 Esports roster."
+        content="Meet the T5 Esports Fortnite players and creators."
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -28,7 +26,6 @@
     <link rel="stylesheet" href="styles.css">
 
 </head>
-
 
 <body>
 
@@ -56,10 +53,7 @@
             HOME
         </a>
 
-        <a
-            href="players.html"
-            class="active"
-        >
+        <a href="players.html" class="active">
             PLAYERS
         </a>
 
@@ -87,17 +81,19 @@
 
     <button
         class="mobile-menu-button"
-        id="menu"
+        id="menuButton"
         type="button"
         aria-label="Open menu"
     >
-        ☰
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
 
 </header>
 
 
-<div class="mobile-menu" id="nav">
+<div class="mobile-menu" id="mobileMenu">
 
     <a href="index.html">
         HOME
@@ -121,7 +117,7 @@
         rel="noopener noreferrer"
         class="mobile-discord"
     >
-        JOIN DISCORD
+        JOIN DISCORD ↗
     </a>
 
 </div>
@@ -129,100 +125,155 @@
 
 <main>
 
+    <!-- PAGE HERO -->
 
-<section class="page-hero">
+    <section class="page-hero">
 
-    <div class="page-hero-content reveal">
-
-        <div class="eyebrow">
-            <span></span>
-            T5 ESPORTS
+        <div class="page-hero-background">
+            T5
         </div>
 
 
-        <h1>
-            OUR<br>
-            <span>PLAYERS.</span>
-        </h1>
-
-
-        <p>
-            The players, creators and competitors
-            representing T5 Esports.
-        </p>
-
-    </div>
-
-
-    <div class="page-hero-background">
-        T5
-    </div>
-
-</section>
-
-
-<section class="players-container">
-
-
-    <div class="players-heading reveal">
-
-        <div>
+        <div class="page-hero-content reveal">
 
             <div class="eyebrow">
                 <span></span>
-                CURRENT LINEUP
+                T5 ESPORTS
             </div>
 
-            <h2>
-                T5<br>
-                <span>ROSTER.</span>
-            </h2>
 
-        </div>
-
-
-        <a
-            href="index.html"
-            class="pill-button"
-        >
-            ← BACK HOME
-        </a>
-
-    </div>
-
-
-    <div
-        class="player-grid"
-        id="rosterPlayers"
-    ></div>
-
-
-    <div class="players-heading second-heading reveal">
-
-        <div>
-
-            <div class="eyebrow">
-                <span></span>
-                ORGANISATION
-            </div>
-
-            <h2>
-                ALL<br>
+            <h1>
+                OUR
+                <br>
                 <span>PLAYERS.</span>
-            </h2>
+            </h1>
+
+
+            <p>
+                Meet the competitive players and creators
+                representing T5 Esports.
+            </p>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <div
-        class="player-grid"
-        id="allPlayers"
-    ></div>
+    <!-- ROSTER -->
+
+    <section class="players-container">
+
+        <div class="players-heading reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    <span></span>
+                    OFFICIAL ROSTER
+                </div>
+
+                <h2>
+                    T5
+                    <br>
+                    <span>ROSTER.</span>
+                </h2>
+
+            </div>
 
 
-</section>
+            <a
+                href="index.html"
+                class="pill-button"
+            >
+                BACK HOME
+            </a>
+
+        </div>
+
+
+        <div
+            class="player-grid"
+            id="rosterPlayers"
+        ></div>
+
+    </section>
+
+
+    <!-- ALL PLAYERS -->
+
+    <section class="players-container players-container-alt">
+
+        <div class="players-heading reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    <span></span>
+                    EVERYONE
+                </div>
+
+                <h2>
+                    ALL
+                    <br>
+                    <span>PLAYERS.</span>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="player-grid"
+            id="allPlayers"
+        ></div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="join-section small-join">
+
+        <div class="join-background">
+            T5
+        </div>
+
+
+        <div class="join-content reveal">
+
+            <div class="eyebrow centered-eyebrow">
+                <span></span>
+                T5 COMMUNITY
+                <span></span>
+            </div>
+
+
+            <h2>
+                JOIN
+                <br>
+                <span>US.</span>
+            </h2>
+
+
+            <p>
+                Become part of the T5 community.
+            </p>
+
+
+            <a
+                href="https://discord.gg/t5esports"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-primary big-button"
+            >
+                JOIN DISCORD
+                <span>↗</span>
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
@@ -254,12 +305,24 @@
                 PLAYERS
             </a>
 
+            <a href="index.html#about">
+                ABOUT
+            </a>
+
             <a
                 href="https://discord.gg/t5esports"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 DISCORD
+            </a>
+
+            <a
+                href="https://www.tiktok.com/@t5ggs"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                TIKTOK
             </a>
 
         </div>
