@@ -16,10 +16,10 @@ const rosterPlayers = [
 
 
     {
-        name: "PLAYER ONE",
-        role: "COMPETITIVE PLAYER",
+        name: "Fatal",
+        role: "Owner",
         region: "EU",
-        image: "",
+        image: "https://i.postimg.cc/PxVfwYYH/40434442-2048-440x440.jpg",
         discord: "https://discord.gg/t5esports"
     },
 
