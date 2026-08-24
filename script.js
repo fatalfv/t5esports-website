@@ -1,44 +1,51 @@
 /*
 ==================================================
 T5 ESPORTS
-MAIN WEBSITE SCRIPT
+MAIN WEBSITE JAVASCRIPT
 ==================================================
 */
 
+
 document.addEventListener("DOMContentLoaded", () => {
+
 
     /*
     ==================================================
-    HEADER SCROLL
+    HEADER SCROLL EFFECT
     ==================================================
     */
 
-    const siteHeader =
+    const header =
         document.getElementById("siteHeader");
 
-    function handleHeaderScroll() {
 
-        if (!siteHeader) return;
+    function updateHeader() {
 
-        if (window.scrollY > 30) {
+        if (!header) return;
 
-            siteHeader.classList.add("scrolled");
+
+        if (window.scrollY > 40) {
+
+            header.classList.add("scrolled");
 
         } else {
 
-            siteHeader.classList.remove("scrolled");
+            header.classList.remove("scrolled");
 
         }
 
     }
 
+
     window.addEventListener(
         "scroll",
-        handleHeaderScroll,
+        updateHeader,
         { passive: true }
     );
 
-    handleHeaderScroll();
+
+    updateHeader();
+
 
 
     /*
@@ -65,21 +72,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        mobileMenu
-            .querySelectorAll("a")
-            .forEach(link => {
+        const mobileLinks =
+            mobileMenu.querySelectorAll("a");
 
-                link.addEventListener("click", () => {
 
-                    menuButton.classList.remove("active");
+        mobileLinks.forEach(link => {
 
-                    mobileMenu.classList.remove("open");
+            link.addEventListener("click", () => {
 
-                });
+                menuButton.classList.remove("active");
+
+                mobileMenu.classList.remove("open");
 
             });
 
+        });
+
     }
+
 
 
     /*
@@ -89,38 +99,46 @@ document.addEventListener("DOMContentLoaded", () => {
     */
 
     const revealElements =
-        document.querySelectorAll(".reveal");
+        document.querySelectorAll(
+            ".reveal"
+        );
 
 
     if (revealElements.length) {
 
+
         const revealObserver =
             new IntersectionObserver(
+
                 (entries, observer) => {
 
                     entries.forEach(entry => {
 
-                        if (!entry.isIntersecting) {
-                            return;
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
                         }
-
-
-                        entry.target.classList.add("visible");
-
-
-                        observer.unobserve(
-                            entry.target
-                        );
 
                     });
 
                 },
+
                 {
                     threshold: 0.12,
 
                     rootMargin:
-                        "0px 0px -60px 0px"
+                        "0px 0px -70px 0px"
                 }
+
             );
 
 
@@ -133,261 +151,74 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /*
-    ==================================================
-    STAGGER CHILDREN
-    ==================================================
-    */
-
-    document
-        .querySelectorAll(".player-grid")
-        .forEach(grid => {
-
-            const cards =
-                grid.querySelectorAll(".real-player-card");
-
-
-            cards.forEach((card, index) => {
-
-                card.style.transitionDelay =
-                    `${index * 100}ms`;
-
-            });
-
-        });
-
 
     /*
     ==================================================
-    MOUSE CURSOR GLOW
+    PLAYER CARD SCROLL ANIMATION
     ==================================================
     */
 
-    let cursorGlow =
-        document.querySelector(".cursor-glow");
-
-
-    if (!cursorGlow) {
-
-        cursorGlow =
-            document.createElement("div");
-
-        cursorGlow.className =
-            "cursor-glow";
-
-        document.body.appendChild(
-            cursorGlow
-        );
-
-    }
-
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    let glowX = 0;
-    let glowY = 0;
-
-
-    window.addEventListener(
-        "mousemove",
-        event => {
-
-            mouseX = event.clientX;
-            mouseY = event.clientY;
-
-        },
-        { passive: true }
-    );
-
-
-    function animateGlow() {
-
-        glowX +=
-            (mouseX - glowX) * 0.08;
-
-        glowY +=
-            (mouseY - glowY) * 0.08;
-
-
-        cursorGlow.style.left =
-            `${glowX}px`;
-
-        cursorGlow.style.top =
-            `${glowY}px`;
-
-
-        requestAnimationFrame(
-            animateGlow
-        );
-
-    }
-
-
-    animateGlow();
-
-
-    /*
-    ==================================================
-    PARALLAX BACKGROUND
-    ==================================================
-    */
-
-    const parallaxElements =
+    const playerCards =
         document.querySelectorAll(
-            ".hero-background-t5, .page-hero-background"
+            ".real-player-card"
         );
 
 
-    if (parallaxElements.length) {
-
-        let ticking = false;
+    if (playerCards.length) {
 
 
-        window.addEventListener(
-            "scroll",
-            () => {
+        const playerObserver =
+            new IntersectionObserver(
 
-                if (ticking) return;
+                (entries, observer) => {
 
-                window.requestAnimationFrame(() => {
+                    entries.forEach(entry => {
 
-                    const scroll =
-                        window.scrollY;
+                        if (
+                            entry.isIntersecting
+                        ) {
 
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
-                    parallaxElements.forEach(
-                        element => {
-
-                            const speed =
-                                0.12;
-
-
-                            element.style.transform =
-                                `translateY(calc(-50% + ${scroll * speed}px)) skew(-8deg)`;
+                            observer.unobserve(
+                                entry.target
+                            );
 
                         }
-                    );
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.10,
+
+                    rootMargin:
+                        "0px 0px -80px 0px"
+                }
+
+            );
 
 
-                    ticking = false;
+        playerCards.forEach((card, index) => {
 
-                });
+            /*
+            Add a slightly different delay
+            to each card.
+            */
+
+            card.style.transitionDelay =
+                `${index * 0.08}s`;
 
 
-                ticking = true;
+            playerObserver.observe(card);
 
-            },
-            { passive: true }
-        );
+        });
 
     }
 
-
-    /*
-    ==================================================
-    BUTTON RIPPLE
-    ==================================================
-    */
-
-    document
-        .querySelectorAll(
-            ".button, .nav-button, .pill-button, .category-arrow, .real-player-link"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    const ripple =
-                        document.createElement("span");
-
-
-                    ripple.className =
-                        "button-ripple";
-
-
-                    const rect =
-                        button.getBoundingClientRect();
-
-
-                    ripple.style.left =
-                        `${event.clientX - rect.left}px`;
-
-                    ripple.style.top =
-                        `${event.clientY - rect.top}px`;
-
-
-                    button.appendChild(
-                        ripple
-                    );
-
-
-                    setTimeout(() => {
-
-                        ripple.remove();
-
-                    }, 700);
-
-                }
-            );
-
-        });
-
-
-    /*
-    ==================================================
-    CARD MOUSE EFFECT
-    ==================================================
-    */
-
-    document
-        .querySelectorAll(".real-player-card")
-        .forEach(card => {
-
-            card.addEventListener(
-                "mousemove",
-                event => {
-
-                    const rect =
-                        card.getBoundingClientRect();
-
-
-                    const x =
-                        event.clientX - rect.left;
-
-
-                    const y =
-                        event.clientY - rect.top;
-
-
-                    const rotateY =
-                        ((x / rect.width) - 0.5) * 5;
-
-
-                    const rotateX =
-                        ((y / rect.height) - 0.5) * -5;
-
-
-                    card.style.transform =
-                        `translateY(-10px) perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-                }
-            );
-
-
-            card.addEventListener(
-                "mouseleave",
-                () => {
-
-                    card.style.transform =
-                        "";
-
-                }
-            );
-
-        });
 
 
     /*
@@ -396,100 +227,302 @@ document.addEventListener("DOMContentLoaded", () => {
     ==================================================
     */
 
-    document
-        .querySelectorAll(".player-photo")
-        .forEach(image => {
+    const playerImages =
+        document.querySelectorAll(
+            ".player-photo"
+        );
+
+
+    playerImages.forEach(image => {
+
+
+        if (image.complete) {
+
+            image.classList.add("loaded");
+
+        } else {
 
             image.addEventListener(
                 "load",
                 () => {
 
-                    image.classList.add(
-                        "image-loaded"
-                    );
+                    image.classList.add("loaded");
 
-                }
+                },
+                { once: true }
             );
 
-        });
+        }
+
+    });
+
 
 
     /*
     ==================================================
-    ACTIVE NAV ON SCROLL
+    SMOOTH INTERNAL LINKS
     ==================================================
     */
 
-    const sections =
-        document.querySelectorAll(
-            "section[id]"
-        );
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(link => {
 
 
-    const navLinks =
-        document.querySelectorAll(
-            ".main-nav a"
-        );
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute("href");
 
 
-    if (
-        sections.length &&
-        navLinks.length
-    ) {
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
 
-        const sectionObserver =
-            new IntersectionObserver(
-                entries => {
+                        return;
 
-                    entries.forEach(entry => {
-
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
+                    }
 
 
-                        const id =
-                            entry.target.id;
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
 
 
-                        navLinks.forEach(link => {
+                    if (!target) {
 
-                            link.classList.remove(
-                                "active"
-                            );
+                        return;
+
+                    }
 
 
-                            if (
-                                link.getAttribute(
-                                    "href"
-                                ) === `#${id}`
-                            ) {
+                    event.preventDefault();
 
-                                link.classList.add(
-                                    "active"
-                                );
 
-                            }
+                    target.scrollIntoView({
 
-                        });
+                        behavior: "smooth",
+
+                        block: "start"
 
                     });
 
-                },
-                {
-                    threshold: 0.4
                 }
-            );
-
-
-        sections.forEach(section => {
-
-            sectionObserver.observe(
-                section
             );
 
         });
 
+
+
+    /*
+    ==================================================
+    PARALLAX EFFECT
+    ==================================================
+    */
+
+    const parallaxElements =
+        document.querySelectorAll(
+            ".page-hero-background, .hero-background-t5, .category-background, .join-background"
+        );
+
+
+    if (
+        parallaxElements.length &&
+        !window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+
+        let ticking = false;
+
+
+        function updateParallax() {
+
+            const scrollY =
+                window.scrollY;
+
+
+            parallaxElements.forEach(element => {
+
+                const rect =
+                    element.getBoundingClientRect();
+
+
+                const speed =
+                    element.classList.contains(
+                        "join-background"
+                    )
+                        ? 0.08
+                        : 0.12;
+
+
+                const movement =
+                    (window.innerHeight / 2 -
+                        rect.top -
+                        rect.height / 2) *
+                    speed;
+
+
+                element.style.transform =
+                    `translate3d(0, ${movement}px, 0) skew(-8deg)`;
+
+            });
+
+
+            ticking = false;
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (!ticking) {
+
+                    window.requestAnimationFrame(
+                        updateParallax
+                    );
+
+                    ticking = true;
+
+                }
+
+            },
+            { passive: true }
+        );
+
+
+        updateParallax();
+
     }
+
+
+
+    /*
+    ==================================================
+    CURSOR GLOW
+    ==================================================
+    */
+
+    const glow =
+        document.querySelector(
+            ".cursor-glow"
+        );
+
+
+    if (
+        glow &&
+        window.matchMedia(
+            "(pointer: fine)"
+        ).matches
+    ) {
+
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        let glowX = 0;
+        let glowY = 0;
+
+
+        document.addEventListener(
+            "mousemove",
+            event => {
+
+                mouseX =
+                    event.clientX;
+
+                mouseY =
+                    event.clientY;
+
+            }
+        );
+
+
+        function animateGlow() {
+
+            glowX +=
+                (mouseX - glowX) *
+                0.08;
+
+            glowY +=
+                (mouseY - glowY) *
+                0.08;
+
+
+            glow.style.left =
+                `${glowX}px`;
+
+            glow.style.top =
+                `${glowY}px`;
+
+
+            requestAnimationFrame(
+                animateGlow
+            );
+
+        }
+
+
+        animateGlow();
+
+    }
+
+
+
+    /*
+    ==================================================
+    BUTTON RIPPLE
+    ==================================================
+    */
+
+    const buttons =
+        document.querySelectorAll(
+            ".button, .nav-button, .pill-button, .real-player-link"
+        );
+
+
+    buttons.forEach(button => {
+
+
+        button.addEventListener(
+            "mouseenter",
+            () => {
+
+                button.style.setProperty(
+                    "--mouse-x",
+                    "50%"
+                );
+
+                button.style.setProperty(
+                    "--mouse-y",
+                    "50%"
+                );
+
+            }
+        );
+
+    });
+
+
+
+    /*
+    ==================================================
+    INITIAL PAGE LOAD
+    ==================================================
+    */
+
+    document.body.classList.add(
+        "page-loaded"
+    );
+
 
 });
