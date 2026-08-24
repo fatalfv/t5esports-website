@@ -1,475 +1,324 @@
-/* ==========================================
-   T5 ESPORTS — MAIN JAVASCRIPT
-========================================== */
+/*
+==================================================
+T5 ESPORTS WEBSITE JAVASCRIPT
+==================================================
+*/
 
 
-/* ==========================================
-   MOBILE MENU
-========================================== */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
 
-if (menuButton && mobileMenu) {
+        /*
+        ==========================================
+        HEADER SCROLL
+        ==========================================
+        */
 
-    menuButton.addEventListener("click", () => {
-
-        mobileMenu.classList.toggle("open");
-
-        menuButton.classList.toggle("active");
-
-    });
-
-
-    mobileMenu
-        .querySelectorAll("a")
-        .forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                mobileMenu.classList.remove("open");
-
-                menuButton.classList.remove("active");
-
-            });
-
-        });
-
-}
+        const header =
+            document.getElementById(
+                "siteHeader"
+            );
 
 
-/* ==========================================
-   NAVBAR SCROLL EFFECT
-========================================== */
+        function updateHeader() {
 
-const header =
-    document.getElementById("siteHeader");
-
-
-function updateHeader() {
-
-    if (!header) return;
+            if (!header) {
+                return;
+            }
 
 
-    if (window.scrollY > 30) {
+            if (window.scrollY > 30) {
 
-        header.classList.add("scrolled");
+                header.classList.add(
+                    "scrolled"
+                );
 
-    } else {
+            } else {
 
-        header.classList.remove("scrolled");
+                header.classList.remove(
+                    "scrolled"
+                );
 
-    }
+            }
 
-}
-
-
-window.addEventListener(
-    "scroll",
-    updateHeader,
-    { passive: true }
-);
+        }
 
 
-updateHeader();
+        updateHeader();
 
 
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-if ("IntersectionObserver" in window) {
-
-    const revealObserver =
-        new IntersectionObserver(
-
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            {
+                passive: true
+            }
+        );
 
 
-                    entry.target.classList.add("visible");
+
+        /*
+        ==========================================
+        MOBILE MENU
+        ==========================================
+        */
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
 
 
-                    observer.unobserve(
-                        entry.target
+        const mobileMenu =
+            document.getElementById(
+                "mobileMenu"
+            );
+
+
+        if (
+            menuButton &&
+            mobileMenu
+        ) {
+
+            menuButton.addEventListener(
+                "click",
+                () => {
+
+                    mobileMenu.classList.toggle(
+                        "open"
+                    );
+
+
+                    menuButton.classList.toggle(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            mobileMenu
+                .querySelectorAll("a")
+                .forEach(link => {
+
+                    link.addEventListener(
+                        "click",
+                        () => {
+
+                            mobileMenu.classList.remove(
+                                "open"
+                            );
+
+
+                            menuButton.classList.remove(
+                                "active"
+                            );
+
+                        }
                     );
 
                 });
 
-            },
+        }
 
-            {
-                threshold: 0.12,
-                rootMargin: "0px 0px -50px 0px"
-            }
 
-        );
 
+        /*
+        ==========================================
+        SCROLL REVEAL
+        ==========================================
+        */
 
-    revealElements.forEach(element => {
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
 
-        revealObserver.observe(element);
 
-    });
+        if (
+            "IntersectionObserver" in window
+        ) {
 
-} else {
+            const revealObserver =
+                new IntersectionObserver(
+                    (entries, observer) => {
 
-    revealElements.forEach(element => {
+                        entries.forEach(
+                            entry => {
 
-        element.classList.add("visible");
+                                if (
+                                    entry.isIntersecting
+                                ) {
 
-    });
+                                    entry.target.classList.add(
+                                        "visible"
+                                    );
 
-}
 
+                                    observer.unobserve(
+                                        entry.target
+                                    );
 
-/* ==========================================
-   PLAYER DATA
-========================================== */
+                                }
 
-const rosterPlayers = [
+                            }
+                        );
 
-    {
-        name: "Fatal",
-        role: "OWNER",
-        region: "EU",
-        image:
-            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-        discord:
-            "https://discord.gg/t5esports"
-    },
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
 
 
-    {
-        name: "PLAYER TWO",
-        role: "COMPETITIVE PLAYER",
-        region: "EU",
-        image: "",
-        discord:
-            "https://discord.gg/t5esports"
-    },
+            revealElements.forEach(
+                element => {
 
+                    revealObserver.observe(
+                        element
+                    );
 
-    {
-        name: "PLAYER THREE",
-        role: "COMPETITIVE PLAYER",
-        region: "EU",
-        image: "",
-        discord:
-            "https://discord.gg/t5esports"
-    }
+                }
+            );
 
-];
+        } else {
 
+            revealElements.forEach(
+                element => {
 
-const allPlayers = [
+                    element.classList.add(
+                        "visible"
+                    );
 
-    {
-        name: "Fatal",
-        role: "OWNER",
-        region: "EU",
-        image:
-            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "PLAYER TWO",
-        role: "T5 PLAYER",
-        region: "EU",
-        image: "",
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "PLAYER THREE",
-        role: "T5 PLAYER",
-        region: "EU",
-        image: "",
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "PLAYER FOUR",
-        role: "CONTENT CREATOR",
-        region: "EU",
-        image: "",
-        discord:
-            "https://discord.gg/t5esports"
-    }
-
-];
-
-
-/* ==========================================
-   PLAYER CARD
-========================================== */
-
-function createPlayerCard(player, index) {
-
-    const card =
-        document.createElement("article");
-
-
-    card.className =
-        "real-player-card reveal";
-
-
-    const number =
-        String(index + 1).padStart(2, "0");
-
-
-    const imageHTML = player.image
-
-        ? `
-            <div class="real-player-image">
-
-                <img
-                    src="${player.image}"
-                    alt="${player.name}"
-                    class="player-photo"
-                    loading="lazy"
-                >
-
-                <div class="player-card-overlay"></div>
-
-            </div>
-        `
-
-        : `
-            <div class="real-player-image">
-
-                <div class="empty-player-logo">
-                    T5
-                </div>
-
-                <div class="player-card-overlay"></div>
-
-            </div>
-        `;
-
-
-    card.innerHTML = `
-
-        ${imageHTML}
-
-
-        <div class="real-player-number">
-            ${number}
-        </div>
-
-
-        <div class="real-player-region">
-            ${player.region}
-        </div>
-
-
-        <div class="real-player-info">
-
-            <div class="real-player-role">
-                ${player.role}
-            </div>
-
-
-            <h3>
-                ${player.name}
-            </h3>
-
-
-            <a
-                href="${player.discord}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="real-player-link"
-            >
-                DISCORD
-                <span>↗</span>
-            </a>
-
-        </div>
-
-    `;
-
-
-    return card;
-
-}
-
-
-/* ==========================================
-   RENDER ROSTER
-========================================== */
-
-const rosterContainer =
-    document.getElementById("rosterPlayers");
-
-
-if (rosterContainer) {
-
-    rosterPlayers.forEach(
-        (player, index) => {
-
-            rosterContainer.appendChild(
-                createPlayerCard(
-                    player,
-                    index
-                )
+                }
             );
 
         }
-    );
-
-}
 
 
-/* ==========================================
-   RENDER ALL PLAYERS
-========================================== */
 
-const allPlayersContainer =
-    document.getElementById("allPlayers");
+        /*
+        ==========================================
+        ACTIVE NAVIGATION
+        ==========================================
+        */
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop() || "index.html";
 
 
-if (allPlayersContainer) {
+        document
+            .querySelectorAll(".main-nav a")
+            .forEach(link => {
 
-    allPlayers.forEach(
-        (player, index) => {
+                const href =
+                    link
+                        .getAttribute("href")
+                        ?.split("#")[0];
 
-            allPlayersContainer.appendChild(
-                createPlayerCard(
-                    player,
-                    index
-                )
+
+                if (
+                    href === currentPage
+                ) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+
+            });
+
+
+
+        /*
+        ==========================================
+        CURSOR GLOW
+        ==========================================
+        */
+
+        const cursorGlow =
+            document.querySelector(
+                ".cursor-glow"
+            );
+
+
+        if (
+            cursorGlow &&
+            window.matchMedia(
+                "(pointer:fine)"
+            ).matches
+        ) {
+
+            window.addEventListener(
+                "mousemove",
+                event => {
+
+                    cursorGlow.style.left =
+                        `${event.clientX}px`;
+
+                    cursorGlow.style.top =
+                        `${event.clientY}px`;
+
+                },
+                {
+                    passive: true
+                }
             );
 
         }
-    );
-
-}
 
 
-/* ==========================================
-   CARD REVEAL FOR DYNAMIC PLAYERS
-========================================== */
 
-setTimeout(() => {
+        /*
+        ==========================================
+        SMOOTH INTERNAL LINKS
+        ==========================================
+        */
 
-    const dynamicCards =
-        document.querySelectorAll(
-            ".real-player-card.reveal"
-        );
+        document
+            .querySelectorAll(
+                'a[href^="#"]'
+            )
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    event => {
+
+                        const id =
+                            link.getAttribute(
+                                "href"
+                            );
 
 
-    if ("IntersectionObserver" in window) {
+                        const target =
+                            document.querySelector(
+                                id
+                            );
 
-        const cardObserver =
-            new IntersectionObserver(
 
-                (entries, observer) => {
-
-                    entries.forEach(entry => {
-
-                        if (
-                            !entry.isIntersecting
-                        ) {
+                        if (!target) {
                             return;
                         }
 
 
-                        entry.target
-                            .classList
-                            .add("visible");
+                        event.preventDefault();
 
 
-                        observer.unobserve(
-                            entry.target
-                        );
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
 
-                    });
+                    }
+                );
 
-                },
-
-                {
-                    threshold: 0.1
-                }
-
-            );
-
-
-        dynamicCards.forEach(card => {
-
-            cardObserver.observe(card);
-
-        });
-
-    } else {
-
-        dynamicCards.forEach(card => {
-
-            card.classList.add(
-                "visible"
-            );
-
-        });
+            });
 
     }
-
-}, 50);
-
-
-/* ==========================================
-   SMOOTH INTERNAL LINKS
-========================================== */
-
-document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                const targetID =
-                    link.getAttribute("href");
-
-
-                const target =
-                    document.querySelector(
-                        targetID
-                    );
-
-
-                if (!target) return;
-
-
-                event.preventDefault();
-
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-        );
-
-    });
+);
