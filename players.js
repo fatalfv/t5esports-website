@@ -1,23 +1,13 @@
 /*
 ==================================================
-T5 ESPORTS
-PLAYER DATABASE
+T5 ESPORTS PLAYER DATABASE
 ==================================================
 
-EDIT THIS FILE ONLY.
-
 roster: true
-    -> Shows in T5 Roster ONLY
+    = ROSTER ONLY
 
 roster: false
-    -> Shows in All Players ONLY
-
-IMPORTANT:
-
-TRUE  = ROSTER
-FALSE = ALL PLAYERS
-
-A roster player will NOT appear in All Players.
+    = ALL PLAYERS ONLY
 
 ==================================================
 */
@@ -27,7 +17,7 @@ const players = [
 
     /*
     ==================================================
-    T5 ROSTER
+    OFFICIAL T5 ROSTER
     ==================================================
     */
 
@@ -87,7 +77,6 @@ const players = [
     ==================================================
     */
 
-
     {
         name: "PLAYER FOUR",
 
@@ -138,7 +127,6 @@ const players = [
 ];
 
 
-
 /*
 ==================================================
 CREATE PLAYER CARD
@@ -152,19 +140,13 @@ function createPlayerCard(player, index) {
 
 
     card.className =
-        "real-player-card reveal";
+        "real-player-card";
 
 
     const number =
         String(index + 1)
             .padStart(2, "0");
 
-
-    /*
-    ==============================================
-    IMAGE
-    ==============================================
-    */
 
     let imageHTML;
 
@@ -178,7 +160,6 @@ function createPlayerCard(player, index) {
                 alt="${player.name}"
                 class="player-photo"
                 loading="lazy"
-                onerror="this.style.display='none';"
             >
 
         `;
@@ -196,12 +177,6 @@ function createPlayerCard(player, index) {
     }
 
 
-    /*
-    ==============================================
-    CARD
-    ==============================================
-    */
-
     card.innerHTML = `
 
         <div class="real-player-image">
@@ -215,32 +190,24 @@ function createPlayerCard(player, index) {
 
 
         <div class="real-player-number">
-
             ${number}
-
         </div>
 
 
         <div class="real-player-region">
-
             ${player.region}
-
         </div>
 
 
         <div class="real-player-info">
 
             <div class="real-player-role">
-
                 ${player.role}
-
             </div>
 
 
             <h3>
-
                 ${player.name}
-
             </h3>
 
 
@@ -267,10 +234,9 @@ function createPlayerCard(player, index) {
 }
 
 
-
 /*
 ==================================================
-T5 ROSTER
+ROSTER
 ==================================================
 */
 
@@ -282,25 +248,21 @@ const rosterContainer =
 
 if (rosterContainer) {
 
-    const rosterPlayers =
+    const roster =
         players.filter(
             player =>
                 player.roster === true
         );
 
 
-    rosterPlayers.forEach(
+    roster.forEach(
         (player, index) => {
 
-            const card =
+            rosterContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            rosterContainer.appendChild(
-                card
+                )
             );
 
         }
@@ -309,16 +271,9 @@ if (rosterContainer) {
 }
 
 
-
 /*
 ==================================================
 ALL PLAYERS
-==================================================
-
-ONLY roster:false PLAYERS.
-
-roster:true players are NEVER
-added to this section.
 ==================================================
 */
 
@@ -340,15 +295,11 @@ if (allPlayersContainer) {
     allPlayers.forEach(
         (player, index) => {
 
-            const card =
+            allPlayersContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            allPlayersContainer.appendChild(
-                card
+                )
             );
 
         }
