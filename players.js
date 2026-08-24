@@ -3,13 +3,11 @@
 T5 ESPORTS PLAYER DATABASE
 ==================================================
 
-EDIT THIS ONE FILE.
-
 roster: true
-    = ONLY appears in T5 Roster
+    = ONLY T5 ROSTER
 
 roster: false
-    = ONLY appears in All Players
+    = ONLY ALL PLAYERS
 
 ==================================================
 */
@@ -76,7 +74,7 @@ const players = [
 
     /*
     ==================================================
-    ALL PLAYERS
+    ALL PLAYERS ONLY
     ==================================================
     */
 
@@ -131,7 +129,6 @@ const players = [
 ];
 
 
-
 /*
 ==================================================
 CREATE PLAYER CARD
@@ -140,7 +137,8 @@ CREATE PLAYER CARD
 
 function createPlayerCard(player, index) {
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
 
 
     card.className =
@@ -150,13 +148,6 @@ function createPlayerCard(player, index) {
     const number =
         String(index + 1).padStart(2, "0");
 
-
-
-    /*
-    ==================================================
-    PLAYER IMAGE
-    ==================================================
-    */
 
     let imageHTML;
 
@@ -173,7 +164,6 @@ function createPlayerCard(player, index) {
                 alt="${player.name}"
                 class="player-photo"
                 loading="lazy"
-                onerror="this.style.display='none';"
             >
 
         `;
@@ -190,13 +180,6 @@ function createPlayerCard(player, index) {
 
     }
 
-
-
-    /*
-    ==================================================
-    PLAYER CARD
-    ==================================================
-    */
 
     card.innerHTML = `
 
@@ -263,77 +246,73 @@ function createPlayerCard(player, index) {
 }
 
 
-
 /*
 ==================================================
-T5 ROSTER
+ROSTER
 ==================================================
 */
 
 const rosterContainer =
-    document.getElementById("rosterPlayers");
+    document.getElementById(
+        "rosterPlayers"
+    );
 
 
 if (rosterContainer) {
 
-    const rosterPlayers =
+    const roster =
         players.filter(
-            player => player.roster === true
+            player =>
+                player.roster === true
         );
 
 
-    rosterPlayers.forEach(
+    roster.forEach(
         (player, index) => {
 
-            const card =
+            rosterContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            rosterContainer.appendChild(card);
+                )
+            );
 
         }
     );
 
 }
-
 
 
 /*
 ==================================================
 ALL PLAYERS
 ==================================================
-
-ONLY roster: false players appear here.
-
-==================================================
 */
 
 const playersContainer =
-    document.getElementById("allPlayers");
+    document.getElementById(
+        "allPlayers"
+    );
 
 
 if (playersContainer) {
 
     const allPlayers =
         players.filter(
-            player => player.roster === false
+            player =>
+                player.roster === false
         );
 
 
     allPlayers.forEach(
         (player, index) => {
 
-            const card =
+            playersContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            playersContainer.appendChild(card);
+                )
+            );
 
         }
     );
@@ -341,22 +320,23 @@ if (playersContainer) {
 }
 
 
-
 /*
 ==================================================
-SCROLL REVEAL ANIMATIONS
+SCROLL REVEAL
 ==================================================
 */
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+const playerRevealElements =
+    document.querySelectorAll(
+        ".player-grid .reveal"
+    );
 
 
 if (
     "IntersectionObserver" in window
 ) {
 
-    const revealObserver =
+    const observer =
         new IntersectionObserver(
             (entries, observer) => {
 
@@ -381,15 +361,15 @@ if (
 
             },
             {
-                threshold: 0.12
+                threshold: 0.1
             }
         );
 
 
-    revealElements.forEach(
+    playerRevealElements.forEach(
         element => {
 
-            revealObserver.observe(
+            observer.observe(
                 element
             );
 
@@ -398,7 +378,7 @@ if (
 
 } else {
 
-    revealElements.forEach(
+    playerRevealElements.forEach(
         element => {
 
             element.classList.add(
