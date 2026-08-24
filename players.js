@@ -1,13 +1,14 @@
 /*
 ==================================================
-T5 ESPORTS PLAYER DATABASE
+T5 ESPORTS
+PLAYER DATABASE
 ==================================================
 
 roster: true
-    = ROSTER ONLY
+    = appears ONLY in T5 ROSTER
 
 roster: false
-    = ALL PLAYERS ONLY
+    = appears ONLY in ALL PLAYERS
 
 ==================================================
 */
@@ -15,116 +16,57 @@ roster: false
 
 const players = [
 
-    /*
-    ==================================================
-    OFFICIAL T5 ROSTER
-    ==================================================
-    */
-
     {
-        name: "Fatal",
-
-        role: "OWNER",
-
-        region: "EU",
-
-        roster: true,
-
-        image:
-            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "Onyx",
-
-        role: "OWNER",
-
-        region: "EU",
-
-        roster: true,
-
-        image:
-            "https://cdn.discordapp.com/attachments/1520906820753821776/1541488494545735750/image.png?ex=6a8dc688&is=6a8c7508&hm=cd89d772ef77e7b1a24f78be2887992bb834a4f6a7c4650a068a055bf0ad5cc4&",
-
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "PLAYER THREE",
-
+        name: "FATAL",
         role: "COMPETITIVE PLAYER",
-
         region: "EU",
-
         roster: true,
-
-        image: "",
-
-        discord:
-            "https://discord.gg/t5esports"
+        image: "images/fatal.png",
+        profile: "#"
     },
 
 
-    /*
-    ==================================================
-    ALL PLAYERS ONLY
-    ==================================================
-    */
+    {
+        name: "PLAYER 2",
+        role: "COMPETITIVE PLAYER",
+        region: "EU",
+        roster: true,
+        image: "images/player2.png",
+        profile: "#"
+    },
+
 
     {
-        name: "PLAYER FOUR",
+        name: "PLAYER 3",
+        role: "COMPETITIVE PLAYER",
+        region: "NA",
+        roster: true,
+        image: "images/player3.png",
+        profile: "#"
+    },
 
+
+    {
+        name: "CREATOR",
         role: "CONTENT CREATOR",
-
         region: "EU",
-
         roster: false,
-
-        image: "",
-
-        discord:
-            "https://discord.gg/t5esports"
+        image: "images/creator.png",
+        profile: "#"
     },
 
 
     {
-        name: "PLAYER FIVE",
-
-        role: "CONTENT CREATOR",
-
+        name: "PLAYER 4",
+        role: "PLAYER",
         region: "EU",
-
         roster: false,
-
-        image: "",
-
-        discord:
-            "https://discord.gg/t5esports"
-    },
-
-
-    {
-        name: "PLAYER SIX",
-
-        role: "COMMUNITY MEMBER",
-
-        region: "EU",
-
-        roster: false,
-
-        image: "",
-
-        discord:
-            "https://discord.gg/t5esports"
+        image: "images/player4.png",
+        profile: "#"
     }
 
 ];
+
 
 
 /*
@@ -135,53 +77,38 @@ CREATE PLAYER CARD
 
 function createPlayerCard(player, index) {
 
-    const card =
-        document.createElement("article");
+    const card = document.createElement("article");
 
+    card.className = "real-player-card";
 
-    card.className =
-        "real-player-card";
-
-
-    const number =
-        String(index + 1)
-            .padStart(2, "0");
-
-
-    let imageHTML;
-
-
-    if (player.image) {
-
-        imageHTML = `
-
-            <img
-                src="${player.image}"
-                alt="${player.name}"
-                class="player-photo"
-                loading="lazy"
-            >
-
-        `;
-
-    } else {
-
-        imageHTML = `
-
-            <div class="empty-player-logo">
-                T5
-            </div>
-
-        `;
-
-    }
+    card.style.setProperty(
+        "--card-delay",
+        `${index * 100}ms`
+    );
 
 
     card.innerHTML = `
 
         <div class="real-player-image">
 
-            ${imageHTML}
+            ${
+                player.image
+                ?
+                `
+                <img
+                    class="player-photo"
+                    src="${player.image}"
+                    alt="${player.name}"
+                    loading="lazy"
+                >
+                `
+                :
+                `
+                <div class="empty-player-logo">
+                    T5
+                </div>
+                `
+            }
 
         </div>
 
@@ -190,7 +117,7 @@ function createPlayerCard(player, index) {
 
 
         <div class="real-player-number">
-            ${number}
+            ${String(index + 1).padStart(2, "0")}
         </div>
 
 
@@ -212,16 +139,11 @@ function createPlayerCard(player, index) {
 
 
             <a
-                href="${player.discord}"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="${player.profile}"
                 class="real-player-link"
             >
-
-                DISCORD
-
+                VIEW PROFILE
                 <span>↗</span>
-
             </a>
 
         </div>
@@ -229,36 +151,64 @@ function createPlayerCard(player, index) {
     `;
 
 
+    const image = card.querySelector(".player-photo");
+
+
+    if (image) {
+
+        if (image.complete) {
+
+            image.classList.add("loaded");
+
+        } else {
+
+            image.addEventListener(
+                "load",
+                () => {
+                    image.classList.add("loaded");
+                }
+            );
+
+        }
+
+    }
+
+
     return card;
 
 }
 
 
+
 /*
 ==================================================
-ROSTER
+RENDER ROSTER
 ==================================================
 */
 
-const rosterContainer =
-    document.getElementById(
-        "rosterPlayers"
-    );
+function renderRoster() {
+
+    const container =
+        document.getElementById("rosterPlayers");
 
 
-if (rosterContainer) {
+    if (!container) return;
 
-    const roster =
+
+    /*
+    ONLY roster:true
+    */
+
+    const rosterPlayers =
         players.filter(
-            player =>
-                player.roster === true
+            player => player.roster === true
         );
 
 
-    roster.forEach(
+    rosterPlayers.forEach(
         (player, index) => {
 
-            rosterContainer.appendChild(
+            container.appendChild(
                 createPlayerCard(
                     player,
                     index
@@ -271,31 +221,36 @@ if (rosterContainer) {
 }
 
 
+
 /*
 ==================================================
-ALL PLAYERS
+RENDER ALL PLAYERS
 ==================================================
 */
 
-const allPlayersContainer =
-    document.getElementById(
-        "allPlayers"
-    );
+function renderAllPlayers() {
+
+    const container =
+        document.getElementById("allPlayers");
 
 
-if (allPlayersContainer) {
+    if (!container) return;
+
+
+    /*
+    ONLY roster:false
+    */
 
     const allPlayers =
         players.filter(
-            player =>
-                player.roster === false
+            player => player.roster === false
         );
 
 
     allPlayers.forEach(
         (player, index) => {
 
-            allPlayersContainer.appendChild(
+            container.appendChild(
                 createPlayerCard(
                     player,
                     index
@@ -306,3 +261,36 @@ if (allPlayersContainer) {
     );
 
 }
+
+
+
+/*
+==================================================
+START
+==================================================
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        renderRoster();
+
+        renderAllPlayers();
+
+        /*
+        Tell the main animation system
+        that the cards now exist.
+        */
+
+        if (
+            typeof window.refreshRevealAnimations ===
+            "function"
+        ) {
+
+            window.refreshRevealAnimations();
+
+        }
+
+    }
+);
