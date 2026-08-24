@@ -44,7 +44,7 @@ body {
 }
 
 
-body::selection {
+::selection {
 
     background: var(--purple);
 
@@ -92,7 +92,7 @@ NOISE
 
 
 /* ==========================================
-NAVBAR
+HEADER
 ========================================== */
 
 .site-header {
@@ -107,8 +107,7 @@ NAVBAR
 
     z-index: 1000;
 
-    padding:
-        0 6vw;
+    padding: 0 6vw;
 
     display: flex;
 
@@ -116,14 +115,11 @@ NAVBAR
 
     justify-content: space-between;
 
-    background:
-        rgba(5,5,6,.65);
+    background: rgba(5,5,6,.6);
 
-    backdrop-filter:
-        blur(25px);
+    backdrop-filter: blur(25px);
 
-    border-bottom:
-        1px solid transparent;
+    border-bottom: 1px solid transparent;
 
     transition:
         background .3s,
@@ -135,11 +131,9 @@ NAVBAR
 
 .site-header.scrolled {
 
-    background:
-        rgba(5,5,6,.9);
+    background: rgba(5,5,6,.92);
 
-    border-color:
-        var(--line);
+    border-color: var(--line);
 
     box-shadow:
         0 15px 50px rgba(0,0,0,.3);
@@ -147,7 +141,9 @@ NAVBAR
 }
 
 
-/* BRAND */
+/* ==========================================
+BRAND
+========================================== */
 
 .brand {
 
@@ -188,7 +184,9 @@ NAVBAR
 }
 
 
-/* NAV */
+/* ==========================================
+NAV
+========================================== */
 
 .main-nav {
 
@@ -255,7 +253,9 @@ NAVBAR
 }
 
 
-/* NAV BUTTON */
+/* ==========================================
+ROUND NAV BUTTON
+========================================== */
 
 .nav-button {
 
@@ -263,13 +263,15 @@ NAVBAR
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 12px;
 
-    padding:
-        12px 18px;
+    min-height: 43px;
 
-    border:
-        1px solid rgba(255,255,255,.15);
+    padding: 0 18px;
+
+    border: 1px solid rgba(255,255,255,.15);
 
     border-radius: 999px;
 
@@ -305,31 +307,81 @@ NAVBAR
 }
 
 
-/* MOBILE BUTTON */
+/* ==========================================
+MOBILE BUTTON
+========================================== */
 
 .mobile-menu-button {
 
     display: none;
 
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.12);
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,.04);
+    background: rgba(255,255,255,.04);
 
     color: white;
 
     cursor: pointer;
 
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+
 }
 
 
-/* MOBILE MENU */
+.mobile-menu-button span {
+
+    width: 16px;
+
+    height: 1px;
+
+    background: white;
+
+    transition:
+        transform .25s,
+        opacity .25s;
+
+}
+
+
+.mobile-menu-button.active span:nth-child(1) {
+
+    transform:
+        translateY(6px)
+        rotate(45deg);
+
+}
+
+
+.mobile-menu-button.active span:nth-child(2) {
+
+    opacity: 0;
+
+}
+
+
+.mobile-menu-button.active span:nth-child(3) {
+
+    transform:
+        translateY(-6px)
+        rotate(-45deg);
+
+}
+
+
+/* ==========================================
+MOBILE MENU
+========================================== */
 
 .mobile-menu {
 
@@ -342,22 +394,20 @@ NAVBAR
     left: 15px;
     right: 15px;
 
-    padding: 25px;
+    padding: 18px;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 5px;
 
     background:
-        rgba(10,10,13,.96);
+        rgba(10,10,13,.97);
 
-    backdrop-filter:
-        blur(25px);
+    backdrop-filter: blur(25px);
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
     border-radius: 24px;
 
@@ -414,6 +464,8 @@ NAVBAR
 
 
 .mobile-menu .mobile-discord {
+
+    margin-top: 8px;
 
     background: white;
 
@@ -506,8 +558,7 @@ HERO
             transparent 1px
         );
 
-    background-size:
-        80px 80px;
+    background-size: 80px 80px;
 
     mask-image:
         linear-gradient(
@@ -537,12 +588,11 @@ HERO
     background:
         radial-gradient(
             circle,
-            rgba(118,80,255,.28),
+            rgba(118,80,255,.3),
             transparent 65%
         );
 
-    filter:
-        blur(20px);
+    filter: blur(20px);
 
     animation:
         glowPulse 5s ease-in-out infinite;
@@ -553,17 +603,23 @@ HERO
 @keyframes glowPulse {
 
     0%, 100% {
+
         opacity: .7;
+
         transform:
             translateY(-50%)
             scale(1);
+
     }
 
     50% {
+
         opacity: 1;
+
         transform:
             translateY(-50%)
             scale(1.08);
+
     }
 
 }
@@ -605,8 +661,7 @@ HERO
 
     max-width: 520px;
 
-    margin:
-        35px 0;
+    margin: 35px 0;
 
     color: #888;
 
@@ -617,7 +672,9 @@ HERO
 }
 
 
-/* BUTTONS */
+/* ==========================================
+BUTTONS
+========================================== */
 
 .hero-buttons {
 
@@ -642,8 +699,7 @@ HERO
 
     min-height: 52px;
 
-    padding:
-        0 24px;
+    padding: 0 24px;
 
     border-radius: 999px;
 
@@ -656,7 +712,6 @@ HERO
     transition:
         transform .3s,
         background .3s,
-        border-color .3s,
         color .3s,
         box-shadow .3s;
 
@@ -718,7 +773,9 @@ HERO
 }
 
 
-/* STATS */
+/* ==========================================
+STATS
+========================================== */
 
 .hero-stats {
 
@@ -764,7 +821,9 @@ HERO
 }
 
 
-/* BACKGROUND T5 */
+/* ==========================================
+HERO BACKGROUND
+========================================== */
 
 .hero-background-t5 {
 
@@ -788,7 +847,8 @@ HERO
 
     letter-spacing: -70px;
 
-    color: rgba(255,255,255,.025);
+    color:
+        rgba(255,255,255,.025);
 
     user-select: none;
 
@@ -801,19 +861,27 @@ HERO
 @keyframes backgroundFloat {
 
     0%,100% {
+
         transform:
             translateY(-50%)
             skew(-8deg);
+
     }
 
     50% {
+
         transform:
             translateY(-53%)
             skew(-8deg);
+
     }
 
 }
 
+
+/* ==========================================
+SCROLL
+========================================== */
 
 .hero-scroll {
 
@@ -854,7 +922,7 @@ HERO
 
 
 /* ==========================================
-CATEGORIES
+SECTIONS
 ========================================== */
 
 .categories-section {
@@ -915,7 +983,9 @@ CATEGORIES
 }
 
 
-/* CATEGORY GRID */
+/* ==========================================
+CATEGORY GRID
+========================================== */
 
 .category-grid {
 
@@ -946,7 +1016,8 @@ CATEGORIES
 
     transition:
         transform .45s,
-        border-color .45s;
+        border-color .45s,
+        box-shadow .45s;
 
 }
 
@@ -958,6 +1029,9 @@ CATEGORIES
 
     border-color:
         rgba(255,255,255,.22);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
 
 }
 
@@ -1002,13 +1076,13 @@ CATEGORIES
 
     letter-spacing: -50px;
 
-    color: rgba(255,255,255,.025);
+    color:
+        rgba(255,255,255,.025);
 
 }
 
 
-.purple-card
-.category-background {
+.purple-card .category-background {
 
     color:
         rgba(118,80,255,.08);
@@ -1040,8 +1114,7 @@ CATEGORIES
 }
 
 
-.white-card
-.category-glow {
+.white-card .category-glow {
 
     background:
         radial-gradient(
@@ -1060,7 +1133,9 @@ CATEGORIES
     z-index: 5;
 
     left: 30px;
+
     right: 30px;
+
     bottom: 30px;
 
 }
@@ -1140,6 +1215,7 @@ CATEGORIES
     place-items: center;
 
     width: 35px;
+
     height: 35px;
 
     border:
@@ -1164,6 +1240,501 @@ CATEGORIES
     background: white;
 
     color: black;
+
+}
+
+
+/* ==========================================
+PLAYERS
+========================================== */
+
+.players-container {
+
+    padding:
+        120px 8vw 150px;
+
+    border-bottom:
+        1px solid var(--line);
+
+}
+
+
+.players-heading {
+
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+    margin-bottom: 60px;
+
+}
+
+
+.players-heading h2 {
+
+    font-size:
+        clamp(45px, 6vw, 85px);
+
+    line-height: .82;
+
+    letter-spacing: -6px;
+
+}
+
+
+.players-heading h2 span {
+
+    color: #aaa;
+
+}
+
+
+.pill-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 45px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    border-radius: 999px;
+
+    color: #aaa;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition:
+        background .25s,
+        color .25s,
+        transform .25s;
+
+}
+
+
+.pill-button:hover {
+
+    background: white;
+
+    color: black;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* ==========================================
+PLAYER GRID
+========================================== */
+
+.player-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+    gap: 18px;
+
+}
+
+
+/* ==========================================
+PLAYER CARD
+========================================== */
+
+.real-player-card {
+
+    position: relative;
+
+    min-height: 520px;
+
+    overflow: hidden;
+
+    background:
+        #0c0c10;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 24px;
+
+    transition:
+        transform .4s,
+        border-color .4s,
+        box-shadow .4s;
+
+}
+
+
+.real-player-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+        rgba(255,255,255,.2);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        0 0 40px rgba(118,80,255,.06);
+
+}
+
+
+/* ==========================================
+PLAYER IMAGE
+========================================== */
+
+.real-player-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(118,80,255,.1),
+            transparent 60%
+        ),
+        #09090c;
+
+}
+
+
+.player-photo {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    opacity: 0;
+
+    filter: blur(10px);
+
+    transform: scale(1.02);
+
+    transition:
+        opacity .6s ease,
+        filter .6s ease,
+        transform .7s ease;
+
+}
+
+
+.player-photo.loaded {
+
+    opacity: 1;
+
+    filter: blur(0);
+
+}
+
+
+.real-player-card:hover
+.player-photo {
+
+    transform:
+        scale(1.07);
+
+}
+
+
+/* ==========================================
+CARD OVERLAY
+========================================== */
+
+.player-card-overlay {
+
+    position: absolute;
+
+    z-index: 2;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.02) 15%,
+            rgba(0,0,0,.1) 40%,
+            rgba(0,0,0,.98) 100%
+        );
+
+}
+
+
+/* ==========================================
+EMPTY PLAYER
+========================================== */
+
+.empty-player-logo {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 42%;
+
+    transform:
+        translate(-50%,-50%)
+        skew(-8deg);
+
+    color:
+        rgba(255,255,255,.025);
+
+    font-size:
+        170px;
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    user-select: none;
+
+}
+
+
+/* ==========================================
+CARD LIGHT
+========================================== */
+
+.real-player-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: 4;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,.08),
+            transparent 70%
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:
+        opacity .3s,
+        transform .8s;
+
+}
+
+
+.real-player-card:hover::before {
+
+    opacity: 1;
+
+    transform:
+        translateX(100%);
+
+}
+
+
+/* ==========================================
+NUMBER
+========================================== */
+
+.real-player-number {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 22px;
+
+    left: 23px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* ==========================================
+REGION
+========================================== */
+
+.real-player-region {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 18px;
+
+    right: 18px;
+
+    padding:
+        8px 11px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius: 999px;
+
+    background:
+        rgba(0,0,0,.3);
+
+    backdrop-filter:
+        blur(10px);
+
+    color: #aaa;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* ==========================================
+PLAYER INFO
+========================================== */
+
+.real-player-info {
+
+    position: absolute;
+
+    z-index: 5;
+
+    left: 24px;
+
+    right: 24px;
+
+    bottom: 24px;
+
+}
+
+
+.real-player-role {
+
+    color: #888;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.real-player-info h3 {
+
+    margin:
+        9px 0 16px;
+
+    font-size:
+        35px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -2px;
+
+}
+
+
+/* ==========================================
+DISCORD BUTTON
+========================================== */
+
+.real-player-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 999px;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition:
+        background .25s,
+        color .25s,
+        transform .25s;
+
+}
+
+
+.real-player-link:hover {
+
+    background: white;
+
+    color: black;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.real-player-link span {
+
+    font-size: 13px;
 
 }
 
@@ -1270,11 +1841,17 @@ ABOUT
 @keyframes rotateRing {
 
     from {
-        transform: rotate(0deg);
+
+        transform:
+            rotate(0deg);
+
     }
 
     to {
-        transform: rotate(360deg);
+
+        transform:
+            rotate(360deg);
+
     }
 
 }
@@ -1390,7 +1967,10 @@ JOIN
 
     letter-spacing: -70px;
 
-    color: rgba(255,255,255,.02);
+    color:
+        rgba(255,255,255,.02);
+
+    user-select: none;
 
 }
 
@@ -1444,8 +2024,6 @@ JOIN
 
 .big-button {
 
-    margin-top: 5px;
-
     padding:
         0 30px;
 
@@ -1453,489 +2031,7 @@ JOIN
 
 
 /* ==========================================
-PAGE HERO
-========================================== */
-
-.page-hero {
-
-    min-height: 65vh;
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    overflow: hidden;
-
-    padding:
-        160px 8vw 100px;
-
-    border-bottom:
-        1px solid var(--line);
-
-}
-
-
-.page-hero-content {
-
-    position: relative;
-
-    z-index: 5;
-
-}
-
-
-.page-hero h1 {
-
-    font-size:
-        clamp(65px, 9vw, 140px);
-
-    line-height: .82;
-
-    letter-spacing: -9px;
-
-}
-
-
-.page-hero h1 span {
-
-    color: #aaa;
-
-}
-
-
-.page-hero p {
-
-    max-width: 500px;
-
-    margin-top: 28px;
-
-    color: #777;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-
-}
-
-
-.page-hero-background {
-
-    position: absolute;
-
-    right: -3vw;
-
-    top: 50%;
-
-    transform:
-        translateY(-50%)
-        skew(-8deg);
-
-    font-size: 38vw;
-
-    font-weight: 900;
-
-    font-style: italic;
-
-    letter-spacing: -65px;
-
-    color: rgba(255,255,255,.025);
-
-}
-
-
-/* ==========================================
-PLAYERS SECTION
-========================================== */
-
-.players-container {
-
-    padding:
-        120px 8vw 150px;
-
-}
-
-
-.players-heading {
-
-    display: flex;
-
-    align-items: end;
-
-    justify-content: space-between;
-
-    gap: 50px;
-
-    margin-bottom: 60px;
-
-}
-
-
-.players-heading h2 {
-
-    font-size:
-        clamp(45px, 6vw, 85px);
-
-    line-height: .82;
-
-    letter-spacing: -6px;
-
-}
-
-
-.players-heading h2 span {
-
-    color: #aaa;
-
-}
-
-
-.pill-button {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    min-height: 45px;
-
-    padding:
-        0 18px;
-
-    border:
-        1px solid rgba(255,255,255,.14);
-
-    border-radius: 999px;
-
-    color: #aaa;
-
-    font-size: 8px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    transition:
-        background .25s,
-        color .25s,
-        transform .25s;
-
-}
-
-
-.pill-button:hover {
-
-    background: white;
-
-    color: black;
-
-    transform:
-        translateY(-3px);
-
-}
-
-
-/* ==========================================
-PLAYER GRID
-========================================== */
-
-.player-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0,1fr));
-
-    gap: 18px;
-
-}
-
-
-/* PLAYER CARD */
-
-.real-player-card {
-
-    position: relative;
-
-    min-height: 520px;
-
-    overflow: hidden;
-
-    background:
-        #0c0c10;
-
-    border:
-        1px solid var(--line);
-
-    border-radius: 24px;
-
-    transition:
-        transform .4s,
-        border-color .4s,
-        box-shadow .4s;
-
-}
-
-
-.real-player-card:hover {
-
-    transform:
-        translateY(-10px);
-
-    border-color:
-        rgba(255,255,255,.2);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.4);
-
-}
-
-
-/* IMAGE */
-
-.real-player-image {
-
-    position: absolute;
-
-    inset: 0;
-
-    overflow: hidden;
-
-}
-
-
-.player-photo {
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    transition:
-        transform .7s,
-        filter .5s;
-
-}
-
-
-.real-player-card:hover
-.player-photo {
-
-    transform:
-        scale(1.07);
-
-}
-
-
-/* GRADIENT */
-
-.player-card-overlay {
-
-    position: absolute;
-
-    z-index: 2;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.05) 20%,
-            rgba(0,0,0,.15) 40%,
-            rgba(0,0,0,.98) 100%
-        );
-
-    pointer-events: none;
-
-}
-
-
-/* EMPTY */
-
-.empty-player-logo {
-
-    position: absolute;
-
-    left: 50%;
-    top: 42%;
-
-    transform:
-        translate(-50%,-50%)
-        skew(-8deg);
-
-    color:
-        rgba(255,255,255,.025);
-
-    font-size:
-        170px;
-
-    font-weight: 900;
-
-    font-style: italic;
-
-}
-
-
-/* NUMBER */
-
-.real-player-number {
-
-    position: absolute;
-
-    z-index: 5;
-
-    top: 22px;
-    left: 23px;
-
-    color: #777;
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* REGION */
-
-.real-player-region {
-
-    position: absolute;
-
-    z-index: 5;
-
-    top: 18px;
-    right: 18px;
-
-    padding:
-        8px 11px;
-
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    border-radius: 999px;
-
-    background:
-        rgba(0,0,0,.3);
-
-    backdrop-filter:
-        blur(10px);
-
-    color: #aaa;
-
-    font-size: 7px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-}
-
-
-/* INFO */
-
-.real-player-info {
-
-    position: absolute;
-
-    z-index: 5;
-
-    left: 24px;
-    right: 24px;
-    bottom: 24px;
-
-}
-
-
-.real-player-role {
-
-    color: #888;
-
-    font-size: 7px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-}
-
-
-.real-player-info h3 {
-
-    margin:
-        9px 0 16px;
-
-    font-size:
-        35px;
-
-    line-height: 1;
-
-    font-weight: 900;
-
-    letter-spacing: -2px;
-
-}
-
-
-/* DISCORD */
-
-.real-player-link {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    padding:
-        10px 14px;
-
-    border:
-        1px solid rgba(255,255,255,.15);
-
-    border-radius: 999px;
-
-    font-size: 7px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    transition:
-        background .25s,
-        color .25s,
-        transform .25s;
-
-}
-
-
-.real-player-link:hover {
-
-    background: white;
-
-    color: black;
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-.real-player-link span {
-
-    font-size: 13px;
-
-}
-
-
-/* ==========================================
-SCROLL ANIMATIONS
+SCROLL REVEAL
 ========================================== */
 
 .reveal {
@@ -2021,6 +2117,21 @@ footer {
 }
 
 
+.footer-tagline {
+
+    margin-top: 18px;
+
+    color: #555;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
 .footer-links {
 
     display: flex;
@@ -2078,24 +2189,18 @@ RESPONSIVE
 
 @media(max-width: 1000px) {
 
-    .main-nav {
+    .main-nav,
+    .nav-button {
+
         display: none;
+
     }
 
 
     .mobile-menu-button {
-        display: block;
-    }
 
+        display: flex;
 
-    .nav-button {
-        display: none;
-    }
-
-
-    .hero-background-t5 {
-        right: -20vw;
-        opacity: .6;
     }
 
 
@@ -2117,7 +2222,8 @@ RESPONSIVE
 
     .about-visual {
 
-        min-height: 400px;
+        min-height:
+            400px;
 
     }
 
@@ -2136,7 +2242,8 @@ RESPONSIVE
 
     .site-header {
 
-        height: 72px;
+        height:
+            72px;
 
         padding:
             0 5vw;
@@ -2146,14 +2253,16 @@ RESPONSIVE
 
     .mobile-menu {
 
-        top: 72px;
+        top:
+            72px;
 
     }
 
 
     .hero {
 
-        min-height: 850px;
+        min-height:
+            850px;
 
         padding:
             130px 6vw 70px;
@@ -2166,7 +2275,8 @@ RESPONSIVE
 
     .hero-content {
 
-        margin-top: 40px;
+        margin-top:
+            40px;
 
     }
 
@@ -2200,23 +2310,27 @@ RESPONSIVE
 
     .button {
 
-        width: 100%;
+        width:
+            100%;
 
     }
 
 
     .hero-stats {
 
-        gap: 28px;
+        gap:
+            28px;
 
-        margin-top: 50px;
+        margin-top:
+            50px;
 
     }
 
 
     .hero-stats strong {
 
-        font-size: 18px;
+        font-size:
+            18px;
 
     }
 
@@ -2237,7 +2351,8 @@ RESPONSIVE
 
     .hero-scroll {
 
-        display: none;
+        display:
+            none;
 
     }
 
@@ -2361,39 +2476,6 @@ RESPONSIVE
     }
 
 
-    .page-hero {
-
-        min-height:
-            60vh;
-
-        padding:
-            140px 6vw 80px;
-
-    }
-
-
-    .page-hero h1 {
-
-        font-size:
-            65px;
-
-        letter-spacing:
-            -5px;
-
-    }
-
-
-    .page-hero-background {
-
-        font-size:
-            80vw;
-
-        right:
-            -35vw;
-
-    }
-
-
     .players-container {
 
         padding-top:
@@ -2495,7 +2577,10 @@ REDUCED MOTION
 @media(prefers-reduced-motion: reduce) {
 
     html {
-        scroll-behavior: auto;
+
+        scroll-behavior:
+            auto;
+
     }
 
 
@@ -2517,9 +2602,11 @@ REDUCED MOTION
 
     .reveal {
 
-        opacity: 1;
+        opacity:
+            1;
 
-        transform: none;
+        transform:
+            none;
 
     }
 
