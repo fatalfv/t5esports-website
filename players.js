@@ -1,11 +1,11 @@
-const rosterPlayers = [
+const players = [
 
     /*
     ==========================================
-    ADD YOUR ROSTER PLAYERS BELOW
+    ADD T5 PLAYERS BELOW
     ==========================================
 
-    image MUST be a direct image URL.
+    image = direct image URL
 
     Example:
 
@@ -17,7 +17,7 @@ const rosterPlayers = [
 
     {
         name: "PLAYER ONE",
-        role: "COMPETITIVE PLAYER",
+        role: "T5 PLAYER",
         region: "EU",
         image: "",
         discord: "https://discord.gg/t5esports"
@@ -26,7 +26,7 @@ const rosterPlayers = [
 
     {
         name: "PLAYER TWO",
-        role: "COMPETITIVE PLAYER",
+        role: "T5 PLAYER",
         region: "EU",
         image: "",
         discord: "https://discord.gg/t5esports"
@@ -35,7 +35,16 @@ const rosterPlayers = [
 
     {
         name: "PLAYER THREE",
-        role: "COMPETITIVE PLAYER",
+        role: "CONTENT CREATOR",
+        region: "EU",
+        image: "",
+        discord: "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER FOUR",
+        role: "T5 PLAYER",
         region: "EU",
         image: "",
         discord: "https://discord.gg/t5esports"
@@ -46,11 +55,11 @@ const rosterPlayers = [
 
 
 const container =
-    document.getElementById("rosterPlayers");
+    document.getElementById("allPlayers");
 
 
 
-rosterPlayers.forEach((player, index) => {
+players.forEach((player, index) => {
 
 
     const card =
