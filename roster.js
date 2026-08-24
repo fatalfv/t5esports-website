@@ -1,20 +1,5 @@
 const rosterPlayers = [
 
-    /*
-    ==========================================
-    ADD YOUR ROSTER PLAYERS BELOW
-    ==========================================
-
-    image MUST be a direct image URL.
-
-    Example:
-
-    image: "https://example.com/player.png"
-
-    ==========================================
-    */
-
-
     {
         name: "Fatal",
         role: "Owner",
@@ -23,7 +8,6 @@ const rosterPlayers = [
         discord: "https://discord.gg/t5esports"
     },
 
-
     {
         name: "PLAYER TWO",
         role: "COMPETITIVE PLAYER",
@@ -31,7 +15,6 @@ const rosterPlayers = [
         image: "",
         discord: "https://discord.gg/t5esports"
     },
-
 
     {
         name: "PLAYER THREE",
@@ -44,96 +27,89 @@ const rosterPlayers = [
 ];
 
 
-
-const container =
-    document.getElementById("rosterPlayers");
+const container = document.getElementById("rosterPlayers");
 
 
+if (!container) {
+    console.error("rosterPlayers container not found");
+} else {
 
-rosterPlayers.forEach((player, index) => {
+    rosterPlayers.forEach((player, index) => {
 
+        const card = document.createElement("article");
 
-    const card =
-        document.createElement("article");
-
-
-    card.className =
-        "real-player-card";
-
-
-    const number =
-        String(index + 1).padStart(2, "0");
+        card.className = "real-player-card";
 
 
-    const imageStyle =
-        player.image
-            ? `background-image:
-                linear-gradient(
-                    180deg,
-                    transparent 30%,
-                    rgba(0,0,0,.95) 100%
-                ),
-                url("${player.image}");`
-            : "";
+        const number = String(index + 1).padStart(2, "0");
 
 
-
-    card.innerHTML = `
-
-        <div
-            class="real-player-image"
-            style="${imageStyle}"
-        >
-
-            ${
-                !player.image
-                    ? `<div class="empty-player-logo">T5</div>`
-                    : ""
-            }
-
-        </div>
+        const imageHTML = player.image
+            ? `
+                <img
+                    src="${player.image}"
+                    alt="${player.name}"
+                    class="player-photo"
+                >
+            `
+            : `
+                <div class="empty-player-logo">
+                    T5
+                </div>
+            `;
 
 
-        <div class="real-player-number">
-            ${number}
-        </div>
+        card.innerHTML = `
 
+            <div class="real-player-image">
 
-        <div class="real-player-region">
-            ${player.region}
-        </div>
+                ${imageHTML}
 
-
-        <div class="real-player-info">
-
-            <div class="real-player-role">
-                ${player.role}
             </div>
 
 
-            <h3>
-                ${player.name}
-            </h3>
+            <div class="real-player-number">
+                ${number}
+            </div>
 
 
-            <a
-                href="${player.discord}"
-                target="_blank"
-                rel="noopener"
-                class="real-player-link"
-            >
-
-                DISCORD
-
-                <span>↗</span>
-
-            </a>
-
-        </div>
-
-    `;
+            <div class="real-player-region">
+                ${player.region}
+            </div>
 
 
-    container.appendChild(card);
+            <div class="real-player-info">
 
-});
+                <div class="real-player-role">
+                    ${player.role}
+                </div>
+
+
+                <h3>
+                    ${player.name}
+                </h3>
+
+
+                <a
+                    href="${player.discord}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="real-player-link"
+                >
+
+                    DISCORD
+
+                    <span>↗</span>
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
