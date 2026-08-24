@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="UTF-8">
@@ -10,13 +9,12 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="T5 Esports Players"
-    >
-
     <title>T5 Esports — Players</title>
 
+    <meta
+        name="description"
+        content="Meet the T5 Esports roster."
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -27,579 +25,264 @@
         rel="stylesheet"
     >
 
-
-    <link
-        rel="stylesheet"
-        href="styles.css"
-    >
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
 
 <body>
 
-    <div class="page-noise"></div>
+<div class="page-noise"></div>
 
 
-    <!-- NAV -->
+<header class="site-header" id="siteHeader">
 
-    <header class="site-header">
+    <a href="index.html" class="brand">
 
-        <a
-            href="index.html"
-            class="brand"
-        >
+        <span class="brand-mark">
+            T5
+        </span>
 
-            <div class="brand-mark">
-                T5
-            </div>
+        <span class="brand-text">
+            ESPORTS
+        </span>
 
-            <div class="brand-text">
-                ESPORTS
-            </div>
-
-        </a>
+    </a>
 
 
-        <nav class="main-nav">
-
-            <a href="index.html">
-                HOME
-            </a>
-
-            <a href="index.html#about">
-                ABOUT
-            </a>
-
-            <a href="index.html#teams">
-                TEAMS
-            </a>
-
-            <a
-                href="players.html"
-                class="active"
-            >
-                PLAYERS
-            </a>
-
-        </nav>
-
-
-        <a
-            href="https://discord.gg/t5esports"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav-button"
-        >
-
-            JOIN DISCORD
-
-            <span>↗</span>
-
-        </a>
-
-
-        <button
-            class="mobile-menu-button"
-            id="menu"
-            aria-label="Open menu"
-        >
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </button>
-
-    </header>
-
-
-    <!-- MOBILE MENU -->
-
-    <div
-        class="mobile-menu"
-        id="nav"
-    >
+    <nav class="main-nav">
 
         <a href="index.html">
             HOME
+        </a>
+
+        <a
+            href="players.html"
+            class="active"
+        >
+            PLAYERS
         </a>
 
         <a href="index.html#about">
             ABOUT
         </a>
 
-        <a href="index.html#teams">
-            TEAMS
+        <a href="index.html#join">
+            JOIN
         </a>
 
-        <a href="players.html">
-            PLAYERS
-        </a>
+    </nav>
+
+
+    <a
+        href="https://discord.gg/t5esports"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-button"
+    >
+        DISCORD
+        <span>↗</span>
+    </a>
+
+
+    <button
+        class="mobile-menu-button"
+        id="menu"
+        type="button"
+        aria-label="Open menu"
+    >
+        ☰
+    </button>
+
+</header>
+
+
+<div class="mobile-menu" id="nav">
+
+    <a href="index.html">
+        HOME
+    </a>
+
+    <a href="players.html">
+        PLAYERS
+    </a>
+
+    <a href="index.html#about">
+        ABOUT
+    </a>
+
+    <a href="index.html#join">
+        JOIN
+    </a>
+
+    <a
+        href="https://discord.gg/t5esports"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-discord"
+    >
+        JOIN DISCORD
+    </a>
+
+</div>
+
+
+<main>
+
+
+<section class="page-hero">
+
+    <div class="page-hero-content reveal">
+
+        <div class="eyebrow">
+            <span></span>
+            T5 ESPORTS
+        </div>
+
+
+        <h1>
+            OUR<br>
+            <span>PLAYERS.</span>
+        </h1>
+
+
+        <p>
+            The players, creators and competitors
+            representing T5 Esports.
+        </p>
+
+    </div>
+
+
+    <div class="page-hero-background">
+        T5
+    </div>
+
+</section>
+
+
+<section class="players-container">
+
+
+    <div class="players-heading reveal">
+
+        <div>
+
+            <div class="eyebrow">
+                <span></span>
+                CURRENT LINEUP
+            </div>
+
+            <h2>
+                T5<br>
+                <span>ROSTER.</span>
+            </h2>
+
+        </div>
+
 
         <a
-            href="https://discord.gg/t5esports"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mobile-discord"
+            href="index.html"
+            class="pill-button"
         >
-            JOIN DISCORD
+            ← BACK HOME
         </a>
 
     </div>
 
 
-    <!-- PAGE HERO -->
-
-    <section class="page-hero">
-
-        <div class="page-hero-background">
-            T5
-        </div>
+    <div
+        class="player-grid"
+        id="rosterPlayers"
+    ></div>
 
 
-        <div class="page-hero-content">
+    <div class="players-heading second-heading reveal">
+
+        <div>
 
             <div class="eyebrow">
                 <span></span>
-                T5 ESPORTS
+                ORGANISATION
             </div>
-
-
-            <h1>
-                OUR
-                <span>PLAYERS</span>
-            </h1>
-
-
-            <p>
-
-                Meet the players representing T5 Esports
-                and competing under the T5 banner.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- PLAYERS -->
-
-    <main class="players-container">
-
-        <div class="players-heading scroll-reveal">
-
-            <div>
-
-                <div class="eyebrow">
-
-                    <span></span>
-
-                    CURRENT ROSTER
-
-                </div>
-
-
-                <h2>
-                    T5
-                    <span>ROSTER</span>
-                </h2>
-
-            </div>
-
-
-            <a
-                href="https://discord.gg/t5esports"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="pill-button"
-            >
-                JOIN T5 →
-            </a>
-
-        </div>
-
-
-        <div
-            class="player-grid"
-            id="playerCards"
-        >
-
-            <!-- FATAL -->
-
-            <article
-                class="real-player-card scroll-reveal"
-                data-group="roster competitive"
-            >
-
-                <div class="real-player-image">
-
-                    <img
-                        src="https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true"
-                        alt="Fatal"
-                        class="player-photo"
-                        loading="eager"
-                    >
-
-                    <div class="player-card-overlay"></div>
-
-                </div>
-
-
-                <div class="real-player-number">
-                    01
-                </div>
-
-
-                <div class="real-player-region">
-                    EU
-                </div>
-
-
-                <div class="real-player-info">
-
-                    <div class="real-player-role">
-                        OWNER
-                    </div>
-
-
-                    <h3>
-                        FATAL
-                    </h3>
-
-
-                    <a
-                        href="https://discord.gg/t5esports"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="real-player-link"
-                    >
-
-                        DISCORD
-
-                        <span>↗</span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PLAYER TWO -->
-
-            <article
-                class="real-player-card scroll-reveal"
-                data-group="roster competitive"
-            >
-
-                <div class="real-player-image">
-
-                    <div class="empty-player-logo">
-                        T5
-                    </div>
-
-                    <div class="player-card-overlay"></div>
-
-                </div>
-
-
-                <div class="real-player-number">
-                    02
-                </div>
-
-
-                <div class="real-player-region">
-                    EU
-                </div>
-
-
-                <div class="real-player-info">
-
-                    <div class="real-player-role">
-                        COMPETITIVE PLAYER
-                    </div>
-
-
-                    <h3>
-                        PLAYER TWO
-                    </h3>
-
-
-                    <a
-                        href="https://discord.gg/t5esports"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="real-player-link"
-                    >
-
-                        DISCORD
-
-                        <span>↗</span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PLAYER THREE -->
-
-            <article
-                class="real-player-card scroll-reveal"
-                data-group="roster competitive"
-            >
-
-                <div class="real-player-image">
-
-                    <div class="empty-player-logo">
-                        T5
-                    </div>
-
-                    <div class="player-card-overlay"></div>
-
-                </div>
-
-
-                <div class="real-player-number">
-                    03
-                </div>
-
-
-                <div class="real-player-region">
-                    EU
-                </div>
-
-
-                <div class="real-player-info">
-
-                    <div class="real-player-role">
-                        COMPETITIVE PLAYER
-                    </div>
-
-
-                    <h3>
-                        PLAYER THREE
-                    </h3>
-
-
-                    <a
-                        href="https://discord.gg/t5esports"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="real-player-link"
-                    >
-
-                        DISCORD
-
-                        <span>↗</span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PLAYER FOUR -->
-
-            <article
-                class="real-player-card scroll-reveal"
-                data-group="content"
-            >
-
-                <div class="real-player-image">
-
-                    <div class="empty-player-logo">
-                        T5
-                    </div>
-
-                    <div class="player-card-overlay"></div>
-
-                </div>
-
-
-                <div class="real-player-number">
-                    04
-                </div>
-
-
-                <div class="real-player-region">
-                    EU
-                </div>
-
-
-                <div class="real-player-info">
-
-                    <div class="real-player-role">
-                        CONTENT CREATOR
-                    </div>
-
-
-                    <h3>
-                        PLAYER FOUR
-                    </h3>
-
-
-                    <a
-                        href="https://discord.gg/t5esports"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="real-player-link"
-                    >
-
-                        DISCORD
-
-                        <span>↗</span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </main>
-
-
-    <!-- JOIN -->
-
-    <section class="join-section">
-
-        <div class="join-background">
-            T5
-        </div>
-
-
-        <div class="join-content scroll-reveal">
-
-            <div class="eyebrow centered-eyebrow">
-
-                <span></span>
-
-                T5 ESPORTS
-
-                <span></span>
-
-            </div>
-
 
             <h2>
-                JOIN
-                <span>THE TEAM.</span>
+                ALL<br>
+                <span>PLAYERS.</span>
             </h2>
 
+        </div>
 
-            <p>
-                Think you have what it takes?
-            </p>
+    </div>
 
+
+    <div
+        class="player-grid"
+        id="allPlayers"
+    ></div>
+
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-main">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">
+                T5
+            </span>
+
+            <span class="brand-text">
+                ESPORTS
+            </span>
+
+        </a>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="players.html">
+                PLAYERS
+            </a>
 
             <a
                 href="https://discord.gg/t5esports"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="button button-primary big-button"
             >
-
-                JOIN DISCORD
-
-                <span>↗</span>
-
+                DISCORD
             </a>
 
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- FOOTER -->
+    <div class="footer-bottom">
 
-    <footer>
+        <span>
+            © 2026 T5 ESPORTS
+        </span>
 
-        <div class="footer-main">
+        <span>
+            COMPETE. CREATE. CONQUER.
+        </span>
 
-            <div>
+    </div>
 
-                <div class="brand">
-
-                    <div class="brand-mark">
-                        T5
-                    </div>
-
-                    <div class="brand-text">
-                        ESPORTS
-                    </div>
-
-                </div>
+</footer>
 
 
-                <div class="footer-tagline">
-                    BUILT FOR COMPETITION.
-                </div>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a
-                    href="https://discord.gg/t5esports"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    DISCORD
-                </a>
-
-                <a
-                    href="https://www.tiktok.com/@t5ggs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    TIKTOK
-                </a>
-
-                <a
-                    href="https://x.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    X
-                </a>
-
-                <a
-                    href="https://www.youtube.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    YOUTUBE
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 T5 ESPORTS
-            </span>
-
-            <span>
-                ALL RIGHTS RESERVED
-            </span>
-
-        </div>
-
-    </footer>
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
