@@ -1,66 +1,178 @@
+/*
+==================================================
+T5 ESPORTS PLAYER DATABASE
+==================================================
+
+EDIT THIS ONE FILE TO MANAGE EVERY PLAYER.
+
+roster: true
+    = Shows in T5 Roster
+    = Also shows in All Players
+
+roster: false
+    = Does NOT show in T5 Roster
+    = Shows only in All Players
+
+Examples:
+
+    roster: true
+        Official T5 roster member
+
+    roster: false
+        Content creator / community member / etc.
+
+==================================================
+*/
+
+
 const players = [
+
+    /*
+    ==================================================
+    OFFICIAL T5 ROSTER
+    ==================================================
+    */
+
+    {
+        name: "Fatal",
+
+        role: "OWNER",
+
+        region: "EU",
+
+        roster: true,
+
+        image:
+            "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "Onyx",
+
+        role: "OWNER",
+
+        region: "EU",
+
+        roster: true,
+
+        image:
+            "https://cdn.discordapp.com/attachments/1520906820753821776/1541488494545735750/image.png?ex=6a8dc688&is=6a8c7508&hm=cd89d772ef77e7b1a24f78be2887992bb834a4f6a7c4650a068a055bf0ad5cc4&",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    {
+        name: "PLAYER THREE",
+
+        role: "COMPETITIVE PLAYER",
+
+        region: "EU",
+
+        roster: true,
+
+        image: "",
+
+        discord:
+            "https://discord.gg/t5esports"
+    },
+
+
+    /*
+    ==================================================
+    ALL PLAYERS ONLY
+    ==================================================
+    */
 
     {
         name: "PLAYER FOUR",
+
         role: "CONTENT CREATOR",
+
         region: "EU",
+
+        roster: false,
+
         image: "",
-        discord: "https://discord.gg/t5esports"
+
+        discord:
+            "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER FIVE",
+
         role: "CONTENT CREATOR",
+
         region: "EU",
+
+        roster: false,
+
         image: "",
-        discord: "https://discord.gg/t5esports"
+
+        discord:
+            "https://discord.gg/t5esports"
     },
+
 
     {
         name: "PLAYER SIX",
+
         role: "COMMUNITY MEMBER",
+
         region: "EU",
+
+        roster: false,
+
         image: "",
-        discord: "https://discord.gg/t5esports"
+
+        discord:
+            "https://discord.gg/t5esports"
     }
 
 ];
 
 
-const playersContainer =
-    document.getElementById("allPlayers");
-
-
-if (playersContainer) {
-
-    players.forEach((player, index) => {
-
-        const card =
-            createPlayerCard(player, index);
-
-        playersContainer.appendChild(card);
-
-    });
-
-}
-
+/*
+==================================================
+CREATE PLAYER CARD
+==================================================
+*/
 
 function createPlayerCard(player, index) {
 
     const card =
         document.createElement("article");
 
+
     card.className =
         "real-player-card reveal";
 
 
     const number =
-        String(index + 1).padStart(2, "0");
+        String(index + 1)
+            .padStart(2, "0");
 
 
-    const imageHTML = player.image
+    /*
+    ==============================================
+    PLAYER IMAGE
+    ==============================================
+    */
 
-        ? `
+    let imageHTML;
+
+
+    if (player.image) {
+
+        imageHTML = `
+
             <img
                 src="${player.image}"
                 alt="${player.name}"
@@ -68,40 +180,69 @@ function createPlayerCard(player, index) {
                 loading="lazy"
                 onerror="this.style.display='none';"
             >
-        `
 
-        : `
+        `;
+
+    } else {
+
+        imageHTML = `
+
             <div class="empty-player-logo">
                 T5
             </div>
+
         `;
 
+    }
+
+
+    /*
+    ==============================================
+    PLAYER CARD
+    ==============================================
+    */
 
     card.innerHTML = `
 
         <div class="real-player-image">
+
             ${imageHTML}
+
         </div>
+
 
         <div class="player-card-overlay"></div>
 
+
         <div class="real-player-number">
+
             ${number}
+
         </div>
 
+
         <div class="real-player-region">
+
             ${player.region}
+
         </div>
+
 
         <div class="real-player-info">
 
             <div class="real-player-role">
+
                 ${player.role}
+
             </div>
 
+
             <h3>
+
                 ${player.name}
+
             </h3>
+
 
             <a
                 href="${player.discord}"
@@ -109,13 +250,99 @@ function createPlayerCard(player, index) {
                 rel="noopener noreferrer"
                 class="real-player-link"
             >
+
                 DISCORD
+
                 <span>↗</span>
+
             </a>
 
         </div>
 
     `;
 
+
     return card;
+
+}
+
+
+/*
+==================================================
+T5 ROSTER
+==================================================
+*/
+
+const rosterContainer =
+    document.getElementById("rosterPlayers");
+
+
+if (rosterContainer) {
+
+    const roster =
+        players.filter(
+            player => player.roster === true
+        );
+
+
+    roster.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
+
+
+            rosterContainer.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/*
+==================================================
+ALL PLAYERS
+==================================================
+*/
+
+const playersContainer =
+    document.getElementById("allPlayers");
+
+
+if (playersContainer) {
+
+    /*
+    IMPORTANT:
+
+    Roster players are NOT included here.
+
+    Only players with roster: false
+    will appear in All Players.
+    */
+
+    const allPlayers =
+        players.filter(
+            player => player.roster === false
+        );
+
+
+    allPlayers.forEach(
+        (player, index) => {
+
+            const card =
+                createPlayerCard(
+                    player,
+                    index
+                );
+
+
+            playersContainer.appendChild(card);
+
+        }
+    );
+
 }
