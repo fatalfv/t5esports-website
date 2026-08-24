@@ -1,47 +1,49 @@
 /* ==========================================
-T5 ESPORTS - MAIN SCRIPT
+   T5 ESPORTS — MAIN JAVASCRIPT
 ========================================== */
 
 
 /* ==========================================
-MOBILE MENU
+   MOBILE MENU
 ========================================== */
 
-const menu = document.getElementById("menu");
-const nav = document.getElementById("nav");
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
 
 
-if (menu && nav) {
+if (menuButton && mobileMenu) {
 
-    menu.addEventListener("click", () => {
+    menuButton.addEventListener("click", () => {
 
-        nav.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
 
-        menu.textContent =
-            nav.classList.contains("open")
-                ? "×"
-                : "☰";
+        menuButton.classList.toggle("active");
 
     });
 
 
-    nav.querySelectorAll("a").forEach(link => {
+    mobileMenu
+        .querySelectorAll("a")
+        .forEach(link => {
 
-        link.addEventListener("click", () => {
+            link.addEventListener("click", () => {
 
-            nav.classList.remove("open");
+                mobileMenu.classList.remove("open");
 
-            menu.textContent = "☰";
+                menuButton.classList.remove("active");
+
+            });
 
         });
-
-    });
 
 }
 
 
 /* ==========================================
-HEADER SCROLL EFFECT
+   NAVBAR SCROLL EFFECT
 ========================================== */
 
 const header =
@@ -51,6 +53,7 @@ const header =
 function updateHeader() {
 
     if (!header) return;
+
 
     if (window.scrollY > 30) {
 
@@ -71,11 +74,12 @@ window.addEventListener(
     { passive: true }
 );
 
+
 updateHeader();
 
 
 /* ==========================================
-SCROLL REVEAL ANIMATIONS
+   SCROLL REVEAL
 ========================================== */
 
 const revealElements =
@@ -84,37 +88,40 @@ const revealElements =
 
 if ("IntersectionObserver" in window) {
 
-    const observer =
+    const revealObserver =
         new IntersectionObserver(
+
             (entries, observer) => {
 
                 entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
+                    if (!entry.isIntersecting) {
+                        return;
                     }
+
+
+                    entry.target.classList.add("visible");
+
+
+                    observer.unobserve(
+                        entry.target
+                    );
 
                 });
 
             },
+
             {
                 threshold: 0.12,
-                rootMargin: "0px 0px -60px 0px"
+                rootMargin: "0px 0px -50px 0px"
             }
+
         );
 
 
     revealElements.forEach(element => {
 
-        observer.observe(element);
+        revealObserver.observe(element);
 
     });
 
@@ -130,22 +137,8 @@ if ("IntersectionObserver" in window) {
 
 
 /* ==========================================
-PLAYER DATA
+   PLAYER DATA
 ========================================== */
-
-
-/*
-    IMPORTANT:
-
-    GitHub image:
-
-    https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true
-
-    Local image:
-
-    images/fatal.jpeg
-*/
-
 
 const rosterPlayers = [
 
@@ -153,10 +146,8 @@ const rosterPlayers = [
         name: "Fatal",
         role: "OWNER",
         region: "EU",
-
         image:
             "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-
         discord:
             "https://discord.gg/t5esports"
     },
@@ -166,9 +157,7 @@ const rosterPlayers = [
         name: "PLAYER TWO",
         role: "COMPETITIVE PLAYER",
         region: "EU",
-
         image: "",
-
         discord:
             "https://discord.gg/t5esports"
     },
@@ -178,9 +167,7 @@ const rosterPlayers = [
         name: "PLAYER THREE",
         role: "COMPETITIVE PLAYER",
         region: "EU",
-
         image: "",
-
         discord:
             "https://discord.gg/t5esports"
     }
@@ -188,16 +175,14 @@ const rosterPlayers = [
 ];
 
 
-const players = [
+const allPlayers = [
 
     {
         name: "Fatal",
         role: "OWNER",
         region: "EU",
-
         image:
             "https://github.com/fatalfv/t5esports-website/blob/main/images/fatal.jpeg?raw=true",
-
         discord:
             "https://discord.gg/t5esports"
     },
@@ -207,9 +192,7 @@ const players = [
         name: "PLAYER TWO",
         role: "T5 PLAYER",
         region: "EU",
-
         image: "",
-
         discord:
             "https://discord.gg/t5esports"
     },
@@ -217,11 +200,9 @@ const players = [
 
     {
         name: "PLAYER THREE",
-        role: "CONTENT CREATOR",
+        role: "T5 PLAYER",
         region: "EU",
-
         image: "",
-
         discord:
             "https://discord.gg/t5esports"
     },
@@ -229,11 +210,9 @@ const players = [
 
     {
         name: "PLAYER FOUR",
-        role: "T5 PLAYER",
+        role: "CONTENT CREATOR",
         region: "EU",
-
         image: "",
-
         discord:
             "https://discord.gg/t5esports"
     }
@@ -242,7 +221,7 @@ const players = [
 
 
 /* ==========================================
-CREATE PLAYER CARD
+   PLAYER CARD
 ========================================== */
 
 function createPlayerCard(player, index) {
@@ -259,61 +238,60 @@ function createPlayerCard(player, index) {
         String(index + 1).padStart(2, "0");
 
 
-    const imageHTML =
-        player.image
+    const imageHTML = player.image
 
-            ? `
+        ? `
+            <div class="real-player-image">
+
                 <img
                     src="${player.image}"
                     alt="${player.name}"
                     class="player-photo"
                     loading="lazy"
                 >
-            `
 
-            : `
+                <div class="player-card-overlay"></div>
+
+            </div>
+        `
+
+        : `
+            <div class="real-player-image">
+
                 <div class="empty-player-logo">
                     T5
                 </div>
-            `;
+
+                <div class="player-card-overlay"></div>
+
+            </div>
+        `;
 
 
     card.innerHTML = `
 
-        <div class="real-player-image">
-
-            ${imageHTML}
-
-        </div>
+        ${imageHTML}
 
 
         <div class="real-player-number">
-
             ${number}
-
         </div>
 
 
         <div class="real-player-region">
-
             ${player.region}
-
         </div>
 
 
         <div class="real-player-info">
 
             <div class="real-player-role">
-
                 ${player.role}
-
             </div>
 
 
             <h3>
-
                 ${player.name}
-
             </h3>
 
 
@@ -323,68 +301,13 @@ function createPlayerCard(player, index) {
                 rel="noopener noreferrer"
                 class="real-player-link"
             >
-
                 DISCORD
-
                 <span>↗</span>
-
             </a>
 
         </div>
 
     `;
-
-
-    /* IMAGE ERROR FALLBACK */
-
-    const image =
-        card.querySelector(".player-photo");
-
-
-    if (image) {
-
-        image.addEventListener(
-            "error",
-            () => {
-
-                image.style.display =
-                    "none";
-
-                const imageContainer =
-                    card.querySelector(
-                        ".real-player-image"
-                    );
-
-
-                if (
-                    imageContainer &&
-                    !imageContainer.querySelector(
-                        ".empty-player-logo"
-                    )
-                ) {
-
-                    const fallback =
-                        document.createElement("div");
-
-
-                    fallback.className =
-                        "empty-player-logo";
-
-
-                    fallback.textContent =
-                        "T5";
-
-
-                    imageContainer.appendChild(
-                        fallback
-                    );
-
-                }
-
-            }
-        );
-
-    }
 
 
     return card;
@@ -393,13 +316,11 @@ function createPlayerCard(player, index) {
 
 
 /* ==========================================
-ROSTER
+   RENDER ROSTER
 ========================================== */
 
 const rosterContainer =
-    document.getElementById(
-        "rosterPlayers"
-    );
+    document.getElementById("rosterPlayers");
 
 
 if (rosterContainer) {
@@ -407,14 +328,12 @@ if (rosterContainer) {
     rosterPlayers.forEach(
         (player, index) => {
 
-            const card =
+            rosterContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            rosterContainer.appendChild(card);
+                )
+            );
 
         }
     );
@@ -423,28 +342,24 @@ if (rosterContainer) {
 
 
 /* ==========================================
-ALL PLAYERS
+   RENDER ALL PLAYERS
 ========================================== */
 
 const allPlayersContainer =
-    document.getElementById(
-        "allPlayers"
-    );
+    document.getElementById("allPlayers");
 
 
 if (allPlayersContainer) {
 
-    players.forEach(
+    allPlayers.forEach(
         (player, index) => {
 
-            const card =
+            allPlayersContainer.appendChild(
                 createPlayerCard(
                     player,
                     index
-                );
-
-
-            allPlayersContainer.appendChild(card);
+                )
+            );
 
         }
     );
@@ -453,10 +368,10 @@ if (allPlayersContainer) {
 
 
 /* ==========================================
-OBSERVE DYNAMIC PLAYER CARDS
+   CARD REVEAL FOR DYNAMIC PLAYERS
 ========================================== */
 
-function observeDynamicCards() {
+setTimeout(() => {
 
     const dynamicCards =
         document.querySelectorAll(
@@ -464,64 +379,65 @@ function observeDynamicCards() {
         );
 
 
-    if (
-        !("IntersectionObserver" in window)
-    ) {
+    if ("IntersectionObserver" in window) {
 
-        dynamicCards.forEach(card => {
+        const cardObserver =
+            new IntersectionObserver(
 
-            card.classList.add("visible");
+                (entries, observer) => {
 
-        });
+                    entries.forEach(entry => {
 
-        return;
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
 
-    }
+
+                        entry.target
+                            .classList
+                            .add("visible");
 
 
-    const cardObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        cardObserver.unobserve(
+                        observer.unobserve(
                             entry.target
                         );
 
-                    }
+                    });
 
-                });
+                },
 
-            },
-            {
-                threshold: 0.1
-            }
-        );
+                {
+                    threshold: 0.1
+                }
 
-
-    dynamicCards.forEach(card => {
-
-        cardObserver.observe(card);
-
-    });
-
-}
+            );
 
 
-observeDynamicCards();
+        dynamicCards.forEach(card => {
+
+            cardObserver.observe(card);
+
+        });
+
+    } else {
+
+        dynamicCards.forEach(card => {
+
+            card.classList.add(
+                "visible"
+            );
+
+        });
+
+    }
+
+}, 50);
 
 
 /* ==========================================
-SMOOTH INTERNAL LINKS
+   SMOOTH INTERNAL LINKS
 ========================================== */
 
 document
@@ -532,27 +448,17 @@ document
             "click",
             event => {
 
-                const targetId =
+                const targetID =
                     link.getAttribute("href");
-
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
 
 
                 const target =
                     document.querySelector(
-                        targetId
+                        targetID
                     );
 
 
-                if (!target) {
-                    return;
-                }
+                if (!target) return;
 
 
                 event.preventDefault();
@@ -562,44 +468,6 @@ document
                     behavior: "smooth",
                     block: "start"
                 });
-
-            }
-        );
-
-    });
-
-
-/* ==========================================
-BUTTON RIPPLE
-========================================== */
-
-document
-    .querySelectorAll(
-        ".button, .nav-button, .pill-button, .real-player-link"
-    )
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                button.animate(
-                    [
-                        {
-                            transform:
-                                "translateY(-2px) scale(.98)"
-                        },
-
-                        {
-                            transform:
-                                "translateY(-2px) scale(1)"
-                        }
-                    ],
-                    {
-                        duration: 180,
-                        easing: "ease-out"
-                    }
-                );
 
             }
         );
