@@ -19,7 +19,7 @@ const rosterPlayers = [
         name: "Fatal",
         role: "Owner",
         region: "EU",
-        image: "images/fatal.jpg",
+        image: "images/fatal.jpeg",
         discord: "https://discord.gg/t5esports"
     },
 
